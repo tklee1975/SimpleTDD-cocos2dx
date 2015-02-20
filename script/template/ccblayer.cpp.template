@@ -1,0 +1,61 @@
+//
+//  #ClassName#.h
+//  
+//	Author: _enter_your_name_
+//
+// 
+#include "#ClassName#.h"
+#include "CCBHelper.h"
+#include "CCBLayer.h"
+
+
+#ClassName#::#ClassName#()
+{
+	log("#ClassName# is constructed");
+}
+
+
+#ClassName#::~#ClassName#()
+{
+	log("#ClassName# is destructed");
+}
+
+DEFINE_CCB_ASSIGN_MEMBER(#ClassName#)
+{
+	log("#ClassName#: onAssignCCBMemberVariable");
+
+	return false;
+}
+
+DEFINE_CCB_CONTROL_SELECTOR(#ClassName#)
+{
+	log("#ClassName#: onResolveCCBCCControlSelector");
+	
+	BIND_CCCONTROL_METHOD(#ClassName#, onButtonClicked);		
+	
+	return NULL;
+}
+
+DEFINE_CCB_MENUITEM_SELECTOR(#ClassName#)
+{
+	log("#ClassName#: onResolveCCBCCMenuItemSelector");
+		
+	BIND_CCMENUITEM_METHOD(#ClassName#, onMenuClicked);
+
+	return NULL;
+}
+
+void #ClassName#::onNodeLoaded(Node *node,  NodeLoader *nodeLoader)
+{
+	log("#ClassName#: onNodeLoaded");
+}
+
+void #ClassName#::onMenuClicked(Object *sender)
+{
+	log("this is a menu callback example");
+}
+
+void #ClassName#::onButtonClicked(Object *sender, Control::EventType pControlEvent)
+{
+	log("this is a button callback example");
+}

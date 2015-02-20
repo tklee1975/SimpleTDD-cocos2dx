@@ -1,0 +1,27 @@
+#ifdef ENABLE_TDD
+//
+//  #TestName#Test.h
+//
+//
+#ifndef __TDD_#TestName#Test__
+#define __TDD_#TestName#Test__
+
+// Include Header
+
+#include "TDDTest.h"
+
+// Class Declaration 
+class #TestName#Test : public TDDTest
+{
+protected:
+	virtual void setUp();
+	virtual void tearDown();
+	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	
+private:
+	void subTest(Ref *sender);
+}; 
+
+#endif
+
+#endif

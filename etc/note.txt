@@ -1,0 +1,34 @@
+Project Notes
+===================
+
+Sample Test
+-----------------
+(To test cocos2d)
+- Layer Test
+- Scene Test
+- Font Test
+- Sprite Test
+- Device Info 
+- Sound Test
+
+(To test SimpleTDD)
+- Touch Test
+- Hotspot Test
+
+
+Guideline
+----------------
+- Easy to install
+- Not require any Resource 
+- Not require any 3rd library except cocos2d-x itself 
+
+
+Future Feature
+-----------------
+- Install Script
+- Dark/Light Test Button
+- Dark/Light Theme
+- Fit for different 
+- Scrollable Display Layer
+- Touch Layer
+- Configuration 

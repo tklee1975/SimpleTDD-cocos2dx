@@ -1,0 +1,54 @@
+//
+//  #ClassName#.h
+//  
+//	Author: _enter_your_name_
+//
+//	Need Help ? 
+//	http://103.25.72.74:12046/wiki/index.php/CCX:CocosBuilder
+// 
+#ifndef __CCBLayer_#ClassName#__
+#define __CCBLayer_#ClassName#__
+
+// Include Header
+
+#include "CCBLayer.h"
+#include "cocos2d.h"
+#include "cocos-ext.h"
+#include "cocosbuilder/CocosBuilder.h"
+
+USING_NS_CC;
+USING_NS_CC_EXT;
+using namespace cocosbuilder;
+
+// Class Declaration 
+class #ClassName# : public CCBLayer
+{
+public:
+	// Constructor & Destructor
+	CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(#ClassName#, create);
+	#ClassName#();
+	virtual ~#ClassName#();
+	
+	// CCB Binding Method
+	DECLARE_CCB_MENUITEM_SELECTOR;
+	DECLARE_CCB_CONTROL_SELECTOR;
+	DECLARE_CCB_ASSIGN_MEMBER;
+	
+	// onNodeLoaded override
+	void onNodeLoaded(Node * node,  NodeLoader * nodeLoader);
+
+private: // member
+	// LabelTTF *mLabelStatus;
+
+private: // method
+	// Menu & Button Method Example:
+	void onMenuClicked(Object *sender);
+	void onButtonClicked(Object *sender, Control::EventType pControlEvent);
+	
+	
+}; 
+
+// Generate the NodeLoader for #ClassName#
+CREATE_LOADER(#ClassName#)
+
+#endif
