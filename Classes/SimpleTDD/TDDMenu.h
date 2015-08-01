@@ -19,7 +19,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 
-class TDDMenu : public ScrollView
+class TDDMenu : public cocos2d::extension::ScrollView
 {
 public:
 	TDDMenu(Size size, Color4B color, float rowHeight);

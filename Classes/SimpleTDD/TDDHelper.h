@@ -40,7 +40,7 @@ public:
 	static void showTests();
 	static Menu *createMenu(cocos2d::Point pos, const char *name, const ccMenuCallback& callback);
 	static MenuItem *createMenuItem(const char *name, const ccMenuCallback& callback);
-	static void scrollToTop(ScrollView *scrollView);
+	static void scrollToTop(cocos2d::extension::ScrollView *scrollView);
 	static Point getCenter(Size &parentSize, Size &nodeSize);
 	static EditBox *createEditBox(Node *parent, Point position, Size size);
 	static void saveFilter(const char *pattern);
@@ -75,7 +75,11 @@ public:
 	static bool isLandscape();
 	static float getBestScale();
 	
-	#pragma mark - Save/Load Data
+#pragma mark - helping node 
+	static void addAnchorPoint(Node *node, const Color4B &color = Color4B(255, 0, 0, 200));
+	static void addBoundingBox(Node *node, const Color4B &color = Color4B(255, 0, 0, 200));
+	
+#pragma mark - Save/Load Data
 	static void saveStringToDevice(const std::string &key, const std::string &content);
 	static std::string loadStringFromDevice(const std::string &key);
 };

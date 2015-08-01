@@ -245,6 +245,49 @@ std::string TDDHelper::getLibraryName()
 	return kLibName;
 }
 
+void TDDHelper::addAnchorPoint(Node *node, const Color4B &color)
+{
+//	node->add
+	if(node == NULL) {
+		return;
+	}
+	
+	GLfloat pointSize = 4;
+	
+	Layer *layer = LayerColor::create(color, pointSize, pointSize);
+	Size size = node->getContentSize();
+	Vec2 anchorRatio = node->getAnchorPoint();
+	
+	float x = size.width * anchorRatio.x - pointSize/2;
+	float y = size.height * anchorRatio.y - pointSize/2;
+	
+	layer->setPosition(Vec2(x, y));
+	
+	node->addChild(layer);
+}
+
+void TDDHelper::addBoundingBox(Node *node, const Color4B &color)
+{
+	//	node->add
+	if(node == NULL) {
+		return;
+	}
+	
+//	GLfloat pointSize = 4;
+//	
+//	Layer *layer = LayerColor::create(color, pointSize, pointSize);
+//	Size size = node->getContentSize();
+//	Vec2 anchorRatio = node->getAnchorPoint();
+//	
+//	float x = size.width * anchorRatio.x - pointSize/2;
+//	float y = size.height * anchorRatio.y - pointSize/2;
+//	
+//	layer->setPosition(Vec2(x, y));
+//	
+//	node->addChild(layer);
+}
+
+
 /*
 Layer *TDDHelper::createKeyPadLayer(Object *target, Control::Handler handler)
 {

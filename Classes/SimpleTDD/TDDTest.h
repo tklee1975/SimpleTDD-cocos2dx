@@ -49,6 +49,7 @@ protected:
 	void setMenuVisible(bool flag);
 	void setToolBarOpacity(GLubyte value);
 	void setBackgroundColor(const Color3B &color);
+	void clearNodes();
 
 private:
 	void setupGUI();

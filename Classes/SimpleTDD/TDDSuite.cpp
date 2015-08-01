@@ -458,6 +458,8 @@ void TDDSuiteLayer::setDisplayTestWithFilter(const std::string &filter)
 	mDisplayTest.clear();
 	log("testWithFilter");
 	
+	log("gTestCount: count=%d", gTestCount);
+	
 	// TODO: Filtering !!!!
 	const char *filterPattern = getFilterName();
 	

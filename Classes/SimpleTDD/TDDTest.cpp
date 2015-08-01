@@ -231,6 +231,21 @@ void TDDTest::setBackgroundColor(const Color3B &color)
 	
 }
 
+void TDDTest::clearNodes()
+{
+	Vector<Node *> allNodes = this->getChildren();
+	
+	for(int i=1; i<allNodes.size(); i++) {	// The first node is the scene base layer, cannot remove
+		Node *node = allNodes.at(i);
+		if(node == mBackLayer || node == mControlLayer) {
+			continue;
+		}
+		
+		node->removeFromParent();
+	}
+}
+
+
 void TDDTest::setupToolbar(Layer *parent)
 {
 	Size screenSize = TDDHelper::getScreenSize();
@@ -301,6 +316,7 @@ void TDDTest::setupControlLayer()
 	// Control Layer
 	Layer *layer = Layer::create();
 	layer->setContentSize(screenSize);
+	mControlLayer = layer;
 	
 	setupSubMenu(layer);
 		
