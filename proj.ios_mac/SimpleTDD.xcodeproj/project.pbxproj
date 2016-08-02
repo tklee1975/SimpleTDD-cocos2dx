@@ -57,6 +57,11 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		737A6C7B1D506B3E00969614 /* version.md in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C7A1D506B3E00969614 /* version.md */; };
+		737A6C7D1D506B8700969614 /* app-design.md in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C7C1D506B8700969614 /* app-design.md */; };
+		737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C811D506CCE00969614 /* TDDManager.cpp */; };
+		737A6C851D506F3200969614 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 737A6C841D506F3200969614 /* libiconv.tbd */; };
+		737A6C881D5072D800969614 /* TDDManagerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C861D5072D800969614 /* TDDManagerTest.cpp */; };
 		7391326F1A8F41E000E95086 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7391326E1A8F41E000E95086 /* Images.xcassets */; };
 		739132871A8F49A300E95086 /* TDDSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132711A8F49A300E95086 /* TDDSample.cpp */; };
 		739132881A8F49A300E95086 /* TDDSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132711A8F49A300E95086 /* TDDSample.cpp */; };
@@ -191,6 +196,14 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		737A6C7A1D506B3E00969614 /* version.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = version.md; sourceTree = "<group>"; };
+		737A6C7C1D506B8700969614 /* app-design.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "app-design.md"; sourceTree = "<group>"; };
+		737A6C811D506CCE00969614 /* TDDManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDManager.cpp; sourceTree = "<group>"; };
+		737A6C821D506CCE00969614 /* TDDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDManager.h; sourceTree = "<group>"; };
+		737A6C841D506F3200969614 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
+		737A6C861D5072D800969614 /* TDDManagerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDManagerTest.cpp; sourceTree = "<group>"; };
+		737A6C871D5072D800969614 /* TDDManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDManagerTest.h; sourceTree = "<group>"; };
+		737A6C891D50743100969614 /* MyTestCases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTestCases.h; sourceTree = "<group>"; };
 		7391326E1A8F41E000E95086 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "SimpleTDD iOS/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		739132711A8F49A300E95086 /* TDDSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSample.cpp; sourceTree = "<group>"; };
 		739132721A8F49A300E95086 /* TDDSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDSample.h; sourceTree = "<group>"; };
@@ -254,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				737A6C851D506F3200969614 /* libiconv.tbd in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -325,6 +339,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				737A6C7C1D506B8700969614 /* app-design.md */,
+				737A6C7A1D506B3E00969614 /* version.md */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
@@ -339,6 +355,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				737A6C841D506F3200969614 /* libiconv.tbd */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -436,6 +453,8 @@
 		739132701A8F49A300E95086 /* SimpleTDD */ = {
 			isa = PBXGroup;
 			children = (
+				737A6C811D506CCE00969614 /* TDDManager.cpp */,
+				737A6C821D506CCE00969614 /* TDDManager.h */,
 				739132711A8F49A300E95086 /* TDDSample.cpp */,
 				739132721A8F49A300E95086 /* TDDSample.h */,
 				739132731A8F49A300E95086 /* TDDCases.h */,
@@ -465,6 +484,8 @@
 		739132991A8F4A5B00E95086 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				737A6C861D5072D800969614 /* TDDManagerTest.cpp */,
+				737A6C871D5072D800969614 /* TDDManagerTest.h */,
 				7391329A1A8F4A5B00E95086 /* ButtonTest.cpp */,
 				7391329B1A8F4A5B00E95086 /* ButtonTest.h */,
 				7391329C1A8F4A5B00E95086 /* EditBoxTest.cpp */,
@@ -490,6 +511,7 @@
 				739132B01A8F4A5B00E95086 /* TDDSuiteLayerTest.h */,
 				739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */,
 				739132B21A8F4A5B00E95086 /* TDDSwitchTest.h */,
+				737A6C891D50743100969614 /* MyTestCases.h */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -649,6 +671,7 @@
 				7391328B1A8F49A300E95086 /* TDDHelper.cpp in Sources */,
 				739132C51A8F4A5B00E95086 /* TDDSubMenuTest.cpp in Sources */,
 				739132B31A8F4A5B00E95086 /* ButtonTest.cpp in Sources */,
+				737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */,
 				739132B91A8F4A5B00E95086 /* LabelTest.cpp in Sources */,
 				739132911A8F49A300E95086 /* TDDSubMenu.cpp in Sources */,
 				7391328F1A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
@@ -661,11 +684,14 @@
 				739132C31A8F4A5B00E95086 /* TDDHelperTest.cpp in Sources */,
 				739132C71A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				737A6C7D1D506B8700969614 /* app-design.md in Sources */,
 				739132BB1A8F4A5B00E95086 /* ScrollTest.cpp in Sources */,
 				7391328D1A8F49A300E95086 /* TDDMenu.cpp in Sources */,
+				737A6C881D5072D800969614 /* TDDManagerTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				739132931A8F49A300E95086 /* TDDSuite.cpp in Sources */,
 				739132B51A8F4A5B00E95086 /* EditBoxTest.cpp in Sources */,
+				737A6C7B1D506B3E00969614 /* version.md in Sources */,
 				739132B71A8F4A5B00E95086 /* ExampleTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,6 +23,7 @@
 #include "TDDDataTest.h"
 #include "StdVectorTest.h"
 #include "TDDSubMenuTest.h"
+#include "TDDManagerTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -31,6 +32,7 @@
 TDD_CASES
 {
 	TEST(LabelTest),
+	TEST(TDDManagerTest),
 	TEST(ExampleTest),
 	TEST(EditBoxTest),
 	TEST(TDDSample),

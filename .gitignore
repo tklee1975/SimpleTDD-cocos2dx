@@ -1,9 +1,6 @@
 #o Ignore thumbnails created by windows
 Thumbs.db
 
-# cocos2d library
-cocos2d
-
 # Ignore files build by Visual Studio
 *.obj
 *.exe
