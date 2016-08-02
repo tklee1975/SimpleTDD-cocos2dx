@@ -15,7 +15,8 @@
 
 #include "TDDTypes.h"
 #include "TDDTest.h"		// contain the data structure
-
+#include <string>
+#include <vector>
 
 USING_NS_CC;
 
@@ -23,20 +24,29 @@ class TDDManager
 {
 public:
 	static TDDManager *instance();
-
+	
 private:
 	TDDManager();
 	
-	
+public:
+	CC_SYNTHESIZE(std::string, mFontName, FontName);
 	
 public:
 	void loadTestList();
 	std::string infoAllTest();
-	void runTest(const std::string &name);
-	const TDDTestCase getTest(const std::string &name) &;
+	
+	std::vector<std::string> getRecentTestList(const std::string &filterName);
+	std::vector<std::string> getTestList(const std::string &filterName);
+	
+	bool runTest(const std::string &name);
+	const TDDTestCase *getTest(const std::string &name);
 	
 private:
-	std::map<std::string, TDDTestCase> mTestMap;
+	std::vector<std::string> getFilteredList(std::vector<std::string> &list, const std::string &filterName);
+	
+private:
+	std::vector<std::string> mTestList;		// This array keep the original order
+	std::map<std::string, TDDTestCase *> mTestMap;	// This help faster access to the TestCase Data
 	//Vector<std::str
 };
 

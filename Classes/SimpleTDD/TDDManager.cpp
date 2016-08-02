@@ -10,13 +10,37 @@
 
 
 
-//  Building the gTestArray
+//  Building the sTestArray
 #define TEST(__ClassName__)		 			{#__ClassName__, []() { return new __ClassName__(); } }
-#define TDD_CASES							TDDTestCase sTestArray[] =
+#define TDD_CASES							static TDDTestCase sTestArray[] =
 
-#include "MyTestCases.h"
+#include "MyTDDCases.h"
+// Building the sTestArray (End)
+
+//  Local helper method
+namespace {
+	bool isTestMatch(const std::string &testName, const std::string &filterPattern)
+	{
+		if(filterPattern == "") {
+			return true;
+		}
+		
+		// Turn XXXTest -> XXX
+		std::string name = testName;
+		if(name.length() > 4) {
+			name = name.substr(0, name.length()-4);
+		}
+		
+		// log("trimmed testName=[%s]", name.c_str());
+		
+		std::size_t found = name.find(filterPattern);
+		
+		return (found!=std::string::npos);
+	}
+}
+
+
 //
-
 static TDDManager *sInstance = nullptr;
 
 TDDManager *TDDManager::instance()
@@ -31,31 +55,54 @@ TDDManager *TDDManager::instance()
 
 TDDManager::TDDManager()
 : mTestMap()
+, mTestList()
+, mFontName()
 {
-	
+	loadTestList();
 }
 
 void TDDManager::loadTestList()
 {
 	mTestMap.clear();
+	mTestList.clear();
 	
 	int testCount = sizeof(sTestArray) / sizeof(sTestArray[0]);
 	
 	for(int i=0; i<testCount; i++) {
-		TDDTestCase testCase = sTestArray[i];
+		TDDTestCase *testCase = &sTestArray[i];
 		
-		std::string name(testCase.name);
+		std::string name(testCase->name);
 		
+		mTestList.push_back(name);
 		mTestMap[name] = testCase;
 	}
 }
 
-void TDDManager::runTest(const std::string &name)
+bool TDDManager::runTest(const std::string &name)
 {
+	const TDDTestCase *test = getTest(name);
+	if(test == nullptr) {
+		log("TDDManager: test %s not found", name.c_str());
+		return false;
+	}
+	
+	auto scene = test->callback();
+	if (scene)
+	{
+		Director::getInstance()->pushScene(scene);
+		scene->release();
+		return true;
+	} else {
+		
+		log("TDDManager: test %s scene not found", name.c_str());
+		
+		return false;
+	}
+
 	
 }
 
-const TDDTestCase TDDManager::getTest(const std::string &name) &
+const TDDTestCase *TDDManager::getTest(const std::string &name) 
 {
 	return mTestMap[name];
 }
@@ -65,12 +112,40 @@ std::string TDDManager::infoAllTest()
 {
 	std::string result = StringUtils::format("Test Count: %d\n", (int) mTestMap.size());
 	
-	std::map<std::string, TDDTestCase>::iterator it = mTestMap.begin();
+	std::map<std::string, TDDTestCase *>::iterator it = mTestMap.begin();
 	
 	for(; it != mTestMap.end(); it++) {
 		std::string name = it->first;
 		
 		result += "- " + name + "\n";
+	}
+	
+	return result;
+}
+
+std::vector<std::string> TDDManager::getRecentTestList(const std::string &filterName)
+{
+	
+}
+
+std::vector<std::string> TDDManager::getTestList(const std::string &filterName)
+{
+	return getFilteredList(mTestList, filterName);
+}
+
+std::vector<std::string> TDDManager::getFilteredList(std::vector<std::string> &list,
+													 const std::string &filterName)
+{
+	std::vector<std::string> result;
+	
+	std::vector<std::string>::iterator it;
+	
+	for(it = list.begin(); it != list.end(); it++) {
+		std::string testName = *it;
+		
+		if(isTestMatch(testName, filterName)) {
+			result.push_back(testName);
+		}
 	}
 	
 	return result;

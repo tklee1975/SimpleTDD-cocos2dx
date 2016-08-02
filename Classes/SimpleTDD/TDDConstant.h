@@ -10,7 +10,7 @@
 #define Cocos2dxTDDLib_TDDConstant_h
 
 #define APP_NAME		"SimpleTDD"
-#define VERSION			"1.2.0"
+#define VERSION			"1.3.0"
 #define BUILD			3
 
 #define TDD_FONT_NAME	"Arial"
@@ -22,6 +22,8 @@
 #define TDD_FONT_SIZE1	23
 #define TDD_FONT_SIZE2	16
 #define TDD_FONT_SIZE3	15
+
+// Font
 
 
 // Color
