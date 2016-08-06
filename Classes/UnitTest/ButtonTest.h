@@ -24,6 +24,9 @@ private:
 	Menu *createMenu(int numitem);
 	
 	void onMenuSelected(Ref *sender);
+	
+	void testButtonClick(Ref *sender);
+	
 	void testMenuLayout(Ref *sender);
 	void testMenuStyle(Ref *sender);
 	void testAlighColumn(Ref *sender);
@@ -31,6 +34,7 @@ private:
 	void testAlignItemsWithScroll(Ref *sender);
 	void testControlButton(Ref *sender);
 	void testButtonColor(Ref *sender);
+	void testButtonStyle(Ref *sender);
 	
 	void setButtonSelected(Ref *sender, Control::EventType controlEvent);
 	void touchUpInsideAction(Ref *sender, Control::EventType controlEvent);

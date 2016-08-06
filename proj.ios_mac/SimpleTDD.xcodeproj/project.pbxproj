@@ -57,6 +57,8 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		73491BC31D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
+		73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
 		737A6C7B1D506B3E00969614 /* version.md in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C7A1D506B3E00969614 /* version.md */; };
 		737A6C7D1D506B8700969614 /* app-design.md in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C7C1D506B8700969614 /* app-design.md */; };
 		737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C811D506CCE00969614 /* TDDManager.cpp */; };
@@ -107,6 +109,7 @@
 		739132CA1A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */; };
 		73BABD311A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
 		73BABD321A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
+		73FE6B211D53C6800023048E /* TabTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73FE6B1F1D53C6800023048E /* TabTest.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -196,6 +199,8 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		73491BC11D563F7C004D09F9 /* TDDTab.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTab.cpp; sourceTree = "<group>"; };
+		73491BC21D563F7C004D09F9 /* TDDTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTab.h; sourceTree = "<group>"; };
 		737A6C7A1D506B3E00969614 /* version.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = version.md; sourceTree = "<group>"; };
 		737A6C7C1D506B8700969614 /* app-design.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "app-design.md"; sourceTree = "<group>"; };
 		737A6C811D506CCE00969614 /* TDDManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDManager.cpp; sourceTree = "<group>"; };
@@ -253,6 +258,8 @@
 		739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSwitchTest.cpp; sourceTree = "<group>"; };
 		739132B21A8F4A5B00E95086 /* TDDSwitchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDSwitchTest.h; sourceTree = "<group>"; };
 		73BABD301A94EEAD0017C351 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		73FE6B1F1D53C6800023048E /* TabTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabTest.cpp; sourceTree = "<group>"; };
+		73FE6B201D53C6800023048E /* TabTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabTest.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -477,6 +484,8 @@
 				739132841A8F49A300E95086 /* TDDTest.cpp */,
 				739132851A8F49A300E95086 /* TDDTest.h */,
 				739132861A8F49A300E95086 /* TDDTypes.h */,
+				73491BC11D563F7C004D09F9 /* TDDTab.cpp */,
+				73491BC21D563F7C004D09F9 /* TDDTab.h */,
 			);
 			path = SimpleTDD;
 			sourceTree = "<group>";
@@ -484,6 +493,8 @@
 		739132991A8F4A5B00E95086 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73FE6B1F1D53C6800023048E /* TabTest.cpp */,
+				73FE6B201D53C6800023048E /* TabTest.h */,
 				737A6C861D5072D800969614 /* TDDManagerTest.cpp */,
 				737A6C871D5072D800969614 /* TDDManagerTest.h */,
 				7391329A1A8F4A5B00E95086 /* ButtonTest.cpp */,
@@ -677,6 +688,7 @@
 				7391328F1A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				739132891A8F49A300E95086 /* TDDData.cpp in Sources */,
+				73491BC31D563F7C004D09F9 /* TDDTab.cpp in Sources */,
 				739132C11A8F4A5B00E95086 /* TDDDataTest.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				739132BD1A8F4A5B00E95086 /* StdVectorTest.cpp in Sources */,
@@ -684,6 +696,7 @@
 				739132C31A8F4A5B00E95086 /* TDDHelperTest.cpp in Sources */,
 				739132C71A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				73FE6B211D53C6800023048E /* TabTest.cpp in Sources */,
 				737A6C7D1D506B8700969614 /* app-design.md in Sources */,
 				739132BB1A8F4A5B00E95086 /* ScrollTest.cpp in Sources */,
 				7391328D1A8F49A300E95086 /* TDDMenu.cpp in Sources */,
@@ -710,6 +723,7 @@
 				7391328A1A8F49A300E95086 /* TDDData.cpp in Sources */,
 				739132B61A8F4A5B00E95086 /* EditBoxTest.cpp in Sources */,
 				739132901A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
+				73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */,
 				739132BE1A8F4A5B00E95086 /* StdVectorTest.cpp in Sources */,
 				739132BC1A8F4A5B00E95086 /* ScrollTest.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
