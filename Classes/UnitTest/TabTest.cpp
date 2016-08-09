@@ -60,8 +60,8 @@ void TabTest::testCallback(Ref *sender)
 	tab->addTab("Page2");
 	tab->addTab("Page3");
 
-	tab->setCallback([](Ref *tabControl, int selected) {
-		log("selected: %d", selected);
+	tab->setCallback([](Ref *tabControl, int selected, bool isRepeat) {
+		log("selected: %d isRepeat=%d", selected, isRepeat);
 	});
 	
 	tab->selectTab(0);

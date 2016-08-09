@@ -24,7 +24,7 @@ USING_NS_CC_EXT;
 class TDDTab : public LayerColor
 {
 public:
-	typedef std::function<void(Ref*, int selectedTab)> TDDTabCallback;
+	typedef std::function<void(Ref*, int selectedTab, bool isRepeat)> TDDTabCallback;
 	
 public:
 	CREATE_FUNC(TDDTab);

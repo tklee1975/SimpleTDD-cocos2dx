@@ -58,21 +58,24 @@ void TDDTab::selectTab(int index)
 	ui::Button *newButton = getButtonAtIndex(index);
 	ui::Button *oldButton = getButtonAtIndex(mSelectedIndex);
 	
-	
-	if(oldButton) {	// turn back to normal color
-		oldButton->setTitleColor(getTitleColor());
-	}
+	// Change the button color if a new tab is chosen
+	if(newButton != oldButton) {
+		if(oldButton) {	// turn back to normal color
+			oldButton->setTitleColor(getTitleColor());
+		}
 
-	if(newButton) {	// turn to active color
-		newButton->setTitleColor(getActiveTitleColor());
+		if(newButton) {	// turn to active color
+			newButton->setTitleColor(getActiveTitleColor());
+		}
 	}
 	
 	// update the mSelectedd
+	bool isRepeat = (mSelectedIndex == index);	// old index is same new
 	mSelectedIndex = index;
 	
 	// handle callback
 	if(mCallback) {
-		mCallback(this, mSelectedIndex);
+		mCallback(this, mSelectedIndex, isRepeat);
 	}
 }
 

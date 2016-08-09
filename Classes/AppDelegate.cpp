@@ -54,6 +54,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	setupResolutionPolicy(kDesignW, kDesignH);
 	director->setContentScaleFactor(2);
 
+	
+	FileUtils::getInstance()->addSearchPath("res");
+	
     // turn on display FPS
     director->setDisplayStats(true);
 

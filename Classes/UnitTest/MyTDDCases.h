@@ -25,6 +25,9 @@
 #include "TDDSubMenuTest.h"
 #include "TDDManagerTest.h"
 #include "TabTest.h"
+#include "TDDTableTest.h"
+#include "ScrollViewTest.h"
+#include "WidgetTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -33,6 +36,9 @@
 TDD_CASES
 {
 	TEST(LabelTest),
+	TEST(WidgetTest),
+	TEST(ScrollViewTest),
+	TEST(TDDTableTest),
 	TEST(TabTest),
 	TEST(TDDManagerTest),
 	TEST(ExampleTest),

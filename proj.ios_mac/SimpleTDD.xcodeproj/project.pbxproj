@@ -59,6 +59,10 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		73491BC31D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
 		73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
+		73491BC71D57AF67004D09F9 /* TDDTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC51D57AF67004D09F9 /* TDDTable.cpp */; };
+		73491BC81D57AF67004D09F9 /* TDDTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC51D57AF67004D09F9 /* TDDTable.cpp */; };
+		73491BCB1D57B976004D09F9 /* TDDTableTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC91D57B976004D09F9 /* TDDTableTest.cpp */; };
+		73491BCC1D57B976004D09F9 /* TDDTableTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC91D57B976004D09F9 /* TDDTableTest.cpp */; };
 		737A6C7B1D506B3E00969614 /* version.md in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C7A1D506B3E00969614 /* version.md */; };
 		737A6C7D1D506B8700969614 /* app-design.md in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C7C1D506B8700969614 /* app-design.md */; };
 		737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737A6C811D506CCE00969614 /* TDDManager.cpp */; };
@@ -107,6 +111,8 @@
 		739132C81A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132AF1A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp */; };
 		739132C91A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */; };
 		739132CA1A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */; };
+		739A0F211D5A49FF00389528 /* ScrollViewTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739A0F1F1D5A49FF00389528 /* ScrollViewTest.cpp */; };
+		739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739A0F221D5A4F4300389528 /* WidgetTest.cpp */; };
 		73BABD311A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
 		73BABD321A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
 		73FE6B211D53C6800023048E /* TabTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73FE6B1F1D53C6800023048E /* TabTest.cpp */; };
@@ -201,6 +207,10 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		73491BC11D563F7C004D09F9 /* TDDTab.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTab.cpp; sourceTree = "<group>"; };
 		73491BC21D563F7C004D09F9 /* TDDTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTab.h; sourceTree = "<group>"; };
+		73491BC51D57AF67004D09F9 /* TDDTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTable.cpp; sourceTree = "<group>"; };
+		73491BC61D57AF67004D09F9 /* TDDTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTable.h; sourceTree = "<group>"; };
+		73491BC91D57B976004D09F9 /* TDDTableTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTableTest.cpp; sourceTree = "<group>"; };
+		73491BCA1D57B976004D09F9 /* TDDTableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTableTest.h; sourceTree = "<group>"; };
 		737A6C7A1D506B3E00969614 /* version.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = version.md; sourceTree = "<group>"; };
 		737A6C7C1D506B8700969614 /* app-design.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "app-design.md"; sourceTree = "<group>"; };
 		737A6C811D506CCE00969614 /* TDDManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDManager.cpp; sourceTree = "<group>"; };
@@ -257,6 +267,10 @@
 		739132B01A8F4A5B00E95086 /* TDDSuiteLayerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDSuiteLayerTest.h; sourceTree = "<group>"; };
 		739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDSwitchTest.cpp; sourceTree = "<group>"; };
 		739132B21A8F4A5B00E95086 /* TDDSwitchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDSwitchTest.h; sourceTree = "<group>"; };
+		739A0F1F1D5A49FF00389528 /* ScrollViewTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollViewTest.cpp; sourceTree = "<group>"; };
+		739A0F201D5A49FF00389528 /* ScrollViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewTest.h; sourceTree = "<group>"; };
+		739A0F221D5A4F4300389528 /* WidgetTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WidgetTest.cpp; sourceTree = "<group>"; };
+		739A0F231D5A4F4300389528 /* WidgetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetTest.h; sourceTree = "<group>"; };
 		73BABD301A94EEAD0017C351 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		73FE6B1F1D53C6800023048E /* TabTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabTest.cpp; sourceTree = "<group>"; };
 		73FE6B201D53C6800023048E /* TabTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabTest.h; sourceTree = "<group>"; };
@@ -486,6 +500,8 @@
 				739132861A8F49A300E95086 /* TDDTypes.h */,
 				73491BC11D563F7C004D09F9 /* TDDTab.cpp */,
 				73491BC21D563F7C004D09F9 /* TDDTab.h */,
+				73491BC51D57AF67004D09F9 /* TDDTable.cpp */,
+				73491BC61D57AF67004D09F9 /* TDDTable.h */,
 			);
 			path = SimpleTDD;
 			sourceTree = "<group>";
@@ -493,6 +509,12 @@
 		739132991A8F4A5B00E95086 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				739A0F221D5A4F4300389528 /* WidgetTest.cpp */,
+				739A0F231D5A4F4300389528 /* WidgetTest.h */,
+				739A0F1F1D5A49FF00389528 /* ScrollViewTest.cpp */,
+				739A0F201D5A49FF00389528 /* ScrollViewTest.h */,
+				73491BC91D57B976004D09F9 /* TDDTableTest.cpp */,
+				73491BCA1D57B976004D09F9 /* TDDTableTest.h */,
 				73FE6B1F1D53C6800023048E /* TabTest.cpp */,
 				73FE6B201D53C6800023048E /* TabTest.h */,
 				737A6C861D5072D800969614 /* TDDManagerTest.cpp */,
@@ -677,6 +699,7 @@
 				739132951A8F49A300E95086 /* TDDSwitch.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				739132971A8F49A300E95086 /* TDDTest.cpp in Sources */,
+				739A0F211D5A49FF00389528 /* ScrollViewTest.cpp in Sources */,
 				739132871A8F49A300E95086 /* TDDSample.cpp in Sources */,
 				739132BF1A8F4A5B00E95086 /* SwitchTest.cpp in Sources */,
 				7391328B1A8F49A300E95086 /* TDDHelper.cpp in Sources */,
@@ -684,6 +707,7 @@
 				739132B31A8F4A5B00E95086 /* ButtonTest.cpp in Sources */,
 				737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */,
 				739132B91A8F4A5B00E95086 /* LabelTest.cpp in Sources */,
+				739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */,
 				739132911A8F49A300E95086 /* TDDSubMenu.cpp in Sources */,
 				7391328F1A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
@@ -698,8 +722,10 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				73FE6B211D53C6800023048E /* TabTest.cpp in Sources */,
 				737A6C7D1D506B8700969614 /* app-design.md in Sources */,
+				73491BC71D57AF67004D09F9 /* TDDTable.cpp in Sources */,
 				739132BB1A8F4A5B00E95086 /* ScrollTest.cpp in Sources */,
 				7391328D1A8F49A300E95086 /* TDDMenu.cpp in Sources */,
+				73491BCB1D57B976004D09F9 /* TDDTableTest.cpp in Sources */,
 				737A6C881D5072D800969614 /* TDDManagerTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				739132931A8F49A300E95086 /* TDDSuite.cpp in Sources */,
@@ -723,6 +749,7 @@
 				7391328A1A8F49A300E95086 /* TDDData.cpp in Sources */,
 				739132B61A8F4A5B00E95086 /* EditBoxTest.cpp in Sources */,
 				739132901A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
+				73491BCC1D57B976004D09F9 /* TDDTableTest.cpp in Sources */,
 				73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */,
 				739132BE1A8F4A5B00E95086 /* StdVectorTest.cpp in Sources */,
 				739132BC1A8F4A5B00E95086 /* ScrollTest.cpp in Sources */,
@@ -738,6 +765,7 @@
 				7391328C1A8F49A300E95086 /* TDDHelper.cpp in Sources */,
 				739132BA1A8F4A5B00E95086 /* LabelTest.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				73491BC81D57AF67004D09F9 /* TDDTable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +793,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -800,6 +829,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
