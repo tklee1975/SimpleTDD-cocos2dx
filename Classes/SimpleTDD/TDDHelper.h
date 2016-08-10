@@ -42,7 +42,13 @@ public:
 	static MenuItem *createMenuItem(const char *name, const ccMenuCallback& callback);
 	static void scrollToTop(cocos2d::extension::ScrollView *scrollView);
 	static Point getCenter(Size &parentSize, Size &nodeSize);
+	
 	static EditBox *createEditBox(Node *parent, Point position, Size size);
+	static ui::EditBox *createEditBox(const Size &size,
+			const Color4B &bgColor, const Color3B &textColor,
+			const std::string &fontName, float fontSize);
+	
+	
 	static void saveFilter(const char *pattern);
 	static const char *getFilter();
 	static const Size alignMenuItem(Menu *menu, int parentWidth,

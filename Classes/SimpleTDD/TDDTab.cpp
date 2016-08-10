@@ -94,6 +94,7 @@ ui::Button *TDDTab::createButton(const std::string &name, const Vec2 &pos, int t
 	
 	// configure the button
 	button->setTitleText(name);
+	button->setTitleFontSize(getFontSize());
 	button->setContentSize(getTabSize());
 	button->setTitleColor(getTitleColor());
 	button->setPosition(pos);

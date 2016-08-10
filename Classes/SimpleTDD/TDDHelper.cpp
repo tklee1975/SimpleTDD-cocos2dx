@@ -149,26 +149,34 @@ void TDDHelper::addTestButton(Node *parent, Point pos)
 
 EditBox * TDDHelper::createEditBox(Node *parent, Point position, Size size)
 {
-	Scale9Sprite *bg = Scale9Sprite::create();	// empty sprite 9
-	bg->addChild(LayerColor::create(Color4B::WHITE, size.width, size.height));
+	float scaledFontSize = getBestScale() * TDD_EDITBOX_FONT_SIZE;
 	
-	// Add the background layer
-	Point layerPos = Point(position);
-	layerPos.x -= size.width / 2;
-	layerPos.y -= size.height / 2;
+	EditBox *editBox = createEditBox(size,
+					Color4B::WHITE, TDD_EDITBOX_TEXT_COLOR, TDD_FONT_NAME, scaledFontSize);
 	
-	float scale = getBestScale();
-	
-	// Add the Edit box
-	EditBox *edit = EditBox::create(size, bg);
-	edit->setPosition(position);
-	
-	edit->setFont(TDD_FONT_NAME, (int)(scale * TDD_EDITBOX_FONT_SIZE));
-	edit->setFontColor(TDD_EDITBOX_TEXT_COLOR);
 	
 	if(parent != NULL) {
-		parent->addChild(edit);
+		editBox->setPosition(position);
+		parent->addChild(editBox);
 	}
+	
+	
+	return editBox;
+}
+
+ui::EditBox *TDDHelper::createEditBox(const Size &size,
+					const Color4B &bgColor, const Color3B &textColor,
+					const std::string &fontName, float fontSize)
+{
+	ui::Scale9Sprite *bg = ui::Scale9Sprite::create();	// empty sprite 9
+	bg->addChild(LayerColor::create(bgColor, size.width, size.height));
+	
+	// Add the background layer
+	
+	// Add the Edit box
+	ui::EditBox *edit = ui::EditBox::create(size, bg);
+	edit->setFont(fontName.c_str(), fontSize);
+	edit->setFontColor(textColor);
 	
 	return edit;
 }
