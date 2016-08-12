@@ -44,10 +44,6 @@ public:
 	static Point getCenter(Size &parentSize, Size &nodeSize);
 	
 	static EditBox *createEditBox(Node *parent, Point position, Size size);
-	static ui::EditBox *createEditBox(const Size &size,
-			const Color4B &bgColor, const Color3B &textColor,
-			const std::string &fontName, float fontSize);
-	
 	
 	static void saveFilter(const char *pattern);
 	static const char *getFilter();
@@ -88,6 +84,21 @@ public:
 #pragma mark - Save/Load Data
 	static void saveStringToDevice(const std::string &key, const std::string &content);
 	static std::string loadStringFromDevice(const std::string &key);
+
+
+#pragma mark - New UI Helper
+	static ui::EditBox *createEditBox(const Size &size,
+									  const Color4B &bgColor, const Color3B &textColor,
+									  const std::string &fontName, float fontSize);
+	
+	
+	static ui::Button *addButtonWithBackground(Node *parent,
+											   const Vec2 &pos,
+											   const Size &size,
+											   const std::string &title,
+											   const Color3B &titleColor,
+											   const Color4B &bgColor);
+
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

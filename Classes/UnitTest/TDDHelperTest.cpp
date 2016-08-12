@@ -26,6 +26,7 @@ void TDDHelperTest::tearDown()
 
 void TDDHelperTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(TDDHelperTest::testAddButtonWithBg);
 	SUBTEST(TDDHelperTest::testJoinString);
 	SUBTEST(TDDHelperTest::testSplitString);
 	SUBTEST(TDDHelperTest::testCreateLabel);
@@ -248,6 +249,13 @@ void TDDHelperTest::testJoinString(Ref *sender)
 	log("result=[%s]\n", result.c_str());
 //	stt
 	
+}
+
+void TDDHelperTest::testAddButtonWithBg(Ref *sender)
+{
+	TDDHelper::addButtonWithBackground(this, Vec2(200, 200),
+									   Size(80, 60),
+									   "Click Me", Color3B::WHITE, Color4B::BLUE);
 }
 
 #endif

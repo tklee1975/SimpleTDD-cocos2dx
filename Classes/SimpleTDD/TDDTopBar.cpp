@@ -13,11 +13,16 @@
 Color4B kDefaultColor(255, 255, 255, 255);
 
 TDDTopBar::TDDTopBar()
-: mTopBarColor(Color4B::BLUE)
+: mTopBarColor(Color4B(80, 80, 200, 255))
 , mTextColor(Color3B::WHITE)
 , mActiveTextColor(Color3B::ORANGE)
-, mSearchBoxColor(Color3B(200, 200, 200))
+, mSearchBoxColor(Color3B(230, 230, 230))
 , mSearchBoxTextColor(Color3B::BLACK)
+, mEditBox(nullptr)
+, mCloseCallback(nullptr)
+, mTabChangeCallback(nullptr)
+, mKeywordChangeCallback(nullptr)
+, mSearchKey("")
 {
 	
 }
@@ -81,34 +86,60 @@ void TDDTopBar::initTopBar()
 	closeButton->setTitleFontSize(fontSize);
 	closeButton->setPosition(pos);
 	mTopBarLayer->addChild(closeButton);
+	
+	
 }
+
 
 
 void TDDTopBar::initSearchBar()
 {
+	// Layout Data
 	float fontSize = 15;
 	float hSpacing = 4;
 	float vSpacing = 4;
 	
 	float halfHeight = getContentSize().height / 2;
-	float buttonLen = halfHeight - vSpacing * 2;
-	Size buttonSize = Size(buttonLen, buttonLen);
+	float searchBarCenterY = halfHeight/2;
+
 	
+	// Size
+	float buttonH = halfHeight - vSpacing * 2;
 	
-	float searchBoxWidth = getContentSize().width - 4 * hSpacing - 2 * buttonSize.width;
+	Size clearButtonSize = Size(buttonH, buttonH);
+	
+	float searchBoxWidth = getContentSize().width - 2 * hSpacing - clearButtonSize.width;
 	Size searchBoxSize = Size(searchBoxWidth, halfHeight - vSpacing * 2);
+	
+	// Position
+	Vec2 searchBoxPos = Vec2(hSpacing + searchBoxSize.width/2, searchBarCenterY);
+	Vec2 clearButtonPos = Vec2(hSpacing + searchBoxSize.width + clearButtonSize.width/2, searchBarCenterY); // right after the searchBox
 	
 	
 	// Adding the searchBox
-	Vec2 pos = Vec2(hSpacing + searchBoxSize.width/2, vSpacing + searchBoxSize.height / 2);		// anchor = center
+					//vSpacing + searchBoxSize.height / 2);		// anchor = center
 	ui::EditBox *editBox = TDDHelper::createEditBox(searchBoxSize,
 								mSearchBoxColor, mSearchBoxTextColor,
 								"", fontSize);
 	editBox->setPlaceHolder("Test Keyword. e.g Sprite");
 	editBox->setPlaceholderFontSize(fontSize * 0.8);
-	editBox->setPosition(pos);
+	editBox->setPosition(searchBoxPos);
 	
 	addChild(editBox);
+	mEditBox = editBox;
+	
+
+
+	
+	// Adding the close Button
+	ui::Button *clearButton = TDDHelper::addButtonWithBackground(this,
+												clearButtonPos, clearButtonSize,
+												"X", mTextColor, mTopBarColor);
+	clearButton->setTitleFontSize(fontSize);
+	clearButton->addClickEventListener([&](Ref *ref) {
+		clearSearchText();
+	});
+	
 	
 //	EditBox *editBox = TDDHelper::createEditBox(this, Point(inputX, midY), Size(inputW, inputH));
 //	mEditFilter->setFont(TDD_FONT_NAME, fontSizeEdit);
@@ -117,4 +148,76 @@ void TDDTopBar::initSearchBar()
 //	mEditFilter->setPlaceHolder("Testcase Filter");
 //	mEditFilter->setDelegate(this);
 
+}
+
+void TDDTopBar::clearSearchText()
+{
+	if(mEditBox) {
+		mEditBox->setText("");
+	}
+}
+
+void TDDTopBar::onCloseClicked()
+{
+	if(mCloseCallback) {
+		mCloseCallback(this);
+	}
+}
+
+void TDDTopBar::onTabClicked(int selectedIndex)
+{
+	if(! mTabChangeCallback) {
+		return;
+	}
+
+	TDDTopBarTab value;
+	
+	// find the value
+	if(1 == selectedIndex) {
+		value = TDDTopBarTabRecent;
+	} else {
+		value = TDDTopBarTabAll;
+	}
+	
+	// do callback
+	mTabChangeCallback(this, value);
+}
+
+void TDDTopBar::onSearchKeyChanged()
+{
+	if(mKeywordChangeCallback) {
+		mKeywordChangeCallback(this, getSearchKeyword());
+	}
+
+}
+
+void TDDTopBar::setCloseListener(const std::function<void(TDDTopBar *)> &callback)
+{
+	mCloseCallback = callback;
+}
+
+void TDDTopBar::setTabChangeListener(const std::function<void(TDDTopBar *, TDDTopBarTab)> &callback)
+{
+	mTabChangeCallback = callback;
+}
+
+void TDDTopBar::setKeywordChangeListener(const std::function<void(TDDTopBar *, const std::string &keyword)> &callback)
+{
+	mKeywordChangeCallback = callback;
+}
+
+
+std::string TDDTopBar::getSearchKeyword()
+{
+	return mSearchKey;
+}
+
+void TDDTopBar::setSearchKeyword(const std::string &key)
+{
+	mSearchKey = key;
+	
+	if(mEditBox) {
+		mEditBox->setText(mSearchKey.c_str());
+	}
+	
 }

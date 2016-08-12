@@ -30,6 +30,7 @@ private:
 	void testCreateLabel(Ref *sender);
 	void testSplitString(Ref *sender);
 	void testJoinString(Ref *sender);
+	void testAddButtonWithBg(Ref *sender);
 }; 
 
 #endif

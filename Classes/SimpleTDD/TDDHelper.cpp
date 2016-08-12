@@ -511,3 +511,33 @@ Label *TDDHelper::createLabel(const std::string &text, const int fontSize, const
 
 	return label;
 }
+
+
+#pragma mark - New UI Helper
+ui::Button *TDDHelper::addButtonWithBackground(Node *parent,
+											   const Vec2 &pos,
+											   const Size &size,
+											   const std::string &title,
+											   const Color3B &titleColor,
+											   const Color4B &bgColor)
+{
+	// Add the background
+	Vec2 bgPos = pos - Vec2(size.width, size.height)/2;
+	LayerColor *bg = LayerColor::create(bgColor, size.width, size.height);
+	bg->setPosition(bgPos);
+	parent->addChild(bg);
+	
+	
+	//
+	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+	
+	// configure the button
+	button->setAnchorPoint(Vec2(0.5, 0.5));
+	button->setTitleText(title);
+	button->setContentSize(size);
+	button->setTitleColor(titleColor),
+	button->setPosition(pos);
+	parent->addChild(button);
+	
+	return button;
+}
