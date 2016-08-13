@@ -14,11 +14,13 @@ Color4B kDefaultColor(255, 255, 255, 255);
 
 TDDTopBar::TDDTopBar()
 : mTopBarColor(Color4B(80, 80, 200, 255))
+, mSearchBarColor(Color4B(150, 150, 200, 255))
 , mTextColor(Color3B::WHITE)
 , mActiveTextColor(Color3B::ORANGE)
 , mSearchBoxColor(Color3B(230, 230, 230))
 , mSearchBoxTextColor(Color3B::BLACK)
 , mEditBox(nullptr)
+, mTab(nullptr)
 , mCloseCallback(nullptr)
 , mTabChangeCallback(nullptr)
 , mKeywordChangeCallback(nullptr)
@@ -38,6 +40,9 @@ bool TDDTopBar::initWithSize(const Size &size)
 	if(flag == false) {
 		return false;
 	}
+	
+	
+	
 	
 	initTopBar();
 	initSearchBar();
@@ -75,6 +80,14 @@ void TDDTopBar::initTopBar()
 	tab->addTab("Recent");
 	mTopBarLayer->addChild(tab);
 
+	
+	tab->setCallback([&](Ref *tab, int selectedTab, bool isRepeat)
+					 {
+						 onTabClicked(selectedTab, isRepeat);
+					 });
+	
+	mTab = tab;
+	
 	
 	// Add the "Close" button
 	cocos2d::ui::Button *closeButton = cocos2d::ui::Button::create();
@@ -116,14 +129,19 @@ void TDDTopBar::initSearchBar()
 	Vec2 clearButtonPos = Vec2(hSpacing + searchBoxSize.width + clearButtonSize.width/2, searchBarCenterY); // right after the searchBox
 	
 	
+	// Setting the background color
+	setColor(Color3B(mSearchBarColor));
+	setOpacity(mSearchBarColor.a);
+	
 	// Adding the searchBox
 					//vSpacing + searchBoxSize.height / 2);		// anchor = center
 	ui::EditBox *editBox = TDDHelper::createEditBox(searchBoxSize,
 								mSearchBoxColor, mSearchBoxTextColor,
 								"", fontSize);
 	editBox->setPlaceHolder("Test Keyword. e.g Sprite");
-	editBox->setPlaceholderFontSize(fontSize * 0.8);
+	//editBox->setPlaceholderFontSize(fontSize * 0.8);
 	editBox->setPosition(searchBoxPos);
+	editBox->setDelegate(this);
 	
 	addChild(editBox);
 	mEditBox = editBox;
@@ -153,7 +171,8 @@ void TDDTopBar::initSearchBar()
 void TDDTopBar::clearSearchText()
 {
 	if(mEditBox) {
-		mEditBox->setText("");
+		setSearchKeyword("");
+		onSearchKeyChanged();	// notify callback
 	}
 }
 
@@ -164,9 +183,13 @@ void TDDTopBar::onCloseClicked()
 	}
 }
 
-void TDDTopBar::onTabClicked(int selectedIndex)
+void TDDTopBar::onTabClicked(int selectedIndex, bool isRepeat)
 {
 	if(! mTabChangeCallback) {
+		return;
+	}
+	
+	if(isRepeat) {	// TODO: Different behaviour for repeat tab click
 		return;
 	}
 
@@ -220,4 +243,37 @@ void TDDTopBar::setSearchKeyword(const std::string &key)
 		mEditBox->setText(mSearchKey.c_str());
 	}
 	
+}
+
+#pragma mark - EditBox Delegage
+void TDDTopBar::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string& text)
+{
+	//setSearchKeyword(text);
+	mSearchKey = text;
+	onSearchKeyChanged();
+}
+
+void TDDTopBar::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
+{
+	
+}
+
+void TDDTopBar::editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox)
+{
+	
+}
+
+void TDDTopBar::editBoxReturn(cocos2d::ui::EditBox* editBox)
+{
+	
+}
+
+void TDDTopBar::setup(const TDDTopBarTab &tab, const std::string &keyword)	// note: no callback will be triggere
+{
+	if(mTab) {
+		int index = tab == TDDTopBarTabRecent ? 1 : 0;
+		mTab->selectTab(index, false);
+	}
+	
+	setSearchKeyword(keyword);
 }

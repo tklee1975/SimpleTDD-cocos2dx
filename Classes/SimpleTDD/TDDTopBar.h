@@ -22,6 +22,8 @@ USING_NS_CC_EXT;
 
 #include "TDDMacro.h"
 
+
+class TDDTab;
 class TDDTopBar;
 
 typedef enum {
@@ -30,7 +32,9 @@ typedef enum {
 }TDDTopBarTab;
 
 
-class TDDTopBar : public LayerColor
+class TDDTopBar
+: public LayerColor
+, public cocos2d::ui::EditBoxDelegate
 {
 public:
 	CREATE_FUNC_WITH_SIZE(TDDTopBar);	// it make TDDHeaderLayer::create(const Size &size)
@@ -42,11 +46,15 @@ public:
 	
 	// Property
 	
+	CC_SYNTHESIZE(Color4B, mSearchBarColor, SearchBarColor);
 	CC_SYNTHESIZE(Color4B, mTopBarColor, TopBarColor);
 	CC_SYNTHESIZE(Color3B, mTextColor, TextColor);
 	CC_SYNTHESIZE(Color3B, mActiveTextColor, ActiveTextColor);
 	CC_SYNTHESIZE(Color4B, mSearchBoxColor, SearchBoxColor);
 	CC_SYNTHESIZE(Color3B, mSearchBoxTextColor, SearchBoxTextColor);
+	
+	// setup
+	void setup(const TDDTopBarTab &tab, const std::string &keyword);	// note: no callback will be triggered
 	
 	// Callback
 	void setCloseListener(const std::function<void(TDDTopBar *)> &callback);
@@ -56,6 +64,7 @@ public:
 	void setSearchKeyword(const std::string &key);
 	std::string getSearchKeyword();
 	
+#pragma mark - Internal Method
 private:
 	void initTopBar();
 	void initSearchBar();
@@ -63,8 +72,10 @@ private:
 	void clearSearchText();
 
 	void onCloseClicked();
-	void onTabClicked(int selectedIndex);
+	void onTabClicked(int selectedIndex, bool isRepeat);
 	void onSearchKeyChanged();
+
+#pragma mark - Internal Data
 private:
 	std::function<void(TDDTopBar *)> mCloseCallback;
 	std::function<void(TDDTopBar *, TDDTopBarTab)> mTabChangeCallback;
@@ -73,6 +84,16 @@ private:
 	LayerColor *mTopBarLayer;
 	ui::EditBox *mEditBox;
 	std::string mSearchKey;
+	TDDTab *mTab;
+
+
+#pragma mark - EditBox Delegage
+	virtual void editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string& text);
+	virtual void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox);
+	virtual void editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox);
+	virtual void editBoxReturn(cocos2d::ui::EditBox* editBox);
+	
+
 };
 
 

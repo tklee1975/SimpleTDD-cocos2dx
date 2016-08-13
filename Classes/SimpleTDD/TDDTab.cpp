@@ -49,7 +49,7 @@ int TDDTab::getTabCount()
 	return (int) mButtonArray.size();
 }
 
-void TDDTab::selectTab(int index)
+void TDDTab::selectTab(int index, bool doCallback)
 {
 	if(index < 0 || index >= getTabCount()) {
 		return;	// invalid input
@@ -74,8 +74,10 @@ void TDDTab::selectTab(int index)
 	mSelectedIndex = index;
 	
 	// handle callback
-	if(mCallback) {
-		mCallback(this, mSelectedIndex, isRepeat);
+	if(doCallback) {
+		if(mCallback) {
+			mCallback(this, mSelectedIndex, isRepeat);
+		}
 	}
 }
 

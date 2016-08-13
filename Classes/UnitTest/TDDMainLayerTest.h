@@ -1,17 +1,17 @@
 #ifdef ENABLE_TDD
 //
-//  TDDHeaderLayerTest.h
+//  TDDMainLayerTest.h
 //
 //
-#ifndef __TDD_TDDHeaderLayerTest__
-#define __TDD_TDDHeaderLayerTest__
+#ifndef __TDD_TDDMainLayerTest__
+#define __TDD_TDDMainLayerTest__
 
 // Include Header
 
 #include "TDDTest.h"
 
 // Class Declaration 
-class TDDTopBarTest : public TDDTest
+class TDDMainLayerTest : public TDDTest
 {
 protected:
 	virtual void setUp();
@@ -19,8 +19,7 @@ protected:
 	virtual void setSubTest(Vector<MenuItem *> &menuArray);
 	
 private:
-	void subTest(Ref *sender);
-	void testCallback(Ref *sender);
+	void testCreate(Ref *sender);
 }; 
 
 #endif

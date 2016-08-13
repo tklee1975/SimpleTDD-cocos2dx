@@ -63,14 +63,12 @@ void ExampleTest::testSprite(Ref *sender)
 	log("testSprite");
 	
     // add "HelloWorld" splash screen"
-	Sprite *sprite = Sprite::create("HelloWorld.png");
-	sprite->setScale(0.5, 0.5f);
-    sprite->setPosition(Point(200, 300));
+	Sprite *sprite = Sprite::create("res/buttonLarge.png");
+    sprite->setPosition(Point(200, 200));
 	
     this->addChild(sprite, 0);
 	
-	sprite = Sprite::create("HelloWorld.png");
-	sprite->setScale(0.3, 0.3f);
+	sprite = Sprite::create("res/buttonSmall.png");
 	sprite->setRotation(45.0f);
     sprite->setPosition(Point(200, 150));
 	

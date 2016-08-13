@@ -10,12 +10,11 @@
 #define TDDTab_hpp
 
 #include <stdio.h>
-
+#include <string>
+#include <vector>
 
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
-#include <string>
-#include <vector>
 #include "cocostudio/CocoStudio.h"
 
 USING_NS_CC;
@@ -32,7 +31,7 @@ public:
 	~TDDTab();
 	
 	int addTab(const std::string &tabName);		// return the tabIndex
-	void selectTab(int index);
+	void selectTab(int index, bool doCallback=true);
 	void setCallback(const TDDTabCallback &callback);
 	
 	CC_SYNTHESIZE(Color3B, mTitleColor, TitleColor);
