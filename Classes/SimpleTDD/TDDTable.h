@@ -24,12 +24,12 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class TDDTableDelegate : public Ref
+class TDDTableDelegate
 {
 public:
 	virtual int getTableCellCount() = 0;
 	virtual Size getTableCellSize() = 0;
-	// virtual Node *tableCellForIndex(int index) = 0;		
+	virtual Node *tableCellForIndex(int index) = 0;		
 	virtual void onTableCellClicked(int selectedIndex) = 0;
 };
 
@@ -48,7 +48,7 @@ public:
 	
 	bool initWithSize(const Size &contentSize);
 	
-	CC_SYNTHESIZE_RETAIN(TDDTableDelegate *, mDelegate, Delegate);
+	CC_SYNTHESIZE(TDDTableDelegate *, mDelegate, Delegate);
 	CC_SYNTHESIZE(Color3B, mTitleColor, TitleColor);
 	CC_SYNTHESIZE(Color4B, mBackgroundColor, BackgroundColor);
 	CC_SYNTHESIZE(std::string, mFontName, FontName);
@@ -59,7 +59,7 @@ public:
 	void updateBackgroundColor();
 
 private:
-	ui::Button *createTableCell(int index, const Size &size);
+	Node *createTableCell(int index, const Size &size, const Vec2 &cellCenterPos);
 	void notifyCallback(int index);
 	
 private:

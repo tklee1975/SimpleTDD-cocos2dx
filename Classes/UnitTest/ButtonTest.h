@@ -35,6 +35,7 @@ private:
 	void testControlButton(Ref *sender);
 	void testButtonColor(Ref *sender);
 	void testButtonStyle(Ref *sender);
+	//void testControlButton(Ref *sender);
 	
 	void setButtonSelected(Ref *sender, Control::EventType controlEvent);
 	void touchUpInsideAction(Ref *sender, Control::EventType controlEvent);

@@ -38,7 +38,7 @@ TDDTable::~TDDTable()
 
 bool TDDTable::initWithSize(const Size &contentSize)
 {
-	bool flag = LayerColor::initWithColor(Color4B::BLACK, contentSize.width, contentSize.height);
+	bool flag = LayerColor::initWithColor(Color4B(0, 0, 0, 0), contentSize.width, contentSize.height);
 	
 	if(! flag) {
 		return false;
@@ -47,6 +47,7 @@ bool TDDTable::initWithSize(const Size &contentSize)
 	// configure the scrollView
 	mScrollContentLayer = LayerColor::create(Color4B::WHITE, contentSize.width, contentSize.height);
 	mScrollView = ScrollView::create(contentSize, mScrollContentLayer);
+	mScrollView->setDirection(ScrollView::Direction::VERTICAL);
 	
 	//
 	addChild(mScrollView);
@@ -77,7 +78,7 @@ void TDDTable::updateData()
 	Size cellSize = mDelegate->getTableCellSize();
 	int itemCount = mDelegate->getTableCellCount();
 	int rowcount = (int) ceil((float) itemCount / getColumn());
-	log("rowCount=%d", rowcount);	// 50 / 4 = 13
+	// log("rowCount=%d", rowcount);	// 50 / 4 = 13
 	
 	float totalWidth = cellSize.width * getColumn();
 	float totalHeight = cellSize.height * rowcount;
@@ -105,11 +106,11 @@ void TDDTable::updateData()
 		// Add
 		
 		// Size buttonSize = Size(50, 50);
-		ui::Button *button = createTableCell(i, cellSize);
+		Node *node = createTableCell(i, cellSize, pos);
 		//button->setAnchorPoint(Vec2(0, 1));		// Anchor at left-top corner
-		button->setPosition(pos);
-		
-		mScrollContentLayer->addChild(button);
+		if(node) {
+			mScrollContentLayer->addChild(node);
+		}
 		
 		// Define the next position
 		bool isLastColumn = ((i+1) % getColumn()) == 0;
@@ -131,23 +132,41 @@ void TDDTable::updateData()
 	mScrollView->setContentOffset(Vec2(0, scroll));
 }
 
-ui::Button *TDDTable::createTableCell(int index, const Size &size)
+Node *TDDTable::createTableCell(int index, const Size &size, const Vec2 &cellCenterPos)
 {
-	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+	if(mDelegate == nullptr) {
+		return nullptr;
+	}
 	
-	// configure the button
-	button->setTitleText(StringUtils::format("Cell %d", index));	// for debugging
-	button->setTitleFontSize(getFontSize());
-	button->setTitleAlignment(TextHAlignment::CENTER);
-	button->setTitleColor(getTitleColor());
-	button->setTag(index);		// note: tag value is the index
-
-	button->addClickEventListener([&, index](Ref *button) {
-		//notifyCallback(clickedButton->getTag());
-		notifyCallback(index);
-	});
+	Node *cellNode = mDelegate->tableCellForIndex(index);	// this is an autorelease node
+	if(cellNode == nullptr) {
+		return nullptr;
+	}
 	
-	return button;
+	Size nodeSize = cellNode->getContentSize();
+	
+	Vec2 pos = cellCenterPos - Vec2(nodeSize.width, nodeSize.height) / 2;
+	cellNode->setAnchorPoint(Vec2(0, 0));		// ken: some of cocos2d Node don't know how to anchor at center
+	cellNode->setPosition(pos);
+	
+	return cellNode;
+	
+	
+//	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+//	
+//	// configure the button
+//	button->setTitleText(StringUtils::format("Cell %d", index));	// for debugging
+//	button->setTitleFontSize(getFontSize());
+//	button->setTitleAlignment(TextHAlignment::CENTER);
+//	button->setTitleColor(getTitleColor());
+//	button->setTag(index);		// note: tag value is the index
+//
+//	button->addClickEventListener([&, index](Ref *button) {
+//		//notifyCallback(clickedButton->getTag());
+//		notifyCallback(index);
+//	});
+//	
+//	return button;
 }
 
 void TDDTable::notifyCallback(int index)

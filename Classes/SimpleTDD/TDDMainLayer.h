@@ -25,7 +25,7 @@ USING_NS_CC_EXT;
 class TDDTopBar;
 
 // The layer contains the TopBar and TDDTable
-class TDDMainLayer : public LayerColor
+class TDDMainLayer : public LayerColor, public TDDTableDelegate
 {
 public:
 	CREATE_FUNC(TDDMainLayer);
@@ -35,8 +35,29 @@ public:
 	
 	void setupGUI();	// call after theme setting
 	
-	// Property
+	// Property (Theme)
 	CC_SYNTHESIZE(Color4B, mBackgroundColor, BackgroundColor);
+	CC_SYNTHESIZE(int, mColumn, Column);
+	
+	
+private:
+	void setupProperties();
+	
+#pragma mark - TDDTableDelegate
+private:
+	virtual int getTableCellCount();
+	virtual Size getTableCellSize();
+	virtual void onTableCellClicked(int selectedIndex);
+	virtual Node *tableCellForIndex(int index);
+
+private:
+	//
+	std::string mKeyword;
+	std::vector<std::string> mResultList;
+	
+	//
+	Size mTableCellSize;
+	TDDTable *mResultTable;
 };
 
 #endif /* TDDMainLayer_hpp */

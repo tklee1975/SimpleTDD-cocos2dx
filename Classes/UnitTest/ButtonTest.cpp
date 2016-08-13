@@ -26,6 +26,7 @@ void ButtonTest::tearDown()
 
 void ButtonTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(ButtonTest::testControlButton);
 	SUBTEST(ButtonTest::testButtonStyle);
 	SUBTEST(ButtonTest::testButtonClick);
 	SUBTEST(ButtonTest::testButtonColor);
@@ -425,5 +426,10 @@ void ButtonTest::testButtonStyle(Ref *sender)
 	addChild(button);
 	
 }
+//
+//void ButtonTest::testControlButton(Ref *sender)
+//{
+//	
+//}
 
 #endif

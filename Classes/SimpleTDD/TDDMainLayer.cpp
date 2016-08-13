@@ -11,6 +11,9 @@
 
 TDDMainLayer::TDDMainLayer()
 : mBackgroundColor(Color4B::WHITE)
+, mKeyword("")
+, mResultList()
+, mColumn(4)
 {
 	
 }
@@ -28,9 +31,20 @@ bool TDDMainLayer::init()
 		return false;
 	}
 	
+	setupProperties();
 	setupGUI();
 	
 	return true;	
+}
+
+void TDDMainLayer::setupProperties()
+{
+	mColumn = 4;
+	
+	float cellWidth = getContentSize().width / mColumn;
+	float cellHeight = 40;
+	mTableCellSize = Size(cellWidth, cellHeight);
+	
 }
 
 void TDDMainLayer::setupGUI()	// call after theme settin
@@ -55,5 +69,41 @@ void TDDMainLayer::setupGUI()	// call after theme settin
 	
 	addChild(topBar);
 	
+	// Add the Table
+	TDDTable *table = TDDTable::create(tableSize);
+	table->setColumn(mColumn);
+	table->setTitleColor(Color3B(49,166,148));
+	table->setBackgroundColor(Color4B(250,219,191,255));
+	table->setFontSize(12);
+	table->setDelegate(this);
+	//delegate->release();
 	
+	table->updateData();
+	
+	addChild(table);
+
+	
+}
+
+
+#pragma mark - TDDTableDelegate
+int TDDMainLayer::getTableCellCount()
+{
+//	return mResultList.size();
+	return 100;
+}
+
+Size TDDMainLayer::getTableCellSize()
+{
+	return mTableCellSize;
+}
+void TDDMainLayer::onTableCellClicked(int selectedIndex)
+{
+	log("tableCell clicked: %d", selectedIndex);
+}
+
+
+Node *TDDMainLayer::tableCellForIndex(int index)
+{
+	return Label::createWithSystemFont(StringUtils::format("cell%d", index), "", 30);
 }

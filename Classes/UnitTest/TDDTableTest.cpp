@@ -28,7 +28,11 @@ public:
 	{
 		return Size(100, 30);
 	}
-		
+
+	virtual Node *tableCellForIndex(int index)
+	{
+		return Label::createWithSystemFont(StringUtils::format("cell%d", index), "", 30);
+	}
 	virtual void onTableCellClicked(int selectedIndex)
 	{
 		log("tableCellClicked: %d", selectedIndex);
