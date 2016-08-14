@@ -125,7 +125,8 @@ std::string TDDManager::infoAllTest()
 
 std::vector<std::string> TDDManager::getRecentTestList(const std::string &filterName)
 {
-	
+	std::vector<std::string> result;
+	return result;
 }
 
 std::vector<std::string> TDDManager::getTestList(const std::string &filterName)

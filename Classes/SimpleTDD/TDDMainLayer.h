@@ -42,22 +42,35 @@ public:
 	
 private:
 	void setupProperties();
+	void setupData();
+	std::string getTestName(int index);
+	
+	void updateResult(std::vector<std::string> &result);
+	
+	void showAllTest(const std::string &keyword);
+	void showRecentTest(const std::string &keyword);
+	
+	void handleClose();
+	void handleAllTab();
+	void handleRecentTab();
+	void handleSearchKeyChanged(const std::string &keyword);
 	
 #pragma mark - TDDTableDelegate
 private:
 	virtual int getTableCellCount();
 	virtual Size getTableCellSize();
-	virtual void onTableCellClicked(int selectedIndex);
 	virtual Node *tableCellForIndex(int index);
 
 private:
 	//
+	int mTopBarTab;
 	std::string mKeyword;
 	std::vector<std::string> mResultList;
 	
 	//
 	Size mTableCellSize;
 	TDDTable *mResultTable;
+	TDDTopBar *mTopBar;
 };
 
 #endif /* TDDMainLayer_hpp */

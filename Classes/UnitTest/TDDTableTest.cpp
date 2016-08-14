@@ -33,10 +33,6 @@ public:
 	{
 		return Label::createWithSystemFont(StringUtils::format("cell%d", index), "", 30);
 	}
-	virtual void onTableCellClicked(int selectedIndex)
-	{
-		log("tableCellClicked: %d", selectedIndex);
-	}
 };
 
 void TDDTableTest::setUp()

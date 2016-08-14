@@ -30,7 +30,6 @@ public:
 	virtual int getTableCellCount() = 0;
 	virtual Size getTableCellSize() = 0;
 	virtual Node *tableCellForIndex(int index) = 0;		
-	virtual void onTableCellClicked(int selectedIndex) = 0;
 };
 
 class TDDTable : public LayerColor

@@ -57,8 +57,10 @@ bool TDDTable::initWithSize(const Size &contentSize)
 
 void TDDTable::updateBackgroundColor()
 {
-	mScrollContentLayer->setColor(Color3B(mBackgroundColor));
-	mScrollContentLayer->setOpacity(mBackgroundColor.a);
+	if(mScrollContentLayer) {
+		mScrollContentLayer->setColor(Color3B(mBackgroundColor));
+		mScrollContentLayer->setOpacity(mBackgroundColor.a);
+	}
 }
 
 void TDDTable::updateData()
@@ -150,32 +152,8 @@ Node *TDDTable::createTableCell(int index, const Size &size, const Vec2 &cellCen
 	cellNode->setPosition(pos);
 	
 	return cellNode;
-	
-	
-//	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
-//	
-//	// configure the button
-//	button->setTitleText(StringUtils::format("Cell %d", index));	// for debugging
-//	button->setTitleFontSize(getFontSize());
-//	button->setTitleAlignment(TextHAlignment::CENTER);
-//	button->setTitleColor(getTitleColor());
-//	button->setTag(index);		// note: tag value is the index
-//
-//	button->addClickEventListener([&, index](Ref *button) {
-//		//notifyCallback(clickedButton->getTag());
-//		notifyCallback(index);
-//	});
-//	
-//	return button;
 }
 
-void TDDTable::notifyCallback(int index)
-{
-	log("Clicked. index=%d", index);
-	if(mDelegate) {
-		mDelegate->onTableCellClicked(index);
-	}
-}
 //void TDDTable::addItem(const std::string &itemName)
 //{
 //	

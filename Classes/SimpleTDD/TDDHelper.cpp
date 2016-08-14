@@ -213,14 +213,13 @@ Point TDDHelper::getCenter(Size &parentSize, Size &nodeSize)
 #pragma mark - User Default
 void TDDHelper::saveStringToDevice(const std::string &key, const std::string &content)
 {
-	CCUserDefault::getInstance()->setStringForKey(key.c_str(), content);
-	
-	CCUserDefault::getInstance()->flush();
+	UserDefault::getInstance()->setStringForKey(key.c_str(), content);
+	UserDefault::getInstance()->flush();
 }
 
 std::string TDDHelper::loadStringFromDevice(const std::string &key)
 {
-	return CCUserDefault::getInstance()->getStringForKey(key.c_str());
+	return UserDefault::getInstance()->getStringForKey(key.c_str());
 }
 
 
