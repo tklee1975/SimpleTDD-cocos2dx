@@ -193,13 +193,13 @@ void TDDTopBar::onTabClicked(int selectedIndex, bool isRepeat)
 		return;
 	}
 
-	TDDTopBarTab value;
+	TDDSearchType value;
 	
 	// find the value
 	if(1 == selectedIndex) {
-		value = TDDTopBarTabRecent;
+		value = TDDSearchRecent;
 	} else {
-		value = TDDTopBarTabAll;
+		value = TDDSearchAll;
 	}
 	
 	// do callback
@@ -219,7 +219,7 @@ void TDDTopBar::setCloseListener(const std::function<void(TDDTopBar *)> &callbac
 	mCloseCallback = callback;
 }
 
-void TDDTopBar::setTabChangeListener(const std::function<void(TDDTopBar *, TDDTopBarTab)> &callback)
+void TDDTopBar::setTabChangeListener(const std::function<void(TDDTopBar *, TDDSearchType)> &callback)
 {
 	mTabChangeCallback = callback;
 }
@@ -268,10 +268,10 @@ void TDDTopBar::editBoxReturn(cocos2d::ui::EditBox* editBox)
 	
 }
 
-void TDDTopBar::setup(const TDDTopBarTab &tab, const std::string &keyword)	// note: no callback will be triggere
+void TDDTopBar::setup(const TDDSearchType &tab, const std::string &keyword)	// note: no callback will be triggere
 {
 	if(mTab) {
-		int index = tab == TDDTopBarTabRecent ? 1 : 0;
+		int index = tab == TDDSearchRecent ? 1 : 0;
 		mTab->selectTab(index, false);
 	}
 	

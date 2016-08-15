@@ -9,6 +9,24 @@
 #include "TDDMainLayer.h"
 #include "TDDTopBar.h"
 #include "TDDManager.h"
+
+
+Scene *TDDMainLayer::createScene()
+{
+	// 'scene' is an autorelease object
+	auto scene = Scene::create();
+	
+	// 'layer' is an autorelease object
+	auto layer = TDDMainLayer::create();
+	
+	// add layer as a child to scene
+	scene->addChild(layer);
+	
+	// return the scene
+	return scene;
+}
+
+
 TDDMainLayer::TDDMainLayer()
 : mBackgroundColor(Color4B::WHITE)
 , mKeyword("")
@@ -16,8 +34,9 @@ TDDMainLayer::TDDMainLayer()
 , mColumn(4)
 , mTopBar(nullptr)
 , mResultTable(nullptr)
+, mTableTextColor(Color4B::BLUE)
+, mTableFontSize(14)
 {
-	
 }
 
 TDDMainLayer::~TDDMainLayer()
@@ -80,7 +99,8 @@ void TDDMainLayer::setupProperties()
 	mTableCellSize = Size(cellWidth, cellHeight);
 
 	// Non GUI
-	mTopBarTab = TDDTopBarTab::TDDTopBarTabAll;
+	mSearchType = TDDManager::instance()->getSearchType();
+	mKeyword = TDDManager::instance()->getKeyword(mSearchType);
 }
 
 void TDDMainLayer::setupGUI()	// call after theme settin
@@ -101,7 +121,7 @@ void TDDMainLayer::setupGUI()	// call after theme settin
 	// Adding the top bar
 	TDDTopBar *topBar = TDDTopBar::create(topBarSize);
 	topBar->setPosition(topBarPos);
-	topBar->setup((TDDTopBarTab) mTopBarTab, mKeyword);
+	topBar->setup(mSearchType, mKeyword);
 	
 	addChild(topBar);
 	mTopBar = topBar;
@@ -111,10 +131,10 @@ void TDDMainLayer::setupGUI()	// call after theme settin
 		handleClose();
 	});
 	
-	topBar->setTabChangeListener([&](TDDTopBar *topBar, TDDTopBarTab tab){
-		if(tab == TDDTopBarTab::TDDTopBarTabAll) {
+	topBar->setTabChangeListener([&](TDDTopBar *topBar, TDDSearchType tab){
+		if(tab == TDDSearchAll) {
 			handleAllTab();
-		} else if(tab == TDDTopBarTab::TDDTopBarTabRecent) {
+		} else if(tab == TDDSearchRecent) {
 			handleRecentTab();
 		}
 	});
@@ -156,26 +176,46 @@ void TDDMainLayer::handleClose()
 	Director::getInstance()->popScene();
 }
 
+void TDDMainLayer::updateKeyword(const std::string &keyword)
+{
+	mKeyword = keyword;
+	mTopBar->setSearchKeyword(mKeyword);
+}
+
 void TDDMainLayer::handleAllTab()
 {
-	mTopBarTab = TDDTopBarTab::TDDTopBarTabAll;
+	mSearchType = TDDSearchAll;
+	updateKeyword(TDDManager::instance()->getKeyword(mSearchType));
+	
+	// update the gui
 	showAllTest(mKeyword);
+	
+	//TDDManager
 }
 
 void TDDMainLayer::handleRecentTab()
 {
-	mTopBarTab = TDDTopBarTab::TDDTopBarTabRecent;
+	mSearchType = TDDSearchRecent;
+	updateKeyword(TDDManager::instance()->getKeyword(mSearchType));
+	
+	// update the gui
 	showRecentTest(mKeyword);
 }
 
 void TDDMainLayer::handleSearchKeyChanged(const std::string &keyword)
 {
+	// update the data
 	mKeyword = keyword;
-	if(mTopBarTab == TDDTopBarTab::TDDTopBarTabRecent) {
+	TDDManager::instance()->saveKeyword(mSearchType, keyword);
+	
+	// Update the GUI
+	if(mSearchType == TDDSearchRecent) {
 		showRecentTest(mKeyword);
 	} else {
 		showAllTest(mKeyword);
 	}
+	
+	
 	//int currenTab = mTopBar->getT
 }
 
@@ -191,12 +231,29 @@ Size TDDMainLayer::getTableCellSize()
 	return mTableCellSize;
 }
 
+
+void TDDMainLayer::runTest(const std::string &test)
+{
+	TDDManager::instance()->runTest(test);
+	
+}
+
 Node *TDDMainLayer::tableCellForIndex(int index)
 {
 	std::string name = getTestName(index);
 	
-	Label *label = Label::createWithSystemFont(name, "", 14);
-	label->setColor(Color3B::BLUE);
+
 	
-	return label;
+	ui::Button *button = ui::Button::create();
+	//button->setColor(Color3B::YELLOW);		// this is no use
+	button->setTitleText(name);
+	button->setContentSize(mTableCellSize);
+	button->setTitleColor(mTableTextColor);
+	button->setTitleFontSize(mTableFontSize);
+	
+	button->addClickEventListener([&, name](Ref *) {
+		runTest(name);
+	});
+	
+	return button;
 }

@@ -21,15 +21,10 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 #include "TDDMacro.h"
-
+#include "TDDTypes.h"
 
 class TDDTab;
 class TDDTopBar;
-
-typedef enum {
-	TDDTopBarTabAll,
-	TDDTopBarTabRecent,
-}TDDTopBarTab;
 
 
 class TDDTopBar
@@ -54,11 +49,11 @@ public:
 	CC_SYNTHESIZE(Color3B, mSearchBoxTextColor, SearchBoxTextColor);
 	
 	// setup
-	void setup(const TDDTopBarTab &tab, const std::string &keyword);	// note: no callback will be triggered
+	void setup(const TDDSearchType &tab, const std::string &keyword);	// note: no callback will be triggered
 	
 	// Callback
 	void setCloseListener(const std::function<void(TDDTopBar *)> &callback);
-	void setTabChangeListener(const std::function<void(TDDTopBar *, TDDTopBarTab)> &callback);
+	void setTabChangeListener(const std::function<void(TDDTopBar *, TDDSearchType)> &callback);
 	void setKeywordChangeListener(const std::function<void(TDDTopBar *, const std::string &keyword)> &callback);
 	
 	void setSearchKeyword(const std::string &key);
@@ -78,7 +73,7 @@ private:
 #pragma mark - Internal Data
 private:
 	std::function<void(TDDTopBar *)> mCloseCallback;
-	std::function<void(TDDTopBar *, TDDTopBarTab)> mTabChangeCallback;
+	std::function<void(TDDTopBar *, TDDSearchType)> mTabChangeCallback;
 	std::function<void(TDDTopBar *, const std::string &keyword)> mKeywordChangeCallback;
 	
 	LayerColor *mTopBarLayer;

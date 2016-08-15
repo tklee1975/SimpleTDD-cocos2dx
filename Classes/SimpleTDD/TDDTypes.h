@@ -40,6 +40,11 @@ enum TDDMenuMode {
 	TDDMenuModeHistory = 1,
 };
 
+typedef enum {
+	TDDSearchAll,
+	TDDSearchRecent,
+}TDDSearchType ;
+
 
 //#define kDefaultFont				"Arial"
 //#define kDefaultFontSize			20

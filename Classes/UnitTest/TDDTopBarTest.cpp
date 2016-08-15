@@ -43,7 +43,7 @@ void TDDTopBarTest::testCallback(Ref *sender)
 {
 	TDDTopBar *topBar = TDDTopBar::create(Size(300, 60));
 	
-	topBar->setup(TDDTopBarTabRecent, "game");
+	topBar->setup(TDDSearchAll, "game");
 	
 	addChild(topBar);
 	
@@ -51,7 +51,7 @@ void TDDTopBarTest::testCallback(Ref *sender)
 		log("close is clicked");
 	});
 	
-	topBar->setTabChangeListener([&](TDDTopBar *topBar, TDDTopBarTab tab){
+	topBar->setTabChangeListener([&](TDDTopBar *topBar, TDDSearchType tab){
 		log("tab change to %d", tab);
 	});
 	

@@ -31,6 +31,7 @@ private:
 public:
 	CC_SYNTHESIZE(std::string, mFontName, FontName);
 	
+	
 public:
 	void loadTestList();
 	std::string infoAllTest();
@@ -41,12 +42,24 @@ public:
 	bool runTest(const std::string &name);
 	const TDDTestCase *getTest(const std::string &name);
 	
+	TDDSearchType getSearchType();
+	void saveSearchType(TDDSearchType type);
+	
+	std::string getKeyword(TDDSearchType type);
+	void saveKeyword(TDDSearchType type, const std::string &keyword);
+	
 private:
 	std::vector<std::string> getFilteredList(std::vector<std::string> &list, const std::string &filterName);
 	
 private:
 	std::vector<std::string> mTestList;		// This array keep the original order
 	std::map<std::string, TDDTestCase *> mTestMap;	// This help faster access to the TestCase Data
+	
+
+	TDDSearchType mSearchType;			// All or Recent
+	std::string mKeywordForAll;			// keyword for search all
+	std::string mKeywordForRecent;		// keyword for search recent
+	
 	//Vector<std::str
 };
 

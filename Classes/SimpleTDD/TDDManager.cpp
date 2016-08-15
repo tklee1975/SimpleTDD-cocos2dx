@@ -57,6 +57,9 @@ TDDManager::TDDManager()
 : mTestMap()
 , mTestList()
 , mFontName()
+, mSearchType(TDDSearchAll)
+, mKeywordForAll("")
+, mKeywordForRecent("")
 {
 	loadTestList();
 }
@@ -150,4 +153,32 @@ std::vector<std::string> TDDManager::getFilteredList(std::vector<std::string> &l
 	}
 	
 	return result;
+}
+
+TDDSearchType TDDManager::getSearchType()
+{
+	return mSearchType;
+}
+
+void TDDManager::saveSearchType(TDDSearchType type)
+{
+	mSearchType = type;
+}
+
+std::string TDDManager::getKeyword(TDDSearchType type)
+{
+	if(TDDSearchRecent == type) {
+		return mKeywordForRecent;
+	} else {
+		return mKeywordForAll;
+	}
+}
+
+void TDDManager::saveKeyword(TDDSearchType type, const std::string &keyword)
+{
+	if(TDDSearchRecent == type) {
+		mKeywordForRecent = keyword;
+	} else {
+		mKeywordForAll = keyword;
+	}
 }

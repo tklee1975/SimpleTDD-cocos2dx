@@ -27,6 +27,7 @@ void TDDMainLayerTest::tearDown()
 void TDDMainLayerTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
 	SUBTEST(TDDMainLayerTest::testCreate);
+	SUBTEST(TDDMainLayerTest::testScene);
 }
 
 #pragma mark -
@@ -36,7 +37,13 @@ void TDDMainLayerTest::testCreate(Ref *sender)
 	TDDMainLayer *mainLayer = TDDMainLayer::create();
 	
 	addChild(mainLayer);
+}
+
+void TDDMainLayerTest::testScene(Ref *sender)
+{
+	auto scene = TDDMainLayer::createScene();
 	
+	Director::getInstance()->pushScene(scene);
 }
 
 

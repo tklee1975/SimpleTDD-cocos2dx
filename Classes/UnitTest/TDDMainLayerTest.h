@@ -20,6 +20,7 @@ protected:
 	
 private:
 	void testCreate(Ref *sender);
+	void testScene(Ref *sender);
 }; 
 
 #endif

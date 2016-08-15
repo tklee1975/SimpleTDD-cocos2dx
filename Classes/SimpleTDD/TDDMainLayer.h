@@ -21,6 +21,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 #include "TDDTable.h"
+#include "TDDTypes.h"
 
 class TDDTopBar;
 
@@ -28,6 +29,8 @@ class TDDTopBar;
 class TDDMainLayer : public LayerColor, public TDDTableDelegate
 {
 public:
+	static Scene *createScene();
+	
 	CREATE_FUNC(TDDMainLayer);
 	TDDMainLayer();
 	~TDDMainLayer();
@@ -37,6 +40,8 @@ public:
 	
 	// Property (Theme)
 	CC_SYNTHESIZE(Color4B, mBackgroundColor, BackgroundColor);
+	CC_SYNTHESIZE(Color3B, mTableTextColor, TableTextColor);
+	CC_SYNTHESIZE(int, mTableFontSize, TableFontSize);
 	CC_SYNTHESIZE(int, mColumn, Column);
 	
 	
@@ -45,6 +50,7 @@ private:
 	void setupData();
 	std::string getTestName(int index);
 	
+	void updateKeyword(const std::string &keyword);
 	void updateResult(std::vector<std::string> &result);
 	
 	void showAllTest(const std::string &keyword);
@@ -55,6 +61,8 @@ private:
 	void handleRecentTab();
 	void handleSearchKeyChanged(const std::string &keyword);
 	
+	void runTest(const std::string &test);
+	
 #pragma mark - TDDTableDelegate
 private:
 	virtual int getTableCellCount();
@@ -63,7 +71,7 @@ private:
 
 private:
 	//
-	int mTopBarTab;
+	TDDSearchType mSearchType;
 	std::string mKeyword;
 	std::vector<std::string> mResultList;
 	
