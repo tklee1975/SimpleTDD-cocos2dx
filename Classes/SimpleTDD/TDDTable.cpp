@@ -79,7 +79,7 @@ void TDDTable::updateData()
 	// Calculate the position first
 	Size cellSize = mDelegate->getTableCellSize();
 	int itemCount = mDelegate->getTableCellCount();
-	int rowcount = (int) ceil((float) itemCount / getColumn());
+	int rowcount = (int) ceil((float) itemCount / getColumn()) + 1;	// Add one more row for better scrolling
 	// log("rowCount=%d", rowcount);	// 50 / 4 = 13
 	
 	float totalWidth = cellSize.width * getColumn();

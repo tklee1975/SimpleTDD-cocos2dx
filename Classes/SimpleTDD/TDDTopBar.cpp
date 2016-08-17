@@ -100,6 +100,9 @@ void TDDTopBar::initTopBar()
 	closeButton->setPosition(pos);
 	mTopBarLayer->addChild(closeButton);
 	
+	closeButton->addClickEventListener([&](Ref *ref) {
+		onCloseClicked();
+	});
 	
 }
 

@@ -35,10 +35,10 @@ enum TDDAlign
 //	eTDDBottomRight,
 };
 
-enum TDDMenuMode {
-	TDDMenuModeAll = 0,
-	TDDMenuModeHistory = 1,
-};
+//enum TDDMenuMode {
+//	TDDMenuModeAll = 0,
+//	TDDMenuModeHistory = 1,
+//};
 
 typedef enum {
 	TDDSearchAll,

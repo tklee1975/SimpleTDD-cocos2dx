@@ -34,6 +34,8 @@ public:
 	
 public:
 	void loadTestList();
+	void loadData();
+	
 	std::string infoAllTest();
 	
 	std::vector<std::string> getRecentTestList(const std::string &filterName);

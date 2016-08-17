@@ -61,7 +61,7 @@ private:
 	int mFilterCount;
 	Label *mStatusLeftLabel;
 	std::vector<std::string> mDisplayTest;
-	TDDMenuMode mMode;
+	TDDSearchType mMode;
 	
 	
 #pragma mark -

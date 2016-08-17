@@ -62,7 +62,7 @@ void TDDDataTest::testSave(Ref *sender)
 	
 	TDDData::instance();
 	
-	TDDData::instance()->setMenuMode(TDDMenuModeHistory);
+	TDDData::instance()->setSearchType(TDDSearchRecent);
 	
 	TDDData::instance()->load();
 	log("%s\n", TDDData::instance()->toString().c_str());

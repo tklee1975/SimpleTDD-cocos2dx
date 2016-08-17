@@ -7,7 +7,7 @@
 //
 
 #include "TDDManager.h"
-
+#include "TDDData.h"
 
 
 //  Building the sTestArray
@@ -37,6 +37,8 @@ namespace {
 		
 		return (found!=std::string::npos);
 	}
+	
+	
 }
 
 
@@ -62,6 +64,7 @@ TDDManager::TDDManager()
 , mKeywordForRecent("")
 {
 	loadTestList();
+	loadData();
 }
 
 void TDDManager::loadTestList()
@@ -81,6 +84,13 @@ void TDDManager::loadTestList()
 	}
 }
 
+void TDDManager::loadData()
+{
+	TDDData::instance()->load();
+	
+	mSearchType = TDDData::instance()->getSearchType();
+}
+
 bool TDDManager::runTest(const std::string &name)
 {
 	const TDDTestCase *test = getTest(name);
@@ -92,6 +102,10 @@ bool TDDManager::runTest(const std::string &name)
 	auto scene = test->callback();
 	if (scene)
 	{
+		// mark the data
+		TDDData::instance()->addTest(name);
+		
+		// Show the scene
 		Director::getInstance()->pushScene(scene);
 		scene->release();
 		return true;
@@ -128,8 +142,8 @@ std::string TDDManager::infoAllTest()
 
 std::vector<std::string> TDDManager::getRecentTestList(const std::string &filterName)
 {
-	std::vector<std::string> result;
-	return result;
+	std::vector<std::string> testList = TDDData::instance()->getTestHistory();
+	return getFilteredList(testList, filterName);
 }
 
 std::vector<std::string> TDDManager::getTestList(const std::string &filterName)
@@ -162,6 +176,8 @@ TDDSearchType TDDManager::getSearchType()
 
 void TDDManager::saveSearchType(TDDSearchType type)
 {
+	//TDDData::instance()->
+	TDDData::instance()->setSearchType(type);
 	mSearchType = type;
 }
 
