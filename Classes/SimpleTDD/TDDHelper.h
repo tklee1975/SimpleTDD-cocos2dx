@@ -28,6 +28,8 @@ using namespace std;
 class TDDHelper
 {
 public:
+	
+	
 	static void addTestButton(Node *parent, cocos2d::Point pos);
 
 	

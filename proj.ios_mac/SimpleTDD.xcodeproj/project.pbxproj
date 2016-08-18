@@ -123,6 +123,8 @@
 		73AF4E4D1D5B9D65003A0EB4 /* TDDTopBarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */; };
 		73BABD311A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
 		73BABD321A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
+		73F45CAF1D66440F00AF54AA /* SimpleTDD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */; };
+		73F45CB01D66440F00AF54AA /* SimpleTDD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */; };
 		73FE6B211D53C6800023048E /* TabTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73FE6B1F1D53C6800023048E /* TabTest.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -289,6 +291,8 @@
 		73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTopBarTest.cpp; sourceTree = "<group>"; };
 		73AF4E4B1D5B9D65003A0EB4 /* TDDTopBarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTopBarTest.h; sourceTree = "<group>"; };
 		73BABD301A94EEAD0017C351 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTDD.cpp; sourceTree = "<group>"; };
+		73F45CAE1D66440F00AF54AA /* SimpleTDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTDD.h; sourceTree = "<group>"; };
 		73FE6B1F1D53C6800023048E /* TabTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabTest.cpp; sourceTree = "<group>"; };
 		73FE6B201D53C6800023048E /* TabTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabTest.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -524,6 +528,8 @@
 				73AF4E491D5B9C11003A0EB4 /* TDDMacro.h */,
 				73130E0B1D5EF9E600007D37 /* TDDMainLayer.cpp */,
 				73130E0C1D5EF9E600007D37 /* TDDMainLayer.h */,
+				73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */,
+				73F45CAE1D66440F00AF54AA /* SimpleTDD.h */,
 			);
 			path = SimpleTDD;
 			sourceTree = "<group>";
@@ -735,6 +741,7 @@
 				737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */,
 				739132B91A8F4A5B00E95086 /* LabelTest.cpp in Sources */,
 				739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */,
+				73F45CAF1D66440F00AF54AA /* SimpleTDD.cpp in Sources */,
 				739132911A8F49A300E95086 /* TDDSubMenu.cpp in Sources */,
 				7391328F1A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
@@ -773,6 +780,7 @@
 				739132C01A8F4A5B00E95086 /* SwitchTest.cpp in Sources */,
 				73130E121D5F09D000007D37 /* TDDMainLayerTest.cpp in Sources */,
 				739132C41A8F4A5B00E95086 /* TDDHelperTest.cpp in Sources */,
+				73F45CB01D66440F00AF54AA /* SimpleTDD.cpp in Sources */,
 				739132C81A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */,
 				739132B41A8F4A5B00E95086 /* ButtonTest.cpp in Sources */,
 				739132C61A8F4A5B00E95086 /* TDDSubMenuTest.cpp in Sources */,

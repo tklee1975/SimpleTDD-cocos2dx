@@ -12,12 +12,16 @@
 
 #define kKeyTestHistory		"simpleTDD.ccx.history"
 #define kKeySearchType		"simpleTDD.ccx.searchType"
+#define kKeyKeywordAll		"simpleTDD.ccx.keyword.all"
+#define kKeyKeywordRecent	"simpleTDD.ccx.keyword.recent"
 
 // singleton stuff
 static TDDData *sShareInstance = nullptr;
 
 TDDData::TDDData()
 : mSearchType(TDDSearchAll)
+, mKeywordAll("")
+, mKeywordRecent("")
 {
 	
 }
@@ -84,6 +88,10 @@ void TDDData::save()
 
 void TDDData::load()
 {
+	// Load keyword
+	mKeywordRecent = TDDHelper::loadStringFromDevice(kKeyKeywordRecent);
+	mKeywordAll = TDDHelper::loadStringFromDevice(kKeyKeywordAll);
+	
 	
 	// Load the test history
 	std::string content = TDDHelper::loadStringFromDevice(kKeyTestHistory);
@@ -136,6 +144,28 @@ void TDDData::setSearchType(const TDDSearchType &searchType)
 TDDSearchType TDDData::getSearchType()
 {
 	return mSearchType;
+}
+
+void TDDData::saveKeyword(TDDSearchType type, const std::string &keyword)
+{
+	if(TDDSearchAll == type) {
+		mKeywordAll = keyword;
+		TDDHelper::saveStringToDevice(kKeyKeywordAll, keyword);
+	} else if(TDDSearchRecent == type) {
+		mKeywordRecent = keyword;
+		TDDHelper::saveStringToDevice(kKeyKeywordRecent, keyword);
+	}
+}
+
+std::string TDDData::getKeyword(TDDSearchType type)
+{
+	if(TDDSearchAll == type) {
+		return mKeywordAll;
+	} else if(TDDSearchRecent == type) {
+		return mKeywordRecent;
+	} else {
+		return "";
+	}
 }
 
 #endif /* ENABLE_TDD */

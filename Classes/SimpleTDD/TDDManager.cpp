@@ -9,6 +9,9 @@
 #include "TDDManager.h"
 #include "TDDData.h"
 
+// Version
+const std::string kVersion = "2.0.0";
+
 
 //  Building the sTestArray
 #define TEST(__ClassName__)		 			{#__ClassName__, []() { return new __ClassName__(); } }
@@ -58,10 +61,7 @@ TDDManager *TDDManager::instance()
 TDDManager::TDDManager()
 : mTestMap()
 , mTestList()
-, mFontName()
-, mSearchType(TDDSearchAll)
-, mKeywordForAll("")
-, mKeywordForRecent("")
+, mFontName("")
 {
 	loadTestList();
 	loadData();
@@ -87,8 +87,6 @@ void TDDManager::loadTestList()
 void TDDManager::loadData()
 {
 	TDDData::instance()->load();
-	
-	mSearchType = TDDData::instance()->getSearchType();
 }
 
 bool TDDManager::runTest(const std::string &name)
@@ -171,30 +169,25 @@ std::vector<std::string> TDDManager::getFilteredList(std::vector<std::string> &l
 
 TDDSearchType TDDManager::getSearchType()
 {
-	return mSearchType;
+	return TDDData::instance()->getSearchType();
 }
 
 void TDDManager::saveSearchType(TDDSearchType type)
 {
-	//TDDData::instance()->
 	TDDData::instance()->setSearchType(type);
-	mSearchType = type;
 }
 
 std::string TDDManager::getKeyword(TDDSearchType type)
 {
-	if(TDDSearchRecent == type) {
-		return mKeywordForRecent;
-	} else {
-		return mKeywordForAll;
-	}
+	return TDDData::instance()->getKeyword(type);
 }
 
 void TDDManager::saveKeyword(TDDSearchType type, const std::string &keyword)
 {
-	if(TDDSearchRecent == type) {
-		mKeywordForRecent = keyword;
-	} else {
-		mKeywordForAll = keyword;
-	}
+	TDDData::instance()->saveKeyword(type, keyword);
+}
+
+std::string TDDManager::getVersion()
+{
+	return kVersion;
 }

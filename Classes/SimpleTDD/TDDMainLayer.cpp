@@ -62,7 +62,12 @@ bool TDDMainLayer::init()
 
 void TDDMainLayer::setupData()
 {
-	showAllTest(mKeyword);
+	if(TDDSearchRecent == mSearchType) {
+		showRecentTest(mKeyword);
+	} else {
+		showAllTest(mKeyword);
+	}
+	
 }
 
 void TDDMainLayer::updateResult(std::vector<std::string> &result)
@@ -185,6 +190,9 @@ void TDDMainLayer::updateKeyword(const std::string &keyword)
 void TDDMainLayer::handleAllTab()
 {
 	mSearchType = TDDSearchAll;
+	
+	TDDManager::instance()->saveSearchType(mSearchType);
+	
 	updateKeyword(TDDManager::instance()->getKeyword(mSearchType));
 	
 	// update the gui
@@ -196,6 +204,9 @@ void TDDMainLayer::handleAllTab()
 void TDDMainLayer::handleRecentTab()
 {
 	mSearchType = TDDSearchRecent;
+	
+	TDDManager::instance()->saveSearchType(mSearchType);
+	
 	updateKeyword(TDDManager::instance()->getKeyword(mSearchType));
 	
 	// update the gui

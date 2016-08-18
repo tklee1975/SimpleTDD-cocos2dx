@@ -50,6 +50,8 @@ public:
 	std::string getKeyword(TDDSearchType type);
 	void saveKeyword(TDDSearchType type, const std::string &keyword);
 	
+	std::string getVersion();
+	
 private:
 	std::vector<std::string> getFilteredList(std::vector<std::string> &list, const std::string &filterName);
 	
@@ -57,12 +59,6 @@ private:
 	std::vector<std::string> mTestList;		// This array keep the original order
 	std::map<std::string, TDDTestCase *> mTestMap;	// This help faster access to the TestCase Data
 	
-
-	TDDSearchType mSearchType;			// All or Recent
-	std::string mKeywordForAll;			// keyword for search all
-	std::string mKeywordForRecent;		// keyword for search recent
-	
-	//Vector<std::str
 };
 
 
