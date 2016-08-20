@@ -10,36 +10,32 @@
 TDDTestMenu::TDDTestMenu()
 : mTestNameList()
 , mTestSelectedCallback(nullptr)
+, mHeaderColor(Color4B(0, 0, 100, 100))
+, mShow(true)
 {
 	
 }
 
 bool TDDTestMenu::init()
 {
-	bool flag = LayerColor::initWithColor(Color4B::BLUE, 200, 200);
+	bool flag = LayerColor::initWithColor(Color4B(0, 0, 0, 0), 200, 200);
 	if(flag == false) {
 		return false;
 	}
+	
+	// Layout
+	mHeaderHeight = 40;
+	mTableHeight = getContentSize().height - mHeaderHeight;
+	
+	// Setup the sub component
+	setupHeader();
+	setupTable();
+	
 //	setContentSize(Size(200, 200));
 //	setColor(Color3B::YELLOW);
 	
 	// setBackGroundColor(Color3B::YELLOW);
-	
-	Size tableSize = Size(200, 160);
-	
-	// Add the Table
-	TDDTable *table = TDDTable::create(tableSize);
-	table->setColumn(1);
-	table->setTitleColor(Color3B(0,0,148));
-	table->setBackgroundColor(Color4B(0,0,0,0));
-	table->setFontSize(12);
-	table->setDelegate(this);
-	//delegate->release();
-	
-	table->updateData();
-	
-	addChild(table);
-	mTestTable = table;
+	addTouchListener();
 	
 	return true;
 }
@@ -60,6 +56,55 @@ void TDDTestMenu::setTests(std::vector<std::string> &testList)
 	mTestTable->updateData();
 }
 
+#pragma mark - Touch handling
+void TDDTestMenu::addTouchListener()
+{
+	auto touchListener = EventListenerTouchOneByOne::create();
+	touchListener->onTouchBegan = CC_CALLBACK_2(TDDTestMenu::onTouchBegan, this);
+	touchListener->onTouchEnded = CC_CALLBACK_2(TDDTestMenu::onTouchEnded, this);
+	touchListener->onTouchMoved = CC_CALLBACK_2(TDDTestMenu::onTouchMoved, this);
+	touchListener->onTouchCancelled = CC_CALLBACK_2(TDDTestMenu::onTouchCancelled, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
+
+bool TDDTestMenu::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
+{
+	Vec2 nodeLocation = convertTouchToNodeSpace(touch);
+	
+	bool touchInHeader = isTouchInsideHeader(nodeLocation);
+	
+	log("nodeLocation: %f,%f touchHeader=%d", nodeLocation.x, nodeLocation.y, touchInHeader);
+	
+	if(touchInHeader == false) {
+		mIsTouching = false;
+		return false;
+	}
+	
+	mIsTouching = true;
+	mLastLocation = touch->getLocation();
+	
+	return true;
+}
+
+void TDDTestMenu::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event)
+{
+	Vec2 newLocation = touch->getLocation();
+	
+	Vec2 delta = newLocation - mLastLocation;
+	
+	moveBy(delta);
+	
+	mLastLocation = newLocation;
+}
+
+void TDDTestMenu::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event)
+{
+	mIsTouching = false;
+}
+
+void TDDTestMenu::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *event)
+{
+}
 
 #pragma mark - TDDTableDelegate
 int TDDTestMenu::getTableCellCount()
@@ -128,4 +173,80 @@ void TDDTestMenu::refreshMenu()
 void TDDTestMenu::setTestSelectedCallback(const TestSelectedCallback &callback)
 {
 	mTestSelectedCallback = callback;
+}
+
+void TDDTestMenu::setBackCallback(const TestMenuCallback &callback)
+{
+	mBackCallback = callback;
+}
+
+
+void TDDTestMenu::setupHeader()
+{
+	
+	Vec2 pos = Vec2(0, mTableHeight);		// anchor=left,bottom
+	
+	float width = getContentSize().width;
+	LayerColor *headerLayer = LayerColor::create(mHeaderColor, width, mHeaderHeight);
+	headerLayer->setPosition(pos);
+	
+	
+	addChild(headerLayer);
+	
+	mHeaderNode = headerLayer;
+}
+
+void TDDTestMenu::setupTable()
+{
+	Size tableSize = Size(getContentSize().width, mTableHeight);
+	Vec2 pos = Vec2::ZERO;					// anchor=left,bottom
+	
+	// Add the Table
+	TDDTable *table = TDDTable::create(tableSize);
+	table->setColumn(1);
+	table->setBackgroundColor(Color4B(0,0,0,140));
+	table->setDelegate(this);
+	//delegate->release();
+	
+	table->updateData();
+	
+	addChild(table);
+	mTestTable = table;
+	
+}
+
+void TDDTestMenu::moveBy(const Vec2 &delta)
+{
+	Vec2 newPos = getPosition() + delta;
+	
+	setPosition(newPos);
+}
+
+// Toggle the Menu
+void TDDTestMenu::toggleMenu()
+{
+	if(mShow) {
+		hideMenu();
+	} else {
+		showMenu();
+	}
+	
+}
+
+void TDDTestMenu::showMenu()
+{
+	mTestTable->setVisible(true);
+}
+
+void TDDTestMenu::hideMenu()
+{
+	mTestTable->setVisible(false);
+}
+
+
+bool TDDTestMenu::isTouchInsideHeader(const Vec2 &touchLocation)
+{
+	Rect headerArea = mHeaderNode->getBoundingBox();
+	
+	return headerArea.containsPoint(touchLocation);
 }

@@ -29,7 +29,8 @@ class TDDTestMenu : public LayerColor, public TDDTableDelegate
 {
 public:
 	typedef std::function<void(const std::string &name)> TestSelectedCallback;
-	typedef std::function<void()> TestCallback;
+	typedef std::function<void(TDDTestMenu *)> TestMenuCallback;
+	
 public:
 	CREATE_FUNC(TDDTestMenu);
 	
@@ -37,13 +38,19 @@ public:
 	
 	bool init();
 	
-//	void addTest(const std::string &name, const TestCallback &callback);
+	// Setting the Test List
 	void setTests(std::vector<std::string> &testList);
-	
 	void refreshMenu();
 	
+	// Callback
 	void setTestSelectedCallback(const TestSelectedCallback &callback);
-	// void runTest(const std::string &)
+	void setBackCallback(const TestMenuCallback &callback);
+
+	// Toggle the Menu
+	void toggleMenu();
+	void showMenu();
+	void hideMenu();
+	
 	
 #pragma mark - TDDTableDelegate
 private:
@@ -51,17 +58,48 @@ private:
 	virtual Size getTableCellSize();
 	virtual Node *tableCellForIndex(int index);
 
+#pragma mark - Touch handling	
+	void addTouchListener();
+	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchCancelled(cocos2d::Touch*, cocos2d::Event*);
+	
+	
+#pragma mark - Support Method
 private:
 	std::string getTestName(int index);
-//	void doTestCallback(const std::string &name);
+
+	void setupHeader();
+	void setupTable();
 	
+	bool isTouchInsideHeader(const Vec2 &touchLocation);		// touchLocation is related to this component
+	void moveBy(const Vec2 &delta);
+	
+#pragma mark - Internal Data
 private:
+	// For Sub Test List
 	std::vector<std::string> mTestNameList;
-//	std::map<std::string, TestCallback> mTestCallbackMap;
-	
 	TDDTable *mTestTable;
+	Node *mHeaderNode;
 	
+	
+	// Callback
 	TestSelectedCallback mTestSelectedCallback;
+	TestMenuCallback mBackCallback;
+	//std::function<
+
+	// Menu Control
+	bool mShow;			// true if the menu is showing
+	
+	// For Move Menu Logic
+	bool mIsTouching;
+	Vec2 mLastLocation;	// Node Location
+	
+	// Theme & Layout
+	Color4B mHeaderColor;
+	float mHeaderHeight;
+	float mTableHeight;
 };
 
 
