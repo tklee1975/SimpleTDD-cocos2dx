@@ -5,7 +5,7 @@
 //  Created by Ken Lee on 6/8/2016.
 //
 //
-
+#ifdef ENABLE_TDD
 #include "TDDTab.h"
 
 TDDTab::TDDTab()
@@ -125,3 +125,4 @@ void TDDTab::updateContentSize()
 	
 	setContentSize(totalSize);
 }
+#endif

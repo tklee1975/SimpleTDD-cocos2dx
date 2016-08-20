@@ -6,8 +6,12 @@
 //
 //
 
+#ifdef ENABLE_TDD
+
 #ifndef TDDTable_hpp
 #define TDDTable_hpp
+
+
 
 #include <stdio.h>
 
@@ -69,3 +73,5 @@ private:
 };
 
 #endif /* TDDTable_hpp */
+
+#endif

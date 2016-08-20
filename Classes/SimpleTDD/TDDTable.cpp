@@ -5,7 +5,7 @@
 //  Created by Ken Lee on 8/8/2016.
 //
 //
-
+#ifdef ENABLE_TDD
 #include "TDDTable.h"
 
 
@@ -158,3 +158,4 @@ Node *TDDTable::createTableCell(int index, const Size &size, const Vec2 &cellCen
 //{
 //	
 //}
+#endif

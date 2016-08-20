@@ -17,6 +17,8 @@
 #include "extensions/cocos-ext.h"
 #include "cocostudio/CocoStudio.h"
 
+#ifdef ENABLE_TDD
+
 USING_NS_CC;
 USING_NS_CC_EXT;
 
@@ -73,3 +75,5 @@ private:
 
 
 #endif /* TDDTab_hpp */
+
+#endif

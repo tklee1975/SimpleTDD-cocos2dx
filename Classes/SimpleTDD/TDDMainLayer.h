@@ -5,6 +5,7 @@
 //  Created by Ken Lee on 13/8/2016.
 //
 //
+#ifdef ENABLE_TDD
 
 #ifndef TDDMainLayer_hpp
 #define TDDMainLayer_hpp
@@ -82,3 +83,5 @@ private:
 };
 
 #endif /* TDDMainLayer_hpp */
+
+#endif

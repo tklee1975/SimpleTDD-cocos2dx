@@ -7,6 +7,8 @@
 //
 
 #include "TDDManager.h"
+
+#ifdef ENABLE_TDD
 #include "TDDData.h"
 
 // Version
@@ -191,3 +193,5 @@ std::string TDDManager::getVersion()
 {
 	return kVersion;
 }
+
+#endif

@@ -6,6 +6,8 @@
 //
 //
 
+#ifdef ENABLE_TDD
+
 #ifndef TDDManager_hpp
 #define TDDManager_hpp
 
@@ -63,3 +65,5 @@ private:
 
 
 #endif /* TDDManager_hpp */
+
+#endif

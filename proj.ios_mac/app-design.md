@@ -28,13 +28,15 @@ Class Design
 
 Work Backlog (v 2.0.0)
 ------------------------------------------
-- Save Recent / All search key
+
 - Improve the EditBox in TDDTopBar, replace using TextField 
 - TDDMainLayer: Add Version 
 - DDMainLayer: Add Result Count 
 - TDDTable: No Result handling
 - TDDTest: using Lamda to build the sub test 
+- Testing: build in ios/release android
 
+- Save Recent / All search key - done
 
 
 

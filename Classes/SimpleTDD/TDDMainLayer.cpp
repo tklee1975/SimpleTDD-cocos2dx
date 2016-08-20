@@ -6,6 +6,7 @@
 //
 //
 
+#ifdef ENABLE_TDD
 #include "TDDMainLayer.h"
 #include "TDDTopBar.h"
 #include "TDDManager.h"
@@ -268,3 +269,5 @@ Node *TDDMainLayer::tableCellForIndex(int index)
 	
 	return button;
 }
+
+#endif

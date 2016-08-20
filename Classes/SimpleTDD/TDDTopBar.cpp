@@ -6,6 +6,8 @@
 //
 //
 
+#ifdef ENABLE_TDD
+
 #include "TDDTopBar.h"
 #include "TDDTab.h"
 #include "TDDHelper.h"
@@ -280,3 +282,5 @@ void TDDTopBar::setup(const TDDSearchType &tab, const std::string &keyword)	// n
 	
 	setSearchKeyword(keyword);
 }
+
+#endif

@@ -6,6 +6,8 @@
 //
 //
 
+#ifdef ENABLE_TDD
+
 #ifndef TDDHeaderLayer_hpp
 #define TDDHeaderLayer_hpp
 
@@ -19,6 +21,7 @@
 
 USING_NS_CC;
 USING_NS_CC_EXT;
+
 
 #include "TDDMacro.h"
 #include "TDDTypes.h"
@@ -93,3 +96,5 @@ private:
 
 
 #endif /* TDDHeaderLayer_hpp */
+
+#endif
