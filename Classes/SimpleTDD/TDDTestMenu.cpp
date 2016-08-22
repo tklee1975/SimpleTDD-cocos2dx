@@ -5,20 +5,26 @@
 //  Created by Ken Lee on 20/8/2016.
 //
 //
-
 #include "TDDTestMenu.h"
+
+const Color4B kClearColor = Color4B(0, 0, 0, 0);
+const Color4B kHeaderColor = Color4B(0, 0, 0, 150);
+const Color4B kBackgroundColor = Color4B(0, 0, 0, 100);
+
+
 TDDTestMenu::TDDTestMenu()
 : mTestNameList()
 , mTestSelectedCallback(nullptr)
-, mHeaderColor(Color4B(0, 0, 100, 100))
+, mHeaderColor(kHeaderColor)
 , mShow(true)
+, mToggleButton(nullptr)
 {
 	
 }
 
 bool TDDTestMenu::init()
 {
-	bool flag = LayerColor::initWithColor(Color4B(0, 0, 0, 0), 200, 200);
+	bool flag = LayerColor::initWithColor(kClearColor, 200, 200);
 	if(flag == false) {
 		return false;
 	}
@@ -31,10 +37,7 @@ bool TDDTestMenu::init()
 	setupHeader();
 	setupTable();
 	
-//	setContentSize(Size(200, 200));
-//	setColor(Color3B::YELLOW);
-	
-	// setBackGroundColor(Color3B::YELLOW);
+	// Touch handling
 	addTouchListener();
 	
 	return true;
@@ -119,19 +122,24 @@ Size TDDTestMenu::getTableCellSize()
 	return Size(width, 40);
 }
 
+ui::Button *TDDTestMenu::createButton(const std::string &title, const Size &size)
+{
+	ui::Button *button = ui::Button::create();
+	button->setTitleText(title);
+	button->setContentSize(size);
+	button->setTitleColor(Color3B::WHITE);
+	button->setTitleFontSize(15);
+	
+	return button;
+}
+
 Node *TDDTestMenu::tableCellForIndex(int index)
 {
 	std::string name = getTestName(index);
 	
 	
 	
-	ui::Button *button = ui::Button::create();
-	//button->setColor(Color3B::YELLOW);		// this is no use
-	button->setTitleText(name);
-	button->setContentSize(getTableCellSize());
-	button->setTitleColor(Color3B::WHITE);
-	button->setTitleFontSize(15);
-	
+	ui::Button *button = createButton(name, getTableCellSize());
 	button->addClickEventListener([&, name](Ref *) {
 		if(mTestSelectedCallback) {
 			mTestSelectedCallback(name);
@@ -190,7 +198,32 @@ void TDDTestMenu::setupHeader()
 	LayerColor *headerLayer = LayerColor::create(mHeaderColor, width, mHeaderHeight);
 	headerLayer->setPosition(pos);
 	
+	Size size = Size(50, mHeaderHeight);
+	Vec2 backPos = Vec2(size.width/2, size.height/2);
+	Vec2 togglePos = Vec2(width - size.width/2, size.height/2);
 	
+	//
+	// Back Button
+	ui::Button *backButton = createButton("back", size);
+	backButton->setPosition(backPos);
+	backButton->addClickEventListener([&](Ref *) {
+		if(mBackCallback) {
+			mBackCallback(this);
+		}
+	});
+	headerLayer->addChild(backButton);
+
+	
+	// Toggle Menu
+	ui::Button *toggleButton = createButton("hide", size);
+	toggleButton->setPosition(togglePos);
+	toggleButton->addClickEventListener([&](Ref *) {
+		toggleMenu();
+	});
+	headerLayer->addChild(toggleButton);
+	mToggleButton = toggleButton;
+	
+	//
 	addChild(headerLayer);
 	
 	mHeaderNode = headerLayer;
@@ -204,7 +237,7 @@ void TDDTestMenu::setupTable()
 	// Add the Table
 	TDDTable *table = TDDTable::create(tableSize);
 	table->setColumn(1);
-	table->setBackgroundColor(Color4B(0,0,0,140));
+	table->setBackgroundColor(kBackgroundColor);
 	table->setDelegate(this);
 	//delegate->release();
 	
@@ -235,12 +268,20 @@ void TDDTestMenu::toggleMenu()
 
 void TDDTestMenu::showMenu()
 {
+	mShow = true;
 	mTestTable->setVisible(true);
+	if(mToggleButton) {
+		mToggleButton->setTitleText("hide");
+	}
 }
 
 void TDDTestMenu::hideMenu()
 {
+	mShow = false;
 	mTestTable->setVisible(false);
+	if(mToggleButton) {
+		mToggleButton->setTitleText("show");
+	}
 }
 
 
@@ -249,4 +290,17 @@ bool TDDTestMenu::isTouchInsideHeader(const Vec2 &touchLocation)
 	Rect headerArea = mHeaderNode->getBoundingBox();
 	
 	return headerArea.containsPoint(touchLocation);
+}
+
+void TDDTestMenu::setMenuColor(const Color4B &headerColor, const Color4B &bgColor)
+{
+	if(mHeaderNode) {
+		mHeaderNode->setColor(Color3B(headerColor));
+		mHeaderNode->setOpacity(headerColor.a);
+	}
+	
+	if(mTestTable) {
+		mTestTable->setBackgroundColor(bgColor);
+		mTestTable->updateBackgroundColor();
+	}
 }

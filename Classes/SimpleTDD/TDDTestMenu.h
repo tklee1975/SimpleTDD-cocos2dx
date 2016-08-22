@@ -51,6 +51,11 @@ public:
 	void showMenu();
 	void hideMenu();
 	
+	// Theme
+	void setMenuColor(const Color4B &headerColor, const Color4B &bgColor);
+	
+	
+	//
 	
 #pragma mark - TDDTableDelegate
 private:
@@ -69,6 +74,7 @@ private:
 #pragma mark - Support Method
 private:
 	std::string getTestName(int index);
+	ui::Button *createButton(const std::string &title, const Size &size);
 
 	void setupHeader();
 	void setupTable();
@@ -81,7 +87,7 @@ private:
 	// For Sub Test List
 	std::vector<std::string> mTestNameList;
 	TDDTable *mTestTable;
-	Node *mHeaderNode;
+	LayerColor *mHeaderNode;
 	
 	
 	// Callback
@@ -100,6 +106,8 @@ private:
 	Color4B mHeaderColor;
 	float mHeaderHeight;
 	float mTableHeight;
+	
+	ui::Button *mToggleButton;
 };
 
 

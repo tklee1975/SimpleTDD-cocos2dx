@@ -10,6 +10,8 @@
 
 #include "TDDTest.h"
 
+class TDDTestMenu;
+
 // Class Declaration 
 class TDDTestMenuTest : public TDDTest
 {
@@ -27,13 +29,17 @@ private:
 private:
 	void test1();
 	void test2();
+	void toggle();
 	
 private:
 	void subTest(Ref *sender);
+	void testTheme(Ref *sender);
 	
 private:
 	std::vector<std::string> mTestNameList;
 	std::map<std::string, std::function<void()>> mTestCallbackMap;
+	
+	TDDTestMenu *mTestMenu;
 }; 
 
 #endif

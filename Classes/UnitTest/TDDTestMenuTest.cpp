@@ -50,6 +50,7 @@ void TDDTestMenuTest::doTestCallback(const std::string &name)
 void TDDTestMenuTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
 	SUBTEST(TDDTestMenuTest::subTest);
+	SUBTEST(TDDTestMenuTest::testTheme);
 }
 
 #pragma mark -
@@ -67,7 +68,13 @@ void TDDTestMenuTest::subTest(Ref *sender)
 	
 	ADD_TEST(test1);
 	ADD_TEST(test2);
-	
+	ADD_TEST(toggle);
+	ADD_TEST(test1);
+	ADD_TEST(test2);
+	ADD_TEST(test1);
+	ADD_TEST(test2);
+	ADD_TEST(test1);
+	ADD_TEST(test2);
 
 	//
 	TDDTestMenu *menu = TDDTestMenu::create();
@@ -83,8 +90,13 @@ void TDDTestMenuTest::subTest(Ref *sender)
 		doTestCallback(name);
 	});
 	
-	menu->setTests(mTestNameList);
+	menu->setBackCallback([&](TDDTestMenu *menu){
+		log("back is called");
+	});
 	
+	menu->setTests(mTestNameList);
+
+	mTestMenu = menu;
 }
 
 void TDDTestMenuTest::test1()
@@ -95,6 +107,23 @@ void TDDTestMenuTest::test1()
 void TDDTestMenuTest::test2()
 {
 	log("test2");
+}
+
+void TDDTestMenuTest::toggle()
+{
+	if(mTestMenu) {
+		mTestMenu->toggleMenu();
+	}
+}
+
+void TDDTestMenuTest::testTheme(Ref *sender)
+{
+	TDDTestMenu *menu = TDDTestMenu::create();
+	menu->setPosition(Vec2(250, 50));
+
+	menu->setMenuColor(Color4B::BLUE, Color4B::YELLOW);
+	
+	addChild(menu);
 }
 
 
