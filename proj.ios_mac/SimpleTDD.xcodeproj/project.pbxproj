@@ -57,6 +57,10 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		7301984F1D6CC2EE000D7B6F /* TDDBaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7301984D1D6CC2EE000D7B6F /* TDDBaseTest.cpp */; };
+		730198501D6CC2EE000D7B6F /* TDDBaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7301984D1D6CC2EE000D7B6F /* TDDBaseTest.cpp */; };
+		730198531D6CC921000D7B6F /* TDD2SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 730198511D6CC921000D7B6F /* TDD2SampleTest.cpp */; };
+		730198541D6CC921000D7B6F /* TDD2SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 730198511D6CC921000D7B6F /* TDD2SampleTest.cpp */; };
 		73130E0D1D5EF9E600007D37 /* TDDMainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73130E0B1D5EF9E600007D37 /* TDDMainLayer.cpp */; };
 		73130E0E1D5EF9E600007D37 /* TDDMainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73130E0B1D5EF9E600007D37 /* TDDMainLayer.cpp */; };
 		73130E111D5F09D000007D37 /* TDDMainLayerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73130E0F1D5F09D000007D37 /* TDDMainLayerTest.cpp */; };
@@ -219,6 +223,10 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		7301984D1D6CC2EE000D7B6F /* TDDBaseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDBaseTest.cpp; sourceTree = "<group>"; };
+		7301984E1D6CC2EE000D7B6F /* TDDBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDBaseTest.h; sourceTree = "<group>"; };
+		730198511D6CC921000D7B6F /* TDD2SampleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDD2SampleTest.cpp; sourceTree = "<group>"; };
+		730198521D6CC921000D7B6F /* TDD2SampleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDD2SampleTest.h; sourceTree = "<group>"; };
 		73130E0B1D5EF9E600007D37 /* TDDMainLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDMainLayer.cpp; sourceTree = "<group>"; };
 		73130E0C1D5EF9E600007D37 /* TDDMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDMainLayer.h; sourceTree = "<group>"; };
 		73130E0F1D5F09D000007D37 /* TDDMainLayerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDMainLayerTest.cpp; sourceTree = "<group>"; };
@@ -540,6 +548,10 @@
 				73F45CAE1D66440F00AF54AA /* SimpleTDD.h */,
 				7324721F1D68568500CCAB9B /* TDDTestMenu.cpp */,
 				732472201D68568500CCAB9B /* TDDTestMenu.h */,
+				7301984D1D6CC2EE000D7B6F /* TDDBaseTest.cpp */,
+				7301984E1D6CC2EE000D7B6F /* TDDBaseTest.h */,
+				730198511D6CC921000D7B6F /* TDD2SampleTest.cpp */,
+				730198521D6CC921000D7B6F /* TDD2SampleTest.h */,
 			);
 			path = SimpleTDD;
 			sourceTree = "<group>";
@@ -751,6 +763,7 @@
 				739132C51A8F4A5B00E95086 /* TDDSubMenuTest.cpp in Sources */,
 				739132B31A8F4A5B00E95086 /* ButtonTest.cpp in Sources */,
 				737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */,
+				7301984F1D6CC2EE000D7B6F /* TDDBaseTest.cpp in Sources */,
 				739132B91A8F4A5B00E95086 /* LabelTest.cpp in Sources */,
 				739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */,
 				73F45CAF1D66440F00AF54AA /* SimpleTDD.cpp in Sources */,
@@ -771,6 +784,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				73FE6B211D53C6800023048E /* TabTest.cpp in Sources */,
 				737A6C7D1D506B8700969614 /* app-design.md in Sources */,
+				730198531D6CC921000D7B6F /* TDD2SampleTest.cpp in Sources */,
 				73491BC71D57AF67004D09F9 /* TDDTable.cpp in Sources */,
 				739132BB1A8F4A5B00E95086 /* ScrollTest.cpp in Sources */,
 				7391328D1A8F49A300E95086 /* TDDMenu.cpp in Sources */,
@@ -793,6 +807,7 @@
 				739132981A8F49A300E95086 /* TDDTest.cpp in Sources */,
 				739132C01A8F4A5B00E95086 /* SwitchTest.cpp in Sources */,
 				73130E121D5F09D000007D37 /* TDDMainLayerTest.cpp in Sources */,
+				730198501D6CC2EE000D7B6F /* TDDBaseTest.cpp in Sources */,
 				739132C41A8F4A5B00E95086 /* TDDHelperTest.cpp in Sources */,
 				73F45CB01D66440F00AF54AA /* SimpleTDD.cpp in Sources */,
 				739132C81A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */,
@@ -812,6 +827,7 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				739132921A8F49A300E95086 /* TDDSubMenu.cpp in Sources */,
 				7391328E1A8F49A300E95086 /* TDDMenu.cpp in Sources */,
+				730198541D6CC921000D7B6F /* TDD2SampleTest.cpp in Sources */,
 				739132941A8F49A300E95086 /* TDDSuite.cpp in Sources */,
 				739132CA1A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */,
 				739132881A8F49A300E95086 /* TDDSample.cpp in Sources */,

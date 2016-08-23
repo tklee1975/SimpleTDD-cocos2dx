@@ -87,7 +87,7 @@ private:
 
 typedef struct {
 	const char *name;
-	std::function<TDDTest *()> callback;
+	std::function<Scene *()> callback;
 } TDDTestCase;
 
 
