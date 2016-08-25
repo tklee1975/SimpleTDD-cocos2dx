@@ -101,6 +101,13 @@ public:
 											   const Color3B &titleColor,
 											   const Color4B &bgColor);
 
+
+	static void alignNode(Node *targetNode, TDDAlign align);
+	static void alignNode(Node *targetNode, const Size &parentSize, TDDAlign align);
+
+	static void resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &horizontalAlign);
+	
+	static std::string getAlignName(TDDAlign align);
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

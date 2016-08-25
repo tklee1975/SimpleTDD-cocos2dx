@@ -540,3 +540,103 @@ ui::Button *TDDHelper::addButtonWithBackground(Node *parent,
 	
 	return button;
 }
+
+
+void TDDHelper::alignNode(Node *targetNode, TDDAlign align)	// support anchorPoint=(0, 0)
+{
+	if(targetNode == nullptr) {
+		return;
+	}
+	
+	Node *nodeParent = targetNode->getParent();
+	if(nodeParent == nullptr) {
+		return;
+	}
+	
+	return alignNode(targetNode, nodeParent->getContentSize(), align);
+}
+
+void TDDHelper::alignNode(Node *targetNode, const Size &parentSize, TDDAlign align)
+{
+	TDDAlign vert;
+	TDDAlign hori;
+	resolveAlign(align, vert, hori);
+	
+	
+	
+	
+	float x, y;
+	
+	// Find x;
+	if(eTDDRight == hori) {
+		x = parentSize.width - targetNode->getContentSize().width;
+	} else if(eTDDCenter == hori) {
+		x = (parentSize.width - targetNode->getContentSize().width) / 2;
+	} else {
+		x = 0;
+	}
+	
+	
+	// Find y;
+	if(eTDDTop == vert) {
+		y = parentSize.height - targetNode->getContentSize().height;
+	} else if(eTDDMiddle == vert) {
+		y = (parentSize.height - targetNode->getContentSize().height) / 2;
+	} else {
+		y = 0;
+	}
+	
+	log("debug: x=%f y=%f", x, y);
+	
+	// Set position
+	targetNode->setPosition(Vec2(x, y));
+}
+
+//eTDDTop				= 1,
+//eTDDMiddle			= 2,
+//eTDDBottom			= 3,
+//
+//eTDDLeft			= 1 << 2,
+//eTDDCenter			= 2 << 2,
+//eTDDRight			= 3 << 2,
+namespace  {
+	std::string nameOfAlign(TDDAlign align)		// just top/mid/bot lef/cent/right
+	{
+		switch(align) {
+			case eTDDTop	: return "top";
+			case eTDDMiddle	: return "middle";
+			case eTDDBottom	: return "bottom";
+			case eTDDLeft	: return "left";
+			case eTDDCenter	: return "center";
+			case eTDDRight	: return "right";
+				
+			default			: return "";
+		}
+	}
+}
+
+
+std::string TDDHelper::getAlignName(TDDAlign align)
+{
+	TDDAlign vert;
+	TDDAlign hori;
+	
+	resolveAlign(align, vert, hori);
+	
+	log("debug: vert=%d hori=%d", vert, hori);
+	
+	std::string vertialPart = nameOfAlign(vert);
+	std::string horizontalPart = nameOfAlign(hori);
+	
+	std::string sep = (vertialPart.empty() || horizontalPart.empty()) ? "" : "_";
+	
+	return vertialPart + sep + horizontalPart;
+}
+
+void TDDHelper::resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &horizontalAlign)
+{
+	verticalAlign = (TDDAlign) (align & 0x0003);		// 0011	 (last two bit)
+	horizontalAlign = (TDDAlign) (align & 0x000C);		// 1100  (3rd,4th bit)
+	
+	
+}

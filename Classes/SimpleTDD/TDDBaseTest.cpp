@@ -15,13 +15,17 @@ const int kZorderTestMenu = 10000;
 
 
 TDDBaseTest::TDDBaseTest()
+: mBaseNode(nullptr)
 {
-	
+	Size screenSize = Director::getInstance()->getVisibleSize();
+	setContentSize(screenSize);		// note: it is zero by default
 }
 
 void TDDBaseTest::onEnter()
 {
 	Scene::onEnter();
+	
+	findBaseNode();		// Find the base node, prevent it is removed from clearChildren!!
 	
 	defineTests();		// Define the list of sub test
 	
@@ -62,7 +66,21 @@ void TDDBaseTest::doTestCallback(const std::string &name)
 		return;
 	}
 	
+	willRunTest(name);
+	
 	callback();
+	
+	didRunTest(name);
+}
+
+void TDDBaseTest::willRunTest(const std::string &name)	// before run a test
+{
+	
+}
+
+void TDDBaseTest::didRunTest(const std::string &name)	// after run a test
+{
+	
 }
 
 
@@ -106,4 +124,36 @@ TDDTestMenu *TDDBaseTest::createTestMenu()
 void TDDBaseTest::back()
 {
 	Director::getInstance()->popScene();
+}
+
+void TDDBaseTest::setBackgroundColor(const Color3B &color)
+{
+	if(mBackLayer) {
+		mBackLayer->setColor(color);
+	}
+}
+
+void TDDBaseTest::clearChildren()
+{
+	Vector<Node *> allNodes = this->getChildren();
+
+	for(int i=1; i<allNodes.size(); i++) {	// The first node is the scene base layer, cannot remove
+		Node *node = allNodes.at(i);
+		if(node == mBackLayer || node == mTestMenu || node == mBaseNode) {
+			continue;
+		}
+		
+		node->removeFromParent();
+	}
+}
+
+
+void TDDBaseTest::findBaseNode()
+{
+	Vector<Node *> allNodes = this->getChildren();
+	if(allNodes.size() == 0) {
+		return;		// this is something wrong here!!, suppose it is size = 1
+	}
+	
+	mBaseNode = allNodes.at(0);
 }

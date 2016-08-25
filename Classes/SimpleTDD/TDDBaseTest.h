@@ -25,31 +25,47 @@ USING_NS_CC_EXT;
 
 class TDDTestMenu;
 
+// Note:
+//		call sequence of TDDBaseTest
+//			 start up: constructor -> onEnter -> defineTest -> setupGUI -> setUpd
+//			 user click the test: willRunTest -> test -> didRunTest
+//			 shut down: onExit -> tearDown -> destructor
+//
+
 class TDDBaseTest : public Scene
 {
+	
 public:
 	TDDBaseTest();
 	virtual void onEnter();
 	virtual void onExit();
 	
-#pragma mark - Core Method for testing
+#pragma mark - Core Method for override
 protected:
+	
+	// For
 	virtual void setUp();
 	virtual void tearDown();
 	
 	virtual void defineTests() = 0;		// Required to override
 	
+	virtual void willRunTest(const std::string &name);	// before run a test
+	virtual void didRunTest(const std::string &name);	// after run a test
+	
+#pragma mark - Core Method for testing
 	void addTest(const std::string &name, const std::function<void()> &callback);
 	void doTestCallback(const std::string &name);
 	
 	
 #pragma mark - Helper Method for build the test
 protected:
+	void setBackgroundColor(const Color3B &color);
+	void clearChildren();
 	
 //	virtual bool showStat();
 //	void setMenuVisible(bool flag);
-//	void setBackgroundColor(const Color3B &color);
-//	void clearNodes();
+
+//
 	
 	
 	
@@ -67,6 +83,9 @@ private:
 	void setupGUI();
 	TDDTestMenu *createTestMenu();
 	void back();
+	
+	
+	void findBaseNode();
 	
 //	void configTest();
 //	void resetConfig();
@@ -96,6 +115,7 @@ private:
 //	bool mMenuVisible;
 	TDDTestMenu *mTestMenu;
 	LayerColor *mBackLayer;		// Background Layer, default color is GRAY
+	Node *mBaseNode;
 	
 private:
 	std::vector<std::string> mTestNameList;

@@ -119,7 +119,7 @@ Size TDDTestMenu::getTableCellSize()
 {
 	float width = getContentSize().width;
 	
-	return Size(width, 40);
+	return Size(width, 35);
 }
 
 ui::Button *TDDTestMenu::createButton(const std::string &title, const Size &size)
