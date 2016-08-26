@@ -82,6 +82,8 @@ void TDDTable::updateData()
 	int rowcount = (int) ceil((float) itemCount / getColumn()) + 1;	// Add one more row for better scrolling
 	// log("rowCount=%d", rowcount);	// 50 / 4 = 13
 	
+	log("debug: cellSize: %f,%f", cellSize.width, cellSize.height);
+	
 	float totalWidth = cellSize.width * getColumn();
 	float totalHeight = cellSize.height * rowcount;
 	
@@ -152,6 +154,23 @@ Node *TDDTable::createTableCell(int index, const Size &size, const Vec2 &cellCen
 	cellNode->setPosition(pos);
 	
 	return cellNode;
+}
+
+void TDDTable::resizeTo(const Size &newSize)
+{
+	setContentSize(newSize);
+	if(mScrollView) {
+		//mScrollView->setContentSize(newSize);
+		mScrollView->setViewSize(newSize);
+	}
+	
+	if(mScrollContentLayer) {
+		Size size = mScrollContentLayer->getContentSize();
+		size.width = newSize.width;
+		
+		mScrollContentLayer->setContentSize(size);
+	}
+	
 }
 
 //void TDDTable::addItem(const std::string &itemName)

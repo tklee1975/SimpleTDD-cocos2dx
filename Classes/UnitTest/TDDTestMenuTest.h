@@ -8,21 +8,21 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 class TDDTestMenu;
 
 // Class Declaration 
-class TDDTestMenuTest : public TDDTest
+class TDDTestMenuTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 
 	
 private:
-	void addTest(const std::string &name, const std::function<void()> &callback);
+	void addSubTest(const std::string &name, const std::function<void()> &callback);
 	void doTestCallback(const std::string &name);
 	
 	
@@ -32,8 +32,10 @@ private:
 	void toggle();
 	
 private:
-	void subTest(Ref *sender);
-	void testTheme(Ref *sender);
+	void subTest();
+	void testTheme();
+	void testSetColumn();
+	void testSetSize();
 	
 private:
 	std::vector<std::string> mTestNameList;

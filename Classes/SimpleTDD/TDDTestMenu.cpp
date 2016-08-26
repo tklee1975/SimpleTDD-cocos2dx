@@ -17,7 +17,11 @@ TDDTestMenu::TDDTestMenu()
 , mTestSelectedCallback(nullptr)
 , mHeaderColor(kHeaderColor)
 , mShow(true)
+, mHeaderNode(nullptr)
+, mTestTable(nullptr)
 , mToggleButton(nullptr)
+, mHeaderButtonSize(Size(50, 50))
+, mColumn(1)
 {
 	
 }
@@ -31,6 +35,7 @@ bool TDDTestMenu::init()
 	
 	// Layout
 	mHeaderHeight = 40;
+	mHeaderButtonSize = Size(50, mHeaderHeight);
 	mTableHeight = getContentSize().height - mHeaderHeight;
 	
 	// Setup the sub component
@@ -117,7 +122,7 @@ int TDDTestMenu::getTableCellCount()
 
 Size TDDTestMenu::getTableCellSize()
 {
-	float width = getContentSize().width;
+	float width = getContentSize().width / mColumn;
 	
 	return Size(width, 35);
 }
@@ -205,6 +210,7 @@ void TDDTestMenu::setupHeader()
 	//
 	// Back Button
 	ui::Button *backButton = createButton("back", size);
+	backButton->setContentSize(size);
 	backButton->setPosition(backPos);
 	backButton->addClickEventListener([&](Ref *) {
 		if(mBackCallback) {
@@ -216,6 +222,7 @@ void TDDTestMenu::setupHeader()
 	
 	// Toggle Menu
 	ui::Button *toggleButton = createButton("hide", size);
+	toggleButton->setContentSize(size);
 	toggleButton->setPosition(togglePos);
 	toggleButton->addClickEventListener([&](Ref *) {
 		toggleMenu();
@@ -303,4 +310,54 @@ void TDDTestMenu::setMenuColor(const Color4B &headerColor, const Color4B &bgColo
 		mTestTable->setBackgroundColor(bgColor);
 		mTestTable->updateBackgroundColor();
 	}
+}
+
+void TDDTestMenu::setColumn(int column)
+{
+	mColumn = column;
+	if(mTestTable) {
+		mTestTable->setColumn(column);
+	}
+	
+}
+void TDDTestMenu::refreshTable()
+{
+	if(mTestTable) {
+		mTestTable->updateData();
+	}
+	
+}
+
+void TDDTestMenu::setContentSize(const Size &size)
+{
+	LayerColor::setContentSize(size);
+	
+	// Modify the Subnode
+	if(mHeaderNode) {
+		Size headerSize = mHeaderNode->getContentSize();
+		headerSize.width = getContentSize().width;
+		
+		mHeaderNode->setContentSize(headerSize);
+		
+		Vec2 pos = Vec2(0, size.height - mHeaderHeight);
+		mHeaderNode->setPosition(pos);
+	}
+	
+	if(mTestTable) {
+		Size size = getContentSize();
+		size.height -= mHeaderHeight;
+		
+		mTestTable->resizeTo(size);
+	}
+	
+	
+	if(mToggleButton) {
+		Size buttonSize = mToggleButton->getContentSize();
+		
+		Vec2 newPos = mToggleButton->getPosition();
+		newPos.x = getContentSize().width - buttonSize.width/2 ;
+		
+		mToggleButton->setPosition(newPos);
+	}
+	
 }

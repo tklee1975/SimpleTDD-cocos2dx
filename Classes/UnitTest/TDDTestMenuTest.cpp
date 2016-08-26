@@ -8,7 +8,7 @@
 #include "TDDHelper.h"
 #include "TDDTestMenu.h"
 
-#define ADD_TEST(__name__)	addTest(#__name__, [&]() { __name__(); });
+#define ADD_SUB_TEST(__name__)	addSubTest(#__name__, [&]() { __name__(); });
 
 
 //{#__ClassName__, []() { return new __ClassName__(); } }
@@ -17,6 +17,26 @@ void TDDTestMenuTest::setUp()
 {
 	log("TDD Setup is called");
 	log("Please write somethings");
+	
+	
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	
+	//
+	TDDTestMenu *menu = TDDTestMenu::create();
+	
+	menu->setPosition(Vec2(0, 0));
+	// menu->updateSizeAndPosition();
+	menu->setTests(mTestNameList);
+	addChild(menu);
+	
+	mTestMenu = menu;
 }
 
 
@@ -27,7 +47,7 @@ void TDDTestMenuTest::tearDown()
 }
 
 
-void TDDTestMenuTest::addTest(const std::string &name, const std::function<void()> &callback)
+void TDDTestMenuTest::addSubTest(const std::string &name, const std::function<void()> &callback)
 {
 	mTestNameList.push_back(name);
 	mTestCallbackMap[name] = callback;
@@ -47,15 +67,17 @@ void TDDTestMenuTest::doTestCallback(const std::string &name)
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDTestMenuTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDTestMenuTest::defineTests()
 {
-	SUBTEST(TDDTestMenuTest::subTest);
-	SUBTEST(TDDTestMenuTest::testTheme);
+	ADD_TEST(subTest);
+	ADD_TEST(testTheme);
+	ADD_TEST(testSetColumn);
+	ADD_TEST(testSetSize);	
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDTestMenuTest::subTest(Ref *sender)
+void TDDTestMenuTest::subTest()
 {
 	// Define the test
 //	addTest("test1", [&](){
@@ -66,15 +88,15 @@ void TDDTestMenuTest::subTest(Ref *sender)
 //		test2();
 //	});
 	
-	ADD_TEST(test1);
-	ADD_TEST(test2);
-	ADD_TEST(toggle);
-	ADD_TEST(test1);
-	ADD_TEST(test2);
-	ADD_TEST(test1);
-	ADD_TEST(test2);
-	ADD_TEST(test1);
-	ADD_TEST(test2);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	ADD_SUB_TEST(toggle);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
+	ADD_SUB_TEST(test1);
+	ADD_SUB_TEST(test2);
 
 	//
 	TDDTestMenu *menu = TDDTestMenu::create();
@@ -116,7 +138,7 @@ void TDDTestMenuTest::toggle()
 	}
 }
 
-void TDDTestMenuTest::testTheme(Ref *sender)
+void TDDTestMenuTest::testTheme()
 {
 	TDDTestMenu *menu = TDDTestMenu::create();
 	menu->setPosition(Vec2(250, 50));
@@ -124,6 +146,22 @@ void TDDTestMenuTest::testTheme(Ref *sender)
 	menu->setMenuColor(Color4B::BLUE, Color4B::YELLOW);
 	
 	addChild(menu);
+}
+
+void TDDTestMenuTest::testSetColumn()
+{
+	if(mTestMenu) {
+		mTestMenu->setColumn(3);
+		mTestMenu->refreshTable();
+	}
+}
+
+void TDDTestMenuTest::testSetSize()
+{
+	if(mTestMenu) {
+		mTestMenu->setContentSize(Size(300, 300));
+		mTestMenu->refreshTable();
+	}
 }
 
 

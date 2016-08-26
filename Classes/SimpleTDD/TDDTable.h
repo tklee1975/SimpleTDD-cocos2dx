@@ -60,6 +60,7 @@ public:
 	
 	void updateData();
 	void updateBackgroundColor();
+	void resizeTo(const Size &newSize);
 
 private:
 	Node *createTableCell(int index, const Size &size, const Vec2 &cellCenterPos);

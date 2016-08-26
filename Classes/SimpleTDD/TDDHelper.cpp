@@ -567,6 +567,9 @@ void TDDHelper::alignNode(Node *targetNode, const Size &parentSize, TDDAlign ali
 	
 	float x, y;
 	
+//	Size size = targetNode->getContentSize();
+//	Vec2 anchorDiff = targetNode->getAnchorPoint() * Vec2(
+	
 	// Find x;
 	if(eTDDRight == hori) {
 		x = parentSize.width - targetNode->getContentSize().width;
@@ -586,7 +589,8 @@ void TDDHelper::alignNode(Node *targetNode, const Size &parentSize, TDDAlign ali
 		y = 0;
 	}
 	
-	log("debug: x=%f y=%f", x, y);
+	//log("debug: x=%f y=%f", x, y);
+	
 	
 	// Set position
 	targetNode->setPosition(Vec2(x, y));

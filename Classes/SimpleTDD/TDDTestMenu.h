@@ -53,9 +53,12 @@ public:
 	
 	// Theme
 	void setMenuColor(const Color4B &headerColor, const Color4B &bgColor);
+	void setColumn(int column);
 	
+	virtual void setContentSize(const Size &size);
 	
 	//
+	void refreshTable();
 	
 #pragma mark - TDDTableDelegate
 private:
@@ -106,6 +109,8 @@ private:
 	Color4B mHeaderColor;
 	float mHeaderHeight;
 	float mTableHeight;
+	Size mHeaderButtonSize;
+	int mColumn;
 	
 	ui::Button *mToggleButton;
 };
