@@ -8,11 +8,13 @@
 
 #include "TDDBaseTest.h"
 #include "TDDTestMenu.h"
+#include "TDDTypes.h"
+#include "TDDHelper.h"
 
 // ZOrder
 const int kZorderBackground = -10000;
 const int kZorderTestMenu = 10000;
-
+const TDDAlign kDefaultMenuAlign = TDDAlign::eTDDTopRight;
 
 TDDBaseTest::TDDBaseTest()
 : mBaseNode(nullptr)
@@ -99,6 +101,8 @@ void TDDBaseTest::setupGUI()
 	testMenu->setLocalZOrder(kZorderTestMenu);
 	addChild(testMenu);
 	mTestMenu = testMenu;
+	
+	TDDHelper::alignNode(mTestMenu, kDefaultMenuAlign);
 }
 
 TDDTestMenu *TDDBaseTest::createTestMenu()

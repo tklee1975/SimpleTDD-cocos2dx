@@ -28,6 +28,7 @@ enum TDDAlign
 	eTDDRight			= 3 << 2,
 
 	eTDDTopLeft			= (eTDDTop | eTDDLeft),
+	eTDDTopRight		= (eTDDTop | eTDDRight),
 	
 	// Combined
 //	eTDDTopLeft,
