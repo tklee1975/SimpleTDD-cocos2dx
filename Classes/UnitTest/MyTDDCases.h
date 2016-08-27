@@ -32,6 +32,7 @@
 #include "TDDMainLayerTest.h"
 #include "TDDTestMenuTest.h"
 #include "TDD2SampleTest.h"
+#include "TextFieldTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -40,6 +41,7 @@
 TDD_CASES
 {
 	TEST(TDD2SampleTest),
+	TEST(TextFieldTest),
 	TEST(TDDMainLayerTest),
 	TEST(TDDTestMenuTest),
 	TEST(LabelTest),

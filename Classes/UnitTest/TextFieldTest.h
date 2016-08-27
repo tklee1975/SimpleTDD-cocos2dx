@@ -1,17 +1,21 @@
 #ifdef ENABLE_TDD
 //
-//  #TestName#Test.h
+//  TextFieldTest.h
 //
 //
-#ifndef __TDD_#TestName#Test__
-#define __TDD_#TestName#Test__
+#ifndef __TDD_TextFieldTest__
+#define __TDD_TextFieldTest__
 
 // Include Header
 
 #include "TDDBaseTest.h"
 
+
+#include "ui/CocosGUI.h"
+
+
 // Class Declaration
-class #TestName#Test : public TDDBaseTest
+class TextFieldTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
@@ -22,6 +26,11 @@ protected:
 	
 private:
 	void testSample();
+	void testCustomTextField();
+	void testClearText();
+	
+private:
+	ui::TextField *mTextField;
 };
 
 #endif

@@ -125,6 +125,7 @@
 		739132CA1A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739132B11A8F4A5B00E95086 /* TDDSwitchTest.cpp */; };
 		739A0F211D5A49FF00389528 /* ScrollViewTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739A0F1F1D5A49FF00389528 /* ScrollViewTest.cpp */; };
 		739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739A0F221D5A4F4300389528 /* WidgetTest.cpp */; };
+		73A76A4B1D721086003ACAF0 /* TextFieldTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A76A491D721086003ACAF0 /* TextFieldTest.cpp */; };
 		73AF4E471D5B9B5C003A0EB4 /* TDDTopBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E451D5B9B5C003A0EB4 /* TDDTopBar.cpp */; };
 		73AF4E481D5B9B5C003A0EB4 /* TDDTopBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E451D5B9B5C003A0EB4 /* TDDTopBar.cpp */; };
 		73AF4E4C1D5B9D65003A0EB4 /* TDDTopBarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */; };
@@ -301,6 +302,8 @@
 		739A0F201D5A49FF00389528 /* ScrollViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewTest.h; sourceTree = "<group>"; };
 		739A0F221D5A4F4300389528 /* WidgetTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WidgetTest.cpp; sourceTree = "<group>"; };
 		739A0F231D5A4F4300389528 /* WidgetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetTest.h; sourceTree = "<group>"; };
+		73A76A491D721086003ACAF0 /* TextFieldTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextFieldTest.cpp; sourceTree = "<group>"; };
+		73A76A4A1D721086003ACAF0 /* TextFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTest.h; sourceTree = "<group>"; };
 		73AF4E451D5B9B5C003A0EB4 /* TDDTopBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTopBar.cpp; sourceTree = "<group>"; };
 		73AF4E461D5B9B5C003A0EB4 /* TDDTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTopBar.h; sourceTree = "<group>"; };
 		73AF4E491D5B9C11003A0EB4 /* TDDMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDMacro.h; sourceTree = "<group>"; };
@@ -559,6 +562,8 @@
 		739132991A8F4A5B00E95086 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73A76A491D721086003ACAF0 /* TextFieldTest.cpp */,
+				73A76A4A1D721086003ACAF0 /* TextFieldTest.h */,
 				732472231D68585800CCAB9B /* TDDTestMenuTest.cpp */,
 				732472241D68585800CCAB9B /* TDDTestMenuTest.h */,
 				73130E0F1D5F09D000007D37 /* TDDMainLayerTest.cpp */,
@@ -793,6 +798,7 @@
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				739132931A8F49A300E95086 /* TDDSuite.cpp in Sources */,
 				739132B51A8F4A5B00E95086 /* EditBoxTest.cpp in Sources */,
+				73A76A4B1D721086003ACAF0 /* TextFieldTest.cpp in Sources */,
 				737A6C7B1D506B3E00969614 /* version.md in Sources */,
 				73130E0D1D5EF9E600007D37 /* TDDMainLayer.cpp in Sources */,
 				739132B71A8F4A5B00E95086 /* ExampleTest.cpp in Sources */,
