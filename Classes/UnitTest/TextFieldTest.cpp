@@ -63,6 +63,10 @@ void TextFieldTest::testCustomTextField()
 	tf->setContentSize(Size(200, 50));
 	tf->setPosition(Vec2(100, 100));
 	
+	tf->addEventListener([&](Ref *ref, ui::TextField::EventType type) {
+		log("event: type=%d [%s]", type, mTextField->getString().c_str());
+	});
+	
 	addChild(tf);
 	
 	mTextField = tf;

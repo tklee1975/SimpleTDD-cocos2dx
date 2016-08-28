@@ -27,6 +27,7 @@ TDDTopBar::TDDTopBar()
 , mTabChangeCallback(nullptr)
 , mKeywordChangeCallback(nullptr)
 , mSearchKey("")
+, mTextField(nullptr)
 {
 	
 }
@@ -131,6 +132,7 @@ void TDDTopBar::initSearchBar()
 	
 	// Position
 	Vec2 searchBoxPos = Vec2(hSpacing + searchBoxSize.width/2, searchBarCenterY);
+	Vec2 searchBoxBgPos = Vec2(hSpacing, vSpacing);		// without center anchor point
 	Vec2 clearButtonPos = Vec2(hSpacing + searchBoxSize.width + clearButtonSize.width/2, searchBarCenterY); // right after the searchBox
 	
 	
@@ -140,18 +142,41 @@ void TDDTopBar::initSearchBar()
 	
 	// Adding the searchBox
 					//vSpacing + searchBoxSize.height / 2);		// anchor = center
-	ui::EditBox *editBox = TDDHelper::createEditBox(searchBoxSize,
-								mSearchBoxColor, mSearchBoxTextColor,
-								"", fontSize);
-	editBox->setPlaceHolder("Test Keyword. e.g Sprite");
-	//editBox->setPlaceholderFontSize(fontSize * 0.8);
-	editBox->setPosition(searchBoxPos);
-	editBox->setDelegate(this);
+//	ui::EditBox *editBox = TDDHelper::createEditBox(searchBoxSize,
+//								mSearchBoxColor, mSearchBoxTextColor,
+//								"", fontSize);
+//	editBox->setPlaceHolder("Test Keyword. e.g Sprite");
+//	//editBox->setPlaceholderFontSize(fontSize * 0.8);
+//	editBox->setPosition(searchBoxPos);
+//	editBox->setDelegate(this);
+//	
+//	addChild(editBox);
+//	mEditBox = editBox;
+//
+	// Add Layer Color behind the textfield
+	LayerColor *backLayer = LayerColor::create(mSearchBoxColor, searchBoxSize.width, searchBoxSize.height);
+	backLayer->setPosition(searchBoxBgPos);
+	addChild(backLayer);
 	
-	addChild(editBox);
-	mEditBox = editBox;
-	
-
+	//
+	ui::TextField *tf = ui::TextField::create("Test Keyword. e.g Sprite", "", fontSize);
+	tf->setTouchSize(searchBoxSize);
+	tf->setTouchAreaEnabled(true);
+	tf->setContentSize(searchBoxSize);
+	tf->setPosition(searchBoxPos);
+	tf->setTextColor(Color4B(mSearchBoxTextColor));
+	tf->setColor(Color3B::YELLOW);
+	tf->setTextHorizontalAlignment(TextHAlignment::LEFT);
+	tf->addEventListener([&](Ref *ref, ui::TextField::EventType type) {
+		// log("event: type=%d [%s]", type, mTextField->getString().c_str());
+		if(ui::TextField::EventType::INSERT_TEXT == type
+		   || ui::TextField::EventType::DELETE_BACKWARD == type)
+		{
+			onTextFieldChange();
+		}
+	});
+	addChild(tf);
+	mTextField = tf;
 
 	
 	// Adding the close Button
@@ -175,7 +200,7 @@ void TDDTopBar::initSearchBar()
 
 void TDDTopBar::clearSearchText()
 {
-	if(mEditBox) {
+	if(mTextField) {
 		setSearchKeyword("");
 		onSearchKeyChanged();	// notify callback
 	}
@@ -244,8 +269,8 @@ void TDDTopBar::setSearchKeyword(const std::string &key)
 {
 	mSearchKey = key;
 	
-	if(mEditBox) {
-		mEditBox->setText(mSearchKey.c_str());
+	if(mTextField) {
+		mTextField->setString(mSearchKey);
 	}
 	
 }
@@ -281,6 +306,16 @@ void TDDTopBar::setup(const TDDSearchType &tab, const std::string &keyword)	// n
 	}
 	
 	setSearchKeyword(keyword);
+}
+
+#pragma mark - TextField handling
+void TDDTopBar::onTextFieldChange()
+{
+	if(!mTextField) {
+		return;
+	}
+	mSearchKey = mTextField->getString();
+	onSearchKeyChanged();
 }
 
 #endif

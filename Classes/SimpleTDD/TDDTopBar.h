@@ -18,6 +18,7 @@
 #include <string>
 #include <vector>
 #include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -80,10 +81,13 @@ private:
 	std::function<void(TDDTopBar *, const std::string &keyword)> mKeywordChangeCallback;
 	
 	LayerColor *mTopBarLayer;
-	ui::EditBox *mEditBox;
 	std::string mSearchKey;
 	TDDTab *mTab;
+	ui::EditBox *mEditBox;
+	ui::TextField *mTextField;
 
+#pragma mark - TextField handling
+	void onTextFieldChange();
 
 #pragma mark - EditBox Delegage
 	virtual void editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std::string& text);

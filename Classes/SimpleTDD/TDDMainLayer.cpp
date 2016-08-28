@@ -10,7 +10,7 @@
 #include "TDDMainLayer.h"
 #include "TDDTopBar.h"
 #include "TDDManager.h"
-
+#include "TDDHelper.h"
 
 Scene *TDDMainLayer::createScene()
 {
@@ -98,7 +98,7 @@ void TDDMainLayer::showRecentTest(const std::string &keyword)
 
 void TDDMainLayer::setupProperties()
 {
-	mColumn = 4;
+	mColumn = TDDHelper::isLandscape() ? 4 : 2;
 	
 	float cellWidth = getContentSize().width / mColumn;
 	float cellHeight = 40;

@@ -24,6 +24,14 @@ const std::string kVersion = "2.0.0";
 
 //  Local helper method
 namespace {
+	std::string toUpper(std::string input) {
+		for (std::string::iterator it = input.begin(); it != input.end(); ++ it)
+		{
+			*it = toupper(*it);
+		}
+		return input;
+	}
+	
 	bool isTestMatch(const std::string &testName, const std::string &filterPattern)
 	{
 		if(filterPattern == "") {
@@ -35,10 +43,13 @@ namespace {
 		if(name.length() > 4) {
 			name = name.substr(0, name.length()-4);
 		}
+		name = toUpper(name);
+		
 		
 		// log("trimmed testName=[%s]", name.c_str());
+		std::string filter = toUpper(filterPattern);
 		
-		std::size_t found = name.find(filterPattern);
+		std::size_t found = name.find(filter);
 		
 		return (found!=std::string::npos);
 	}
