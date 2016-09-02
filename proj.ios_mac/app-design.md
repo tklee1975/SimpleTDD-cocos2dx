@@ -15,9 +15,30 @@ Design Rule
 
 Class Design
 ----------------
+- SimpleTDD		: Facade class for user to access the library 
 - TDDConstant	: Constant definition 
 - TDDCases.h	: Will include MyTDDCases.h will build the gTestArray Array
 - TDDHelper.h	: Helper  Class
-- TDDData.h		: To Save / Load the history
+- TDDData.h		: To Save / Load the history (it is singleton)
+- TDDManager.h	: A singleton to manage the core logic of the Simple TDD
+- UI Widget
+	- TDDTopBar
+	- TDDTable 
+	- TDDTab 
+
+Work Backlog (v 2.0.0)
+------------------------------------------
+
+- Improve the EditBox in TDDTopBar, replace using TextField 
+- TDDMainLayer: Add Version 
+- DDMainLayer: Add Result Count 
+- TDDTable: No Result handling
+- TDDTest: using Lamda to build the sub test 
+- Testing: build in ios/release android
+
+- Save Recent / All search key - done
+
+
+
 
 

@@ -3,8 +3,9 @@
 
 USING_NS_CC;
 
-#define kDesignW	480
-#define kDesignH	320
+
+const Size kDesignSize = Size(480, 320);
+//const Size kDesignSize = Size(320, 480);
 
 
 AppDelegate::AppDelegate() {
@@ -51,9 +52,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 	
 	
-	setupResolutionPolicy(kDesignW, kDesignH);
+	setupResolutionPolicy(kDesignSize.width, kDesignSize.height);
 	director->setContentScaleFactor(2);
 
+	
+	FileUtils::getInstance()->addSearchPath("res");
+	
     // turn on display FPS
     director->setDisplayStats(true);
 

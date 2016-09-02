@@ -20,6 +20,8 @@ protected:
 	
 private:
 	void testLoadTest(Ref *sender);
+	void testRunTest(Ref *sender);
+	void testGetTestList(Ref *sender);
 }; 
 
 #endif

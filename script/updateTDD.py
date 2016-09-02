@@ -2,11 +2,11 @@
 
 # -------------------------------
 # Update the TDD library
-# 
-# Usage: updateTDD.py cocos_project_dir 
 #
-# Example: ./script/updateTDD.py ../NewGame/ 
-# 
+# Usage: updateTDD.py cocos_project_dir
+#
+# Example: ./script/updateTDD.py ../NewGame/
+#
 # ---------------------------------------
 
 import os
@@ -32,25 +32,25 @@ def copy_file(src_file, dst_file):
   return
 #end
 
-## Setup the TDD Library 
+## Setup the TDD Library
 def setup_tdd_library():
   print("Setup SimpleTDD Library")
   src_dir = os.path.join(main_dir, "Classes/SimpleTDD");
   dst_dir = os.path.join(project_dir, "Classes/SimpleTDD");
   print("src: %s" % src_dir)
   print("dst: %s" % dst_dir)
-  
+
   for path, dirs, files in os.walk(src_dir):
     for name in files:
       # print("name: %s" % name)
       src_file = os.path.join(path, name)
-      
-      #dst_file = os.path.join(dst_dir, name)      
+
+      #dst_file = os.path.join(dst_dir, name)
       #print("src: %s" % src_file)
       #print("dst: %s" % dst_file)
       copy_file(src_file, dst_dir)
-        
-  
+
+
   return
 # End
 
@@ -72,6 +72,3 @@ if(os.path.exists(project_dir) == False):
   print("Note: project dir not exists. [%s]" % source_path)
 
 setup_tdd_library()
-
-
-

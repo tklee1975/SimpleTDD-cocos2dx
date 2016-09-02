@@ -10,14 +10,18 @@
 #include "TDDData.h"
 #include "TDDHelper.h"
 
-#define kKeyTestHistory		"tddccx3.testHistory"
-#define kKeyMenuMode		"tddccx3.menuMode"
+#define kKeyTestHistory		"simpleTDD.ccx.history"
+#define kKeySearchType		"simpleTDD.ccx.searchType"
+#define kKeyKeywordAll		"simpleTDD.ccx.keyword.all"
+#define kKeyKeywordRecent	"simpleTDD.ccx.keyword.recent"
 
 // singleton stuff
 static TDDData *sShareInstance = nullptr;
 
 TDDData::TDDData()
-: mMenuMode(TDDMenuModeAll)
+: mSearchType(TDDSearchAll)
+, mKeywordAll("")
+, mKeywordRecent("")
 {
 	
 }
@@ -77,14 +81,17 @@ void TDDData::save()
 	std::string content = TDDHelper::joinString(mTestHistory, "\n");
 	TDDHelper::saveStringToDevice(kKeyTestHistory, content);
 	
-	// Save the menuMode
-	char temp[100];
-	sprintf(temp, "%d", mMenuMode);
-	TDDHelper::saveStringToDevice(kKeyMenuMode, temp);
+	// Save the search type
+	std::string value = mSearchType == TDDSearchRecent ? "recent" : "all";
+	TDDHelper::saveStringToDevice(kKeySearchType, value);
 }
 
 void TDDData::load()
 {
+	// Load keyword
+	mKeywordRecent = TDDHelper::loadStringFromDevice(kKeyKeywordRecent);
+	mKeywordAll = TDDHelper::loadStringFromDevice(kKeyKeywordAll);
+	
 	
 	// Load the test history
 	std::string content = TDDHelper::loadStringFromDevice(kKeyTestHistory);
@@ -102,31 +109,22 @@ void TDDData::load()
 		mTestHistory.push_back(str);
 	}
 	
-	// menuMode
-	content = TDDHelper::loadStringFromDevice(kKeyMenuMode);
-	if(content.length() == 0) {
-		mMenuMode = TDDMenuModeAll;
-	} else {
-		sscanf(content.c_str(), "%d", &mMenuMode);
-	}
+	// Search Type
+	content = TDDHelper::loadStringFromDevice(kKeySearchType);
+	mSearchType = (content == "recent") ? TDDSearchRecent : TDDSearchAll;
 }
 
 std::string TDDData::toString()
 {
-	char tempStr[300];
-	
 	std::string result = "";
-	sprintf(tempStr, "Menu Mode: %d\n", mMenuMode);
-	result.append(tempStr);
 	
-	// Count
-	sprintf(tempStr, "History count: %ld\n", mTestHistory.size());
-	result.append(tempStr);
+	result += StringUtils::format("SearchType=%d\n", mSearchType);
+	result += StringUtils::format("History count=%ld\n", mTestHistory.size());
 	
 	// List of history test
 	for(int i=0; i<mTestHistory.size(); i++) {
-		result.append(mTestHistory[i]);
-		result.append("\n");
+		result += mTestHistory[i];
+		result += "\n";
 	}
 	
 	return result;
@@ -137,15 +135,37 @@ std::vector<std::string> TDDData::getTestHistory()
 	return mTestHistory;
 }
 
-void TDDData::setMenuMode(const TDDMenuMode &mode)
+void TDDData::setSearchType(const TDDSearchType &searchType)
 {
-	mMenuMode = mode;
+	mSearchType = searchType;
 	save();
 }
 
-TDDMenuMode TDDData::getMenuMode()
+TDDSearchType TDDData::getSearchType()
 {
-	return mMenuMode;
+	return mSearchType;
+}
+
+void TDDData::saveKeyword(TDDSearchType type, const std::string &keyword)
+{
+	if(TDDSearchAll == type) {
+		mKeywordAll = keyword;
+		TDDHelper::saveStringToDevice(kKeyKeywordAll, keyword);
+	} else if(TDDSearchRecent == type) {
+		mKeywordRecent = keyword;
+		TDDHelper::saveStringToDevice(kKeyKeywordRecent, keyword);
+	}
+}
+
+std::string TDDData::getKeyword(TDDSearchType type)
+{
+	if(TDDSearchAll == type) {
+		return mKeywordAll;
+	} else if(TDDSearchRecent == type) {
+		return mKeywordRecent;
+	} else {
+		return "";
+	}
 }
 
 #endif /* ENABLE_TDD */

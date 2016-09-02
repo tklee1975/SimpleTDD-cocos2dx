@@ -8,28 +8,32 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 // Class Declaration 
-class TDDHelperTest : public TDDTest
+//class TDDHelperTest : public TDDTest
+class TDDHelperTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 	Menu *createMenuWithFont(int numitem, const char *font, int fontSize, const Color3B &color);
 	Menu *createMenu(int numitem);
 private:
-	void testCreateEditBox(Ref *sender);
-	void testAlignMenuItem(Ref *sender);
-	void testMenuItemFont(Ref *sender);
-	void testColor(Ref *sender);
-	void testTrimString(Ref *sender);
-	void testReplaceString(Ref *sender);
-	void testCreateLabel(Ref *sender);
-	void testSplitString(Ref *sender);
-	void testJoinString(Ref *sender);
+	void testCreateEditBox();
+	void testAlignMenuItem();
+	void testMenuItemFont();
+	void testColor();
+	void testTrimString();
+	void testReplaceString();
+	void testCreateLabel();
+	void testSplitString();
+	void testJoinString();
+	void testAddButtonWithBg();
+	void testResolveAlign();
+	void testAlignNode();
 }; 
 
 #endif

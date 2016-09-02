@@ -1,5 +1,7 @@
 #include "HelloWorldScene.h"
 #include "TDDHelper.h"
+#include "SimpleTDD.h"
+
 
 USING_NS_CC;
 
@@ -61,7 +63,9 @@ bool HelloWorld::init()
 	
 	TDDHelper::addTestButton(this, Vec2(visibleSize.width/2, 80));
 	
-    
+	
+	SimpleTDD::setup(this, Vec2(100, 100));
+	
     return true;
 }
 

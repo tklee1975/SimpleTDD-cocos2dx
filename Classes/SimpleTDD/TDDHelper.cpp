@@ -149,26 +149,34 @@ void TDDHelper::addTestButton(Node *parent, Point pos)
 
 EditBox * TDDHelper::createEditBox(Node *parent, Point position, Size size)
 {
-	Scale9Sprite *bg = Scale9Sprite::create();	// empty sprite 9
-	bg->addChild(LayerColor::create(Color4B::WHITE, size.width, size.height));
+	float scaledFontSize = getBestScale() * TDD_EDITBOX_FONT_SIZE;
 	
-	// Add the background layer
-	Point layerPos = Point(position);
-	layerPos.x -= size.width / 2;
-	layerPos.y -= size.height / 2;
+	EditBox *editBox = createEditBox(size,
+					Color4B::WHITE, TDD_EDITBOX_TEXT_COLOR, TDD_FONT_NAME, scaledFontSize);
 	
-	float scale = getBestScale();
-	
-	// Add the Edit box
-	EditBox *edit = EditBox::create(size, bg);
-	edit->setPosition(position);
-	
-	edit->setFont(TDD_FONT_NAME, (int)(scale * TDD_EDITBOX_FONT_SIZE));
-	edit->setFontColor(TDD_EDITBOX_TEXT_COLOR);
 	
 	if(parent != NULL) {
-		parent->addChild(edit);
+		editBox->setPosition(position);
+		parent->addChild(editBox);
 	}
+	
+	
+	return editBox;
+}
+
+ui::EditBox *TDDHelper::createEditBox(const Size &size,
+					const Color4B &bgColor, const Color3B &textColor,
+					const std::string &fontName, float fontSize)
+{
+	ui::Scale9Sprite *bg = ui::Scale9Sprite::create();	// empty sprite 9
+	bg->addChild(LayerColor::create(bgColor, size.width, size.height));
+	
+	// Add the background layer
+	
+	// Add the Edit box
+	ui::EditBox *edit = ui::EditBox::create(size, bg);
+	edit->setFont(fontName.c_str(), fontSize);
+	edit->setFontColor(textColor);
 	
 	return edit;
 }
@@ -205,14 +213,13 @@ Point TDDHelper::getCenter(Size &parentSize, Size &nodeSize)
 #pragma mark - User Default
 void TDDHelper::saveStringToDevice(const std::string &key, const std::string &content)
 {
-	CCUserDefault::getInstance()->setStringForKey(key.c_str(), content);
-	
-	CCUserDefault::getInstance()->flush();
+	UserDefault::getInstance()->setStringForKey(key.c_str(), content);
+	UserDefault::getInstance()->flush();
 }
 
 std::string TDDHelper::loadStringFromDevice(const std::string &key)
 {
-	return CCUserDefault::getInstance()->getStringForKey(key.c_str());
+	return UserDefault::getInstance()->getStringForKey(key.c_str());
 }
 
 
@@ -502,4 +509,138 @@ Label *TDDHelper::createLabel(const std::string &text, const int fontSize, const
 	setLabelColor(label, color);
 
 	return label;
+}
+
+
+#pragma mark - New UI Helper
+ui::Button *TDDHelper::addButtonWithBackground(Node *parent,
+											   const Vec2 &pos,
+											   const Size &size,
+											   const std::string &title,
+											   const Color3B &titleColor,
+											   const Color4B &bgColor)
+{
+	// Add the background
+	Vec2 bgPos = pos - Vec2(size.width, size.height)/2;
+	LayerColor *bg = LayerColor::create(bgColor, size.width, size.height);
+	bg->setPosition(bgPos);
+	parent->addChild(bg);
+	
+	
+	//
+	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+	
+	// configure the button
+	button->setAnchorPoint(Vec2(0.5, 0.5));
+	button->setTitleText(title);
+	button->setContentSize(size);
+	button->setTitleColor(titleColor),
+	button->setPosition(pos);
+	parent->addChild(button);
+	
+	return button;
+}
+
+
+void TDDHelper::alignNode(Node *targetNode, TDDAlign align)	// support anchorPoint=(0, 0)
+{
+	if(targetNode == nullptr) {
+		return;
+	}
+	
+	Node *nodeParent = targetNode->getParent();
+	if(nodeParent == nullptr) {
+		return;
+	}
+	
+	return alignNode(targetNode, nodeParent->getContentSize(), align);
+}
+
+void TDDHelper::alignNode(Node *targetNode, const Size &parentSize, TDDAlign align)
+{
+	TDDAlign vert;
+	TDDAlign hori;
+	resolveAlign(align, vert, hori);
+	
+	
+	
+	
+	float x, y;
+	
+//	Size size = targetNode->getContentSize();
+//	Vec2 anchorDiff = targetNode->getAnchorPoint() * Vec2(
+	
+	// Find x;
+	if(eTDDRight == hori) {
+		x = parentSize.width - targetNode->getContentSize().width;
+	} else if(eTDDCenter == hori) {
+		x = (parentSize.width - targetNode->getContentSize().width) / 2;
+	} else {
+		x = 0;
+	}
+	
+	
+	// Find y;
+	if(eTDDTop == vert) {
+		y = parentSize.height - targetNode->getContentSize().height;
+	} else if(eTDDMiddle == vert) {
+		y = (parentSize.height - targetNode->getContentSize().height) / 2;
+	} else {
+		y = 0;
+	}
+	
+	//log("debug: x=%f y=%f", x, y);
+	
+	
+	// Set position
+	targetNode->setPosition(Vec2(x, y));
+}
+
+//eTDDTop				= 1,
+//eTDDMiddle			= 2,
+//eTDDBottom			= 3,
+//
+//eTDDLeft			= 1 << 2,
+//eTDDCenter			= 2 << 2,
+//eTDDRight			= 3 << 2,
+namespace  {
+	std::string nameOfAlign(TDDAlign align)		// just top/mid/bot lef/cent/right
+	{
+		switch(align) {
+			case eTDDTop	: return "top";
+			case eTDDMiddle	: return "middle";
+			case eTDDBottom	: return "bottom";
+			case eTDDLeft	: return "left";
+			case eTDDCenter	: return "center";
+			case eTDDRight	: return "right";
+				
+			default			: return "";
+		}
+	}
+}
+
+
+std::string TDDHelper::getAlignName(TDDAlign align)
+{
+	TDDAlign vert;
+	TDDAlign hori;
+	
+	resolveAlign(align, vert, hori);
+	
+	log("debug: vert=%d hori=%d", vert, hori);
+	
+	std::string vertialPart = nameOfAlign(vert);
+	std::string horizontalPart = nameOfAlign(hori);
+	
+	std::string sep = (vertialPart.empty() || horizontalPart.empty()) ? "" : "_";
+	
+	return vertialPart + sep + horizontalPart;
+}
+
+void TDDHelper::resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &horizontalAlign)
+{
+	verticalAlign = (TDDAlign) (align & 0x0003);		// 0011	 (last two bit)
+	horizontalAlign = (TDDAlign) (align & 0x000C);		// 1100  (3rd,4th bit)
+	
+	
 }

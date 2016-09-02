@@ -10,7 +10,7 @@
 #define Cocos2dxTDDLib_TDDConstant_h
 
 #define APP_NAME		"SimpleTDD"
-#define VERSION			"1.2.0"
+#define VERSION			"1.3.0"
 #define BUILD			3
 
 #define TDD_FONT_NAME	"Arial"
@@ -22,6 +22,8 @@
 #define TDD_FONT_SIZE1	23
 #define TDD_FONT_SIZE2	16
 #define TDD_FONT_SIZE3	15
+
+// Font
 
 
 // Color
@@ -36,7 +38,8 @@ const static Color3B TDD_COLOR_BLACK(0, 0, 0);
 const static Color3B TDD_COLOR_WHITE(255, 255, 255);
 const static Color3B TDD_COLOR_WHITE2(245, 245, 245);
 
-const static Color4B TDD_COLOR4_TRANS_BLUE(0, 171, 223, 127);
+const static Color4B TDD_COLOR4_TRANS_BLUE(38, 173, 228, 200);
+const static Color4B TDD_COLOR4_TRANS_GRAY(100, 100, 100, 200);
 const static Color4B TDD_COLOR4_TRANS_BLACK(0, 0, 0, 127);
 
 const static Color3B TDD_EDITBOX_TEXT_COLOR = TDD_COLOR_BLACK;

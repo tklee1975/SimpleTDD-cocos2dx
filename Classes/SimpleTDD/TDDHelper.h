@@ -28,6 +28,8 @@ using namespace std;
 class TDDHelper
 {
 public:
+	
+	
 	static void addTestButton(Node *parent, cocos2d::Point pos);
 
 	
@@ -42,7 +44,9 @@ public:
 	static MenuItem *createMenuItem(const char *name, const ccMenuCallback& callback);
 	static void scrollToTop(cocos2d::extension::ScrollView *scrollView);
 	static Point getCenter(Size &parentSize, Size &nodeSize);
+	
 	static EditBox *createEditBox(Node *parent, Point position, Size size);
+	
 	static void saveFilter(const char *pattern);
 	static const char *getFilter();
 	static const Size alignMenuItem(Menu *menu, int parentWidth,
@@ -82,6 +86,28 @@ public:
 #pragma mark - Save/Load Data
 	static void saveStringToDevice(const std::string &key, const std::string &content);
 	static std::string loadStringFromDevice(const std::string &key);
+
+
+#pragma mark - New UI Helper
+	static ui::EditBox *createEditBox(const Size &size,
+									  const Color4B &bgColor, const Color3B &textColor,
+									  const std::string &fontName, float fontSize);
+	
+	
+	static ui::Button *addButtonWithBackground(Node *parent,
+											   const Vec2 &pos,
+											   const Size &size,
+											   const std::string &title,
+											   const Color3B &titleColor,
+											   const Color4B &bgColor);
+
+
+	static void alignNode(Node *targetNode, TDDAlign align);
+	static void alignNode(Node *targetNode, const Size &parentSize, TDDAlign align);
+
+	static void resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &horizontalAlign);
+	
+	static std::string getAlignName(TDDAlign align);
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

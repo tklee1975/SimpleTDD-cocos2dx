@@ -23,12 +23,19 @@ public:
 	std::string toString();
 
 	void addTest(const std::string &testName);
-	void setMenuMode(const TDDMenuMode &mode);
-	TDDMenuMode getMenuMode();
+	void setSearchType(const TDDSearchType &searchType);
+	
+	
+	
+	TDDSearchType getSearchType();
 	void clearHistory();
 	
+	std::string getKeyword(TDDSearchType type);
+	void saveKeyword(TDDSearchType type, const std::string &keyword);
 	void save();
 	void load();
+	
+	
 	std::vector<std::string> getTestHistory();
 	
 	
@@ -37,7 +44,9 @@ private:
 	
 private:
 	std::vector<std::string> mTestHistory;
-	TDDMenuMode mMenuMode;
+	TDDSearchType mSearchType;
+	std::string mKeywordAll;
+	std::string mKeywordRecent;
 };
 
 #endif /* defined(__Cocos2dxTDDLib__TDDData__) */

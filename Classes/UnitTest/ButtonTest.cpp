@@ -6,6 +6,7 @@
 //
 #include "ButtonTest.h"
 #include "TDDHelper.h"
+#include "cocostudio/CocoStudio.h"
 
 void ButtonTest::setUp()
 {
@@ -25,6 +26,9 @@ void ButtonTest::tearDown()
 
 void ButtonTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(ButtonTest::testControlButton);
+	SUBTEST(ButtonTest::testButtonStyle);
+	SUBTEST(ButtonTest::testButtonClick);
 	SUBTEST(ButtonTest::testButtonColor);
 	SUBTEST(ButtonTest::testAlignItemsWithScroll);
 	SUBTEST(ButtonTest::testAlignItems);
@@ -381,4 +385,51 @@ void ButtonTest::testButtonColor(Ref *sender)
 	
 	button->setSelected(false);
 }
+
+
+void ButtonTest::testButtonClick(Ref *sender)
+{
+	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+	button->setTitleText("clickMe");
+	button->setContentSize(Size(100, 50));
+	button->setTitleColor(Color3B::BLUE);
+	button->setPosition(Vec2(100, 100));
+
+	button->addClickEventListener([&](Ref *) {
+		log("Testing!!");
+	});
+
+	
+	addChild(button);
+	
+}
+
+
+void ButtonTest::testButtonStyle(Ref *sender)
+{
+	cocos2d::ui::Button *button;
+	Size size = Size(200, 50);
+	
+	
+	button = cocos2d::ui::Button::create();
+	//button->setColor(Color3B::YELLOW);		// this is no use
+	button->setTitleText("clickMe");
+	button->setContentSize(size);
+	button->setTitleColor(Color3B::BLUE);
+	button->setPosition(Vec2(100, 100));
+	
+	button->addClickEventListener([&](Ref *) {
+		log("Testing!!");
+	});
+	
+	
+	addChild(button);
+	
+}
+//
+//void ButtonTest::testControlButton(Ref *sender)
+//{
+//	
+//}
+
 #endif

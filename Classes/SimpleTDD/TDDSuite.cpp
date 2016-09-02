@@ -98,7 +98,7 @@ TDDSuiteLayer::TDDSuiteLayer()
 : mEditFilter(NULL)
 , mStatusLeftLabel(NULL)
 , mFilterCount(0)
-, mMode(TDDMenuModeAll)
+, mMode(TDDSearchAll)
 , mClearMenu(NULL)
 {
 	Size screenSize = TDDHelper::getScreenSize();
@@ -234,9 +234,9 @@ Layer *TDDSuiteLayer::createToolBarLayer()
 	switches.push_back("all");
 	switches.push_back("history");
 	
-	TDDMenuMode savedMode = TDDData::instance()->getMenuMode();
+	TDDSearchType savedMode = TDDData::instance()->getSearchType();
 	int index = 0;
-	if(savedMode == TDDMenuModeHistory) {
+	if(savedMode == TDDSearchRecent) {
 		index = 1;
 	}
 	
@@ -253,14 +253,14 @@ void TDDSuiteLayer::switchSelected(Ref *sender, std::string name, int selected)
 	log("selected switch: %s (%d)", name.c_str(), selected);
 	
 	if(selected == 1) {
-		mMode = TDDMenuModeHistory;
+		mMode = TDDSearchRecent;
 		setDisplayTestWithHistory();
 	} else {
-		mMode = TDDMenuModeAll;
+		mMode = TDDSearchAll;
 		setDisplayTestWithFilter();
 	}
 	
-	TDDData::instance()->setMenuMode(mMode);
+	TDDData::instance()->setSearchType(mMode);
 }
 
 
@@ -315,7 +315,7 @@ void TDDSuiteLayer::updateStatusBar()
 	// Setting Left Label
 	char text[200];
 	
-	if(mMode == TDDMenuModeHistory) {
+	if(mMode == TDDSearchRecent) {
 		sprintf(text, "Test count: %d ", getTotalTestCount());
 	} else {
 		sprintf(text, "Test count: %d / %d", getFilteredTestCount(), getTotalTestCount());
@@ -350,8 +350,8 @@ void TDDSuiteLayer::setupTestMenu()
 	mTestMenu = menu;
 	
 	// Refresh Menu Data
-	mMode = TDDData::instance()->getMenuMode();
-	if(mMode == TDDMenuModeHistory) {
+	mMode = TDDData::instance()->getSearchType();
+	if(mMode == TDDSearchRecent) {
 		setDisplayTestWithHistory();
 	} else {
 		setDisplayTestWithFilter();

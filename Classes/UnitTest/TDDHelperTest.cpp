@@ -24,17 +24,20 @@ void TDDHelperTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDHelperTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDHelperTest::defineTests()
 {
-	SUBTEST(TDDHelperTest::testJoinString);
-	SUBTEST(TDDHelperTest::testSplitString);
-	SUBTEST(TDDHelperTest::testCreateLabel);
-	SUBTEST(TDDHelperTest::testReplaceString);
-	SUBTEST(TDDHelperTest::testColor);
-	SUBTEST(TDDHelperTest::testTrimString);
-	SUBTEST(TDDHelperTest::testMenuItemFont);
-	SUBTEST(TDDHelperTest::testAlignMenuItem);
-	SUBTEST(TDDHelperTest::testCreateEditBox);
+	ADD_TEST(testResolveAlign);
+	ADD_TEST(testAlignNode);
+	ADD_TEST(testAddButtonWithBg);
+	ADD_TEST(testJoinString);
+	ADD_TEST(testSplitString);
+	ADD_TEST(testCreateLabel);
+	ADD_TEST(testReplaceString);
+	ADD_TEST(testColor);
+	ADD_TEST(testTrimString);
+	ADD_TEST(testMenuItemFont);
+	ADD_TEST(testAlignMenuItem);
+	ADD_TEST(testCreateEditBox);
 }
 
 #pragma mark -
@@ -90,7 +93,7 @@ Menu *TDDHelperTest::createMenuWithFont(int numitem, const char *font, int fontS
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDHelperTest::testCreateEditBox(Ref *sender)
+void TDDHelperTest::testCreateEditBox()
 {
 	log("testCreateEditBox");
 	
@@ -104,7 +107,7 @@ void TDDHelperTest::testCreateEditBox(Ref *sender)
 
 
 
-void TDDHelperTest::testAlignMenuItem(Ref *sender)
+void TDDHelperTest::testAlignMenuItem()
 {
 	int numCol = 3;
 	int count = 100;
@@ -135,7 +138,7 @@ void TDDHelperTest::testAlignMenuItem(Ref *sender)
 }
 
 
-void TDDHelperTest::testMenuItemFont(Ref *sender)
+void TDDHelperTest::testMenuItemFont()
 {
 	int numCol = 3;
 	int count = 100;
@@ -154,7 +157,7 @@ void TDDHelperTest::testMenuItemFont(Ref *sender)
 
 
 
-void TDDHelperTest::testColor(Ref *sender)
+void TDDHelperTest::testColor()
 {
 	LayerColor *layer;
 	float width = 100;
@@ -186,7 +189,7 @@ void TDDHelperTest::testColor(Ref *sender)
 }
 
 
-void TDDHelperTest::testTrimString(Ref *sender)
+void TDDHelperTest::testTrimString()
 {
 	const char *input = " text with space ";
 	
@@ -196,7 +199,7 @@ void TDDHelperTest::testTrimString(Ref *sender)
 	log("result=[%s]", result.c_str());
 }
 
-void TDDHelperTest::testReplaceString(Ref *sender)
+void TDDHelperTest::testReplaceString()
 {
 	std::string input = "HelloTest";
 	
@@ -206,7 +209,7 @@ void TDDHelperTest::testReplaceString(Ref *sender)
 	log("result=[%s]", result.c_str());
 }
 
-void TDDHelperTest::testCreateLabel(Ref *sender)
+void TDDHelperTest::testCreateLabel()
 {
 	int startSize = 20;
 	int endSize = 50;
@@ -226,7 +229,7 @@ void TDDHelperTest::testCreateLabel(Ref *sender)
 	}
 }
 
-void TDDHelperTest::testSplitString(Ref *sender)
+void TDDHelperTest::testSplitString()
 {
 	std::vector<std::string> result = TDDHelper::splitString("aaa\nbbb\nccc\n", '\n', 0);
 	
@@ -235,7 +238,7 @@ void TDDHelperTest::testSplitString(Ref *sender)
 	}
 }
 
-void TDDHelperTest::testJoinString(Ref *sender)
+void TDDHelperTest::testJoinString()
 {
 	std::vector<std::string> strArray;
 	
@@ -249,5 +252,35 @@ void TDDHelperTest::testJoinString(Ref *sender)
 //	stt
 	
 }
+
+void TDDHelperTest::testAddButtonWithBg()
+{
+	TDDHelper::addButtonWithBackground(this, Vec2(200, 200),
+									   Size(80, 60),
+									   "Click Me", Color3B::WHITE, Color4B::BLUE);
+}
+
+void TDDHelperTest::testResolveAlign()
+{
+	TDDAlign align = eTDDTopLeft;
+	
+	std::string name = TDDHelper::getAlignName(align);
+	
+	log("align=%d name=%s", align, name.c_str());
+}
+
+void TDDHelperTest::testAlignNode()
+{
+	LayerColor *testBox = LayerColor::create(Color4B::RED, 100, 70);
+	
+	addChild(testBox);
+
+	TDDHelper::alignNode(testBox, Director::getInstance()->getVisibleSize(),
+						 (TDDAlign) (TDDAlign::eTDDRight | TDDAlign::eTDDMiddle));
+	
+}
+
+
+
 
 #endif

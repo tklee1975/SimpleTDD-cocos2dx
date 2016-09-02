@@ -8,7 +8,7 @@
 //
 
 
-// Add the Header here!
+// Add the Header of your test here!
 #include "TDDSample.h"
 #include "ExampleTest.h"
 #include "LabelTest.h"
@@ -24,6 +24,15 @@
 #include "StdVectorTest.h"
 #include "TDDSubMenuTest.h"
 #include "TDDManagerTest.h"
+#include "TabTest.h"
+#include "TDDTableTest.h"
+#include "ScrollViewTest.h"
+#include "WidgetTest.h"
+#include "TDDTopBarTest.h"
+#include "TDDMainLayerTest.h"
+#include "TDDTestMenuTest.h"
+#include "TDD2SampleTest.h"
+#include "TextFieldTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -31,7 +40,16 @@
 // Define
 TDD_CASES
 {
+	TEST(TDD2SampleTest),
+	TEST(TextFieldTest),
+	TEST(TDDMainLayerTest),
+	TEST(TDDTestMenuTest),
 	TEST(LabelTest),
+	TEST(TDDTopBarTest),
+	TEST(WidgetTest),
+	TEST(ScrollViewTest),
+	TEST(TDDTableTest),
+	TEST(TabTest),
 	TEST(TDDManagerTest),
 	TEST(ExampleTest),
 	TEST(EditBoxTest),

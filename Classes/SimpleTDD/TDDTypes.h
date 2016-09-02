@@ -19,14 +19,16 @@
 
 enum TDDAlign
 {
-	eTDDTop				= 1,
+	eTDDTop				= 1,		
 	eTDDMiddle			= 2,
 	eTDDBottom			= 3,
 
-	eTDDLeft			= 1 << 2,
+	eTDDLeft			= 1 << 2,		
 	eTDDCenter			= 2 << 2,
 	eTDDRight			= 3 << 2,
 
+	eTDDTopLeft			= (eTDDTop | eTDDLeft),
+	eTDDTopRight		= (eTDDTop | eTDDRight),
 	
 	// Combined
 //	eTDDTopLeft,
@@ -35,10 +37,15 @@ enum TDDAlign
 //	eTDDBottomRight,
 };
 
-enum TDDMenuMode {
-	TDDMenuModeAll = 0,
-	TDDMenuModeHistory = 1,
-};
+//enum TDDMenuMode {
+//	TDDMenuModeAll = 0,
+//	TDDMenuModeHistory = 1,
+//};
+
+typedef enum {
+	TDDSearchAll,
+	TDDSearchRecent,
+}TDDSearchType ;
 
 
 //#define kDefaultFont				"Arial"

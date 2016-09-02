@@ -26,6 +26,8 @@ void TDDManagerTest::tearDown()
 
 void TDDManagerTest::setSubTest(Vector<MenuItem *> &menuArray)
 {
+	SUBTEST(TDDManagerTest::testGetTestList);
+	SUBTEST(TDDManagerTest::testRunTest);
 	SUBTEST(TDDManagerTest::testLoadTest);
 }
 
@@ -44,5 +46,26 @@ void TDDManagerTest::testLoadTest(Ref *sender)
 //	log(
 }
 
+void TDDManagerTest::testRunTest(Ref *sender)
+{
+	TDDManager::instance()->loadTestList();
+	
+	TDDManager::instance()->runTest("LabelTest");
+}
+
+void TDDManagerTest::testGetTestList(Ref *sender)
+{
+	std::vector<std::string> fullList = TDDManager::instance()->getTestList("");
+	
+	log("fullList result:");
+	for(int i=0; i<fullList.size(); i++) {
+		log("%s", fullList[i].c_str());
+	}
+	
+	std::vector<std::string> filterList = TDDManager::instance()->getTestList("TDD");
+	for(int i=0; i<filterList.size(); i++) {
+		log("%s", filterList[i].c_str());
+	}
+}
 
 #endif
