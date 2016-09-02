@@ -1,3 +1,4 @@
+#ifdef ENABLE_TDD
 //
 //  TDDBaseTest.cpp
 //  SimpleTDD
@@ -26,32 +27,32 @@ TDDBaseTest::TDDBaseTest()
 void TDDBaseTest::onEnter()
 {
 	Scene::onEnter();
-	
+
 	findBaseNode();		// Find the base node, prevent it is removed from clearChildren!!
-	
+
 	defineTests();		// Define the list of sub test
-	
+
 	setupGUI();
-	
+
 	setUp();
 }
 
 void TDDBaseTest::onExit()
 {
 	tearDown();
-	
+
 	Scene::onExit();
 }
 
 #pragma mark - Core Method for testing
 void TDDBaseTest::setUp()
 {
-	
+
 }
 
 void TDDBaseTest::tearDown()
 {
-	
+
 }
 
 void TDDBaseTest::addTest(const std::string &name, const std::function<void()> &callback)
@@ -67,22 +68,22 @@ void TDDBaseTest::doTestCallback(const std::string &name)
 		log("doTestCallback: callback is null. name=%s", name.c_str());
 		return;
 	}
-	
+
 	willRunTest(name);
-	
+
 	callback();
-	
+
 	didRunTest(name);
 }
 
 void TDDBaseTest::willRunTest(const std::string &name)	// before run a test
 {
-	
+
 }
 
 void TDDBaseTest::didRunTest(const std::string &name)	// after run a test
 {
-	
+
 }
 
 
@@ -90,38 +91,38 @@ void TDDBaseTest::didRunTest(const std::string &name)	// after run a test
 void TDDBaseTest::setupGUI()
 {
 	Size screenSize = Director::getInstance()->getVisibleSize();
-	
+
 	// Background Layer
 	mBackLayer = LayerColor::create(Color4B::GRAY, screenSize.width, screenSize.height);
 	mBackLayer->setLocalZOrder(kZorderBackground);
 	addChild(mBackLayer);
-	
+
 	// TestMenu
 	TDDTestMenu *testMenu = createTestMenu();
 	testMenu->setLocalZOrder(kZorderTestMenu);
 	addChild(testMenu);
 	mTestMenu = testMenu;
-	
+
 	TDDHelper::alignNode(mTestMenu, kDefaultMenuAlign);
 }
 
 TDDTestMenu *TDDBaseTest::createTestMenu()
 {
 	TDDTestMenu *menu = TDDTestMenu::create();
-	
+
 	menu->setPosition(Vec2(50, 50));
-	
+
 	// Define the test to the menu
 	menu->setTestSelectedCallback([&](const std::string &name) {
 		doTestCallback(name);
 	});
-	
+
 	menu->setBackCallback([&](TDDTestMenu *menu){
 		back();
 	});
-	
+
 	menu->setTests(mTestNameList);
-	
+
 	return menu;
 }
 
@@ -146,7 +147,7 @@ void TDDBaseTest::clearChildren()
 		if(node == mBackLayer || node == mTestMenu || node == mBaseNode) {
 			continue;
 		}
-		
+
 		node->removeFromParent();
 	}
 }
@@ -158,6 +159,9 @@ void TDDBaseTest::findBaseNode()
 	if(allNodes.size() == 0) {
 		return;		// this is something wrong here!!, suppose it is size = 1
 	}
-	
+
 	mBaseNode = allNodes.at(0);
 }
+
+
+#endif

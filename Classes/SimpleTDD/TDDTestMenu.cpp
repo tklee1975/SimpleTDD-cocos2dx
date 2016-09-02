@@ -1,3 +1,4 @@
+#ifdef ENABLE_TDD
 //
 //  TDDTestMenu.cpp
 //  SimpleTDD
@@ -23,7 +24,7 @@ TDDTestMenu::TDDTestMenu()
 , mHeaderButtonSize(Size(50, 50))
 , mColumn(1)
 {
-	
+
 }
 
 bool TDDTestMenu::init()
@@ -32,19 +33,19 @@ bool TDDTestMenu::init()
 	if(flag == false) {
 		return false;
 	}
-	
+
 	// Layout
 	mHeaderHeight = 40;
 	mHeaderButtonSize = Size(50, mHeaderHeight);
 	mTableHeight = getContentSize().height - mHeaderHeight;
-	
+
 	// Setup the sub component
 	setupHeader();
 	setupTable();
-	
+
 	// Touch handling
 	addTouchListener();
-	
+
 	return true;
 }
 
@@ -60,7 +61,7 @@ void TDDTestMenu::setTests(std::vector<std::string> &testList)
 	for(int i=0; i<testList.size(); i++) {
 		mTestNameList.push_back(testList[i]);
 	}
-	
+
 	mTestTable->updateData();
 }
 
@@ -78,30 +79,30 @@ void TDDTestMenu::addTouchListener()
 bool TDDTestMenu::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
 {
 	Vec2 nodeLocation = convertTouchToNodeSpace(touch);
-	
+
 	bool touchInHeader = isTouchInsideHeader(nodeLocation);
-	
+
 	log("nodeLocation: %f,%f touchHeader=%d", nodeLocation.x, nodeLocation.y, touchInHeader);
-	
+
 	if(touchInHeader == false) {
 		mIsTouching = false;
 		return false;
 	}
-	
+
 	mIsTouching = true;
 	mLastLocation = touch->getLocation();
-	
+
 	return true;
 }
 
 void TDDTestMenu::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event)
 {
 	Vec2 newLocation = touch->getLocation();
-	
+
 	Vec2 delta = newLocation - mLastLocation;
-	
+
 	moveBy(delta);
-	
+
 	mLastLocation = newLocation;
 }
 
@@ -123,7 +124,7 @@ int TDDTestMenu::getTableCellCount()
 Size TDDTestMenu::getTableCellSize()
 {
 	float width = getContentSize().width / mColumn;
-	
+
 	return Size(width, 35);
 }
 
@@ -134,25 +135,25 @@ ui::Button *TDDTestMenu::createButton(const std::string &title, const Size &size
 	button->setContentSize(size);
 	button->setTitleColor(Color3B::WHITE);
 	button->setTitleFontSize(15);
-	
+
 	return button;
 }
 
 Node *TDDTestMenu::tableCellForIndex(int index)
 {
 	std::string name = getTestName(index);
-	
-	
-	
+
+
+
 	ui::Button *button = createButton(name, getTableCellSize());
 	button->addClickEventListener([&, name](Ref *) {
 		if(mTestSelectedCallback) {
 			mTestSelectedCallback(name);
 		}
 	});
-	
+
 	return button;
-	
+
 }
 //
 //void TDDTestMenu::doTestCallback(const std::string &name)
@@ -162,7 +163,7 @@ Node *TDDTestMenu::tableCellForIndex(int index)
 ////		log("doTestCallback: callback is null. name=%s", name.c_str());
 ////		return;
 ////	}
-////	
+////
 ////	callback();
 //}
 
@@ -171,7 +172,7 @@ std::string TDDTestMenu::getTestName(int index)
 	if(index < 0 || index >= mTestNameList.size()) {
 		return "";
 	}
-	
+
 	return mTestNameList[index];
 }
 
@@ -180,7 +181,7 @@ void TDDTestMenu::refreshMenu()
 	if(mTestTable) {
 		mTestTable->updateData();
 	}
-	
+
 }
 
 void TDDTestMenu::setTestSelectedCallback(const TestSelectedCallback &callback)
@@ -196,17 +197,17 @@ void TDDTestMenu::setBackCallback(const TestMenuCallback &callback)
 
 void TDDTestMenu::setupHeader()
 {
-	
+
 	Vec2 pos = Vec2(0, mTableHeight);		// anchor=left,bottom
-	
+
 	float width = getContentSize().width;
 	LayerColor *headerLayer = LayerColor::create(mHeaderColor, width, mHeaderHeight);
 	headerLayer->setPosition(pos);
-	
+
 	Size size = Size(50, mHeaderHeight);
 	Vec2 backPos = Vec2(size.width/2, size.height/2);
 	Vec2 togglePos = Vec2(width - size.width/2, size.height/2);
-	
+
 	//
 	// Back Button
 	ui::Button *backButton = createButton("back", size);
@@ -219,7 +220,7 @@ void TDDTestMenu::setupHeader()
 	});
 	headerLayer->addChild(backButton);
 
-	
+
 	// Toggle Menu
 	ui::Button *toggleButton = createButton("hide", size);
 	toggleButton->setContentSize(size);
@@ -229,10 +230,10 @@ void TDDTestMenu::setupHeader()
 	});
 	headerLayer->addChild(toggleButton);
 	mToggleButton = toggleButton;
-	
+
 	//
 	addChild(headerLayer);
-	
+
 	mHeaderNode = headerLayer;
 }
 
@@ -240,25 +241,25 @@ void TDDTestMenu::setupTable()
 {
 	Size tableSize = Size(getContentSize().width, mTableHeight);
 	Vec2 pos = Vec2::ZERO;					// anchor=left,bottom
-	
+
 	// Add the Table
 	TDDTable *table = TDDTable::create(tableSize);
 	table->setColumn(1);
 	table->setBackgroundColor(kBackgroundColor);
 	table->setDelegate(this);
 	//delegate->release();
-	
+
 	table->updateData();
-	
+
 	addChild(table);
 	mTestTable = table;
-	
+
 }
 
 void TDDTestMenu::moveBy(const Vec2 &delta)
 {
 	Vec2 newPos = getPosition() + delta;
-	
+
 	setPosition(newPos);
 }
 
@@ -270,7 +271,7 @@ void TDDTestMenu::toggleMenu()
 	} else {
 		showMenu();
 	}
-	
+
 }
 
 void TDDTestMenu::showMenu()
@@ -295,7 +296,7 @@ void TDDTestMenu::hideMenu()
 bool TDDTestMenu::isTouchInsideHeader(const Vec2 &touchLocation)
 {
 	Rect headerArea = mHeaderNode->getBoundingBox();
-	
+
 	return headerArea.containsPoint(touchLocation);
 }
 
@@ -305,7 +306,7 @@ void TDDTestMenu::setMenuColor(const Color4B &headerColor, const Color4B &bgColo
 		mHeaderNode->setColor(Color3B(headerColor));
 		mHeaderNode->setOpacity(headerColor.a);
 	}
-	
+
 	if(mTestTable) {
 		mTestTable->setBackgroundColor(bgColor);
 		mTestTable->updateBackgroundColor();
@@ -318,46 +319,49 @@ void TDDTestMenu::setColumn(int column)
 	if(mTestTable) {
 		mTestTable->setColumn(column);
 	}
-	
+
 }
 void TDDTestMenu::refreshTable()
 {
 	if(mTestTable) {
 		mTestTable->updateData();
 	}
-	
+
 }
 
 void TDDTestMenu::setContentSize(const Size &size)
 {
 	LayerColor::setContentSize(size);
-	
+
 	// Modify the Subnode
 	if(mHeaderNode) {
 		Size headerSize = mHeaderNode->getContentSize();
 		headerSize.width = getContentSize().width;
-		
+
 		mHeaderNode->setContentSize(headerSize);
-		
+
 		Vec2 pos = Vec2(0, size.height - mHeaderHeight);
 		mHeaderNode->setPosition(pos);
 	}
-	
+
 	if(mTestTable) {
 		Size size = getContentSize();
 		size.height -= mHeaderHeight;
-		
+
 		mTestTable->resizeTo(size);
 	}
-	
-	
+
+
 	if(mToggleButton) {
 		Size buttonSize = mToggleButton->getContentSize();
-		
+
 		Vec2 newPos = mToggleButton->getPosition();
 		newPos.x = getContentSize().width - buttonSize.width/2 ;
-		
+
 		mToggleButton->setPosition(newPos);
 	}
-	
+
 }
+
+
+#endif

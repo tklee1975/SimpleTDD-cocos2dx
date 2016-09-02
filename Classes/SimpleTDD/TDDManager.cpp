@@ -13,6 +13,7 @@
 
 // Version
 const std::string kVersion = "2.0.0";
+const std::string kName = "SimpleTDD";
 
 
 //  Building the sTestArray
@@ -200,9 +201,18 @@ void TDDManager::saveKeyword(TDDSearchType type, const std::string &keyword)
 	TDDData::instance()->saveKeyword(type, keyword);
 }
 
-std::string TDDManager::getVersion()
+std::string TDDManager::getVersion(bool withName)
 {
-	return kVersion;
+	if(withName) {
+		return kName + " " + kVersion;
+	} else {
+		return kVersion;
+	}
+}
+
+int TDDManager::getTestCount()
+{
+	return (int) mTestMap.size();
 }
 
 #endif

@@ -46,13 +46,15 @@ public:
 	bool runTest(const std::string &name);
 	const TDDTestCase *getTest(const std::string &name);
 	
+	int getTestCount();
+	
 	TDDSearchType getSearchType();
 	void saveSearchType(TDDSearchType type);
 	
 	std::string getKeyword(TDDSearchType type);
 	void saveKeyword(TDDSearchType type, const std::string &keyword);
 	
-	std::string getVersion();
+	std::string getVersion(bool withName=true);
 	
 private:
 	std::vector<std::string> getFilteredList(std::vector<std::string> &list, const std::string &filterName);

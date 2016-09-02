@@ -1,3 +1,4 @@
+#ifdef ENABLE_TDD
 //
 //  TDD2SampleTest.cpp
 //  SimpleTDD
@@ -45,7 +46,7 @@ void TDD2SampleTest::testAddSomethings()
 {
 	float x = RandomHelper::random_int(0, 300);
 	float y = RandomHelper::random_int(0, 300);
-	
+
 	Label *label = Label::createWithSystemFont("Testing", "", 15);
 	label->setPosition(Vec2(x, y));
 	addChild(label);
@@ -55,3 +56,5 @@ void TDD2SampleTest::testClearChildren()
 {
 	clearChildren();
 }
+
+#endif

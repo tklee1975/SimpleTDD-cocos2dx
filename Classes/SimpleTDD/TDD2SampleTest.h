@@ -1,3 +1,4 @@
+#ifdef ENABLE_TDD
 //
 //  TDD2SampleTest.hpp
 //  SimpleTDD
@@ -19,7 +20,7 @@ protected:
 	virtual void setUp();
 	virtual void tearDown();
 	virtual void defineTests();
-	
+
 private:
 	void test1();
 	void testSetBackground();
@@ -29,3 +30,5 @@ private:
 
 
 #endif /* TDD2SampleTest_hpp */
+
+#endif

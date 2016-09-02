@@ -11,6 +11,7 @@
 #include "TDDTopBar.h"
 #include "TDDManager.h"
 #include "TDDHelper.h"
+#include "TDDConstant.h"
 
 Scene *TDDMainLayer::createScene()
 {
@@ -35,8 +36,10 @@ TDDMainLayer::TDDMainLayer()
 , mColumn(4)
 , mTopBar(nullptr)
 , mResultTable(nullptr)
+, mStatusLayer(nullptr)
 , mTableTextColor(Color4B::BLUE)
 , mTableFontSize(14)
+, mCountLabel(nullptr)
 {
 }
 
@@ -71,6 +74,16 @@ void TDDMainLayer::setupData()
 	
 }
 
+void TDDMainLayer::updateTestCount(int searchCount)
+{
+	int total = TDDManager::instance()->getTestCount();
+	std::string info = StringUtils::format("Tests: %d / %d", searchCount, total);
+	
+	if(mCountLabel) {
+		mCountLabel->setString(info);
+	}
+}
+
 void TDDMainLayer::updateResult(std::vector<std::string> &result)
 {
 	// Copy the resultList
@@ -81,6 +94,8 @@ void TDDMainLayer::updateResult(std::vector<std::string> &result)
 	
 	//
 	mResultTable->updateData();
+	
+	updateTestCount((int) result.size());
 }
 
 void TDDMainLayer::showAllTest(const std::string &keyword)
@@ -101,7 +116,7 @@ void TDDMainLayer::setupProperties()
 	mColumn = TDDHelper::isLandscape() ? 4 : 2;
 	
 	float cellWidth = getContentSize().width / mColumn;
-	float cellHeight = 40;
+	float cellHeight = 35;
 	mTableCellSize = Size(cellWidth, cellHeight);
 
 	// Non GUI
@@ -109,6 +124,7 @@ void TDDMainLayer::setupProperties()
 	mKeyword = TDDManager::instance()->getKeyword(mSearchType);
 }
 
+#pragma mark - setting up GUI
 void TDDMainLayer::setupGUI()	// call after theme settin
 {
 	// Define the layout data for the key component
@@ -118,16 +134,61 @@ void TDDMainLayer::setupGUI()	// call after theme settin
 	
 	Size topBarSize = Size(layerSize.width, 70);
 	Size tableSize = Size(layerSize.width, layerSize.height - topBarSize.height);
+	Size statusSize = Size(layerSize.width, 20);
 	
 	//    (Position)
 	Vec2 topBarPos = Vec2(0, layerSize.height - topBarSize.height);		// pos at left-bottom corner;
 	Vec2 tablePos = Vec2(0, 0);			// pos at left-bottom corner
-	
+	Vec2 statusPos = Vec2(0, 0);
 	
 	// Adding the top bar
-	TDDTopBar *topBar = TDDTopBar::create(topBarSize);
-	topBar->setPosition(topBarPos);
+	setupTopBar(topBarSize, topBarPos);
+	setupTestTable(tableSize, tablePos);
+	setupStatusBar(statusSize, statusPos);
+}
+
+void TDDMainLayer::setupStatusBar(const Size &size, const Vec2 &pos)
+{
+	// The container Layer
+	Color4B bgColor = TDD_COLOR4_TRANS_BLUE;
+	LayerColor *layer = LayerColor::create(bgColor, size.width, size.height);
+	layer->setPosition(pos);
+	addChild(layer);
+	mStatusLayer = layer;
+
+	// Layout Position & Size
+	float margin = 5;
+	float halfHeight = size.height / 2;
+	Vec2 countPos = Vec2(margin, halfHeight);
+	Vec2 versionPos = Vec2(size.width - margin, halfHeight);
+	float fontSize = 12;
+	
+	// Version Label
+	std::string name = TDDManager::instance()->getVersion();
+	Label *label = Label::createWithSystemFont(name, "", fontSize);
+	// label->setColor
+	label->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
+	label->setPosition(versionPos);
+	addChild(label);
+	
+	// Result Count
+	std::string countValue = "tests: ?/?";
+	label = Label::createWithSystemFont(countValue, "", fontSize);
+	// label->setColor
+	label->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
+	label->setPosition(countPos);
+	addChild(label);
+	mCountLabel = label;
+}
+
+void TDDMainLayer::setupTopBar(const Size &size, const Vec2 &pos)
+{
+	TDDTopBar *topBar = TDDTopBar::create(size);
+	topBar->setTopBarColor(Color4B(TDD_COLOR_BLUE2));
+	topBar->setPosition(pos);
 	topBar->setup(mSearchType, mKeyword);
+	
+	topBar->updateColor();
 	
 	addChild(topBar);
 	mTopBar = topBar;
@@ -149,24 +210,26 @@ void TDDMainLayer::setupGUI()	// call after theme settin
 		handleSearchKeyChanged(keyword);
 		// log("keyword change to %s", keyword.c_str());
 	});
+}
 
+void TDDMainLayer::setupTestTable(const Size &size, const Vec2 &pos)
+{
 	
 	// Add the Table
-	TDDTable *table = TDDTable::create(tableSize);
+	TDDTable *table = TDDTable::create(size);
+	table->setPosition(pos);
 	table->setColumn(mColumn);
 	table->setTitleColor(Color3B(0,0,148));
 	table->setBackgroundColor(Color4B(0,0,0,0));
 	table->setFontSize(12);
 	table->setDelegate(this);
-	//delegate->release();
 	
 	table->updateData();
 	
 	addChild(table);
 	mResultTable = table;
-
-	
 }
+
 
 std::string TDDMainLayer::getTestName(int index)
 {
@@ -268,6 +331,24 @@ Node *TDDMainLayer::tableCellForIndex(int index)
 	});
 	
 	return button;
+}
+
+#pragma mark - onEnter & onExit
+void TDDMainLayer::onEnter()
+{
+	Layer::onEnter();
+	
+	mWasShowStat = Director::getInstance()->isDisplayStats();
+	Director::getInstance()->setDisplayStats(false);
+}
+
+void TDDMainLayer::onExit()
+{
+	Director::getInstance()->setDisplayStats(mWasShowStat);
+	 
+	Layer::onExit();
+	
+	
 }
 
 #endif

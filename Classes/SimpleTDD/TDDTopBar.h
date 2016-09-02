@@ -63,6 +63,8 @@ public:
 	void setSearchKeyword(const std::string &key);
 	std::string getSearchKeyword();
 	
+	void updateColor();
+	
 #pragma mark - Internal Method
 private:
 	void initTopBar();
@@ -73,6 +75,8 @@ private:
 	void onCloseClicked();
 	void onTabClicked(int selectedIndex, bool isRepeat);
 	void onSearchKeyChanged();
+	
+	
 
 #pragma mark - Internal Data
 private:

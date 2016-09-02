@@ -37,7 +37,8 @@ public:
 	~TDDMainLayer();
 	bool init();		// simple init
 	
-	void setupGUI();	// call after theme setting
+	virtual void onEnter();
+	virtual void onExit();
 	
 	// Property (Theme)
 	CC_SYNTHESIZE(Color4B, mBackgroundColor, BackgroundColor);
@@ -45,11 +46,19 @@ public:
 	CC_SYNTHESIZE(int, mTableFontSize, TableFontSize);
 	CC_SYNTHESIZE(int, mColumn, Column);
 	
+#pragma mark - setting up GUI
+protected:
+	void setupGUI();	// call after theme setting
+	void setupTopBar(const Size &size, const Vec2 &pos);
+	void setupTestTable(const Size &size, const Vec2 &pos);
+	void setupStatusBar(const Size &size, const Vec2 &pos);
 	
+#pragma mark - Core Logic
 private:
 	void setupProperties();
 	void setupData();
 	std::string getTestName(int index);
+
 	
 	void updateKeyword(const std::string &keyword);
 	void updateResult(std::vector<std::string> &result);
@@ -61,6 +70,8 @@ private:
 	void handleAllTab();
 	void handleRecentTab();
 	void handleSearchKeyChanged(const std::string &keyword);
+	
+	void updateTestCount(int searchCount);
 	
 	void runTest(const std::string &test);
 	
@@ -80,6 +91,11 @@ private:
 	Size mTableCellSize;
 	TDDTable *mResultTable;
 	TDDTopBar *mTopBar;
+	
+	LayerColor *mStatusLayer;
+	Label *mCountLabel;
+	
+	bool mWasShowStat;
 };
 
 #endif /* TDDMainLayer_hpp */

@@ -18,9 +18,10 @@ TDDTopBar::TDDTopBar()
 : mTopBarColor(Color4B(80, 80, 200, 255))
 , mSearchBarColor(Color4B(150, 150, 200, 255))
 , mTextColor(Color3B::WHITE)
-, mActiveTextColor(Color3B::ORANGE)
+, mActiveTextColor(Color3B::BLUE)
 , mSearchBoxColor(Color3B(230, 230, 230))
 , mSearchBoxTextColor(Color3B::BLACK)
+, mTopBarLayer(nullptr)
 , mEditBox(nullptr)
 , mTab(nullptr)
 , mCloseCallback(nullptr)
@@ -109,7 +110,13 @@ void TDDTopBar::initTopBar()
 	
 }
 
-
+void TDDTopBar::updateColor()
+{
+	if(mTopBarLayer) {
+		mTopBarLayer->setColor(Color3B(getTopBarColor()));
+		mTopBarLayer->setOpacity(getTopBarColor().a);
+	}
+}
 
 void TDDTopBar::initSearchBar()
 {
@@ -317,5 +324,7 @@ void TDDTopBar::onTextFieldChange()
 	mSearchKey = mTextField->getString();
 	onSearchKeyChanged();
 }
+
+
 
 #endif
