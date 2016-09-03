@@ -8,22 +8,22 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 // Class Declaration 
-class TDDSwitchTest : public TDDTest
+class TDDSwitchTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 private:
-	void subTest(Ref *sender);
-	void testMoveSwitch(Ref *sender);
-	void testSetSwitches(Ref *sender);
+	void subTest();
+	void testMoveSwitch();
+	void testSetSwitches();
 	void switchSelected(Ref *sender, std::string name, int selected);
-	void testThreeSwitch(Ref *sender);
+	void testThreeSwitch();
 }; 
 
 #endif

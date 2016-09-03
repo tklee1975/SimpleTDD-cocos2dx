@@ -1,9 +1,21 @@
 Version Note about Simple TDD
 
-Version 2.1.0 
+Version 2.2.0 
 ---------------------
-- TODO: Add method already made in Astrodog 
 - TODO: Android build
+
+Version 2.1.0 * 
+---------------------
+- Add following methods in TDDBaseTest (for better migration)
+	- void toggleStat();
+	- void hideMenu();
+	- void setMenuVisible(bool flag);
+	- void clearNodes();
+
+- Add unit test conversion script 
+	./script/convertTest.py (yourUnitTest.h)
+
+- Convert all tests based on TDDBaseTest
 
 Version 2.0.0 
 ---------------------

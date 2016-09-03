@@ -26,15 +26,15 @@ void TabTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TabTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TabTest::defineTests()
 {
-	SUBTEST(TabTest::testSimple);
-	SUBTEST(TabTest::testCallback);
+	ADD_TEST(testSimple);
+	ADD_TEST(testCallback);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TabTest::testSimple(Ref *sender)
+void TabTest::testSimple()
 {
 	//log("this is a sample subTest");
 	// TabControl
@@ -50,7 +50,7 @@ void TabTest::testSimple(Ref *sender)
 }
 
 
-void TabTest::testCallback(Ref *sender)
+void TabTest::testCallback()
 {
 	//log("this is a sample subTest");
 	// TabControl

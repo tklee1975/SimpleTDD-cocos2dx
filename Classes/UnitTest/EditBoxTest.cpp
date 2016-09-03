@@ -27,17 +27,17 @@ void EditBoxTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void EditBoxTest::setSubTest(Vector<MenuItem *> &menuArray)
+void EditBoxTest::defineTests()
 {
-	SUBTEST(EditBoxTest::testEditBoxStyle);
-	SUBTEST(EditBoxTest::testEditBox);
-	SUBTEST(EditBoxTest::testDelegate);
-	SUBTEST(EditBoxTest::testFontSize);
+	ADD_TEST(testEditBoxStyle);
+	ADD_TEST(testEditBox);
+	ADD_TEST(testDelegate);
+	ADD_TEST(testFontSize);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void EditBoxTest::testEditBox(Ref *sender)
+void EditBoxTest::testEditBox()
 {
 	log("testEditBox");
 //	EditBox::cr
@@ -49,7 +49,7 @@ void EditBoxTest::testEditBox(Ref *sender)
 	addChild(edit);
 }
 
-void EditBoxTest::testEditBoxStyle(Ref *sender)
+void EditBoxTest::testEditBoxStyle()
 {
 	log("testEditBox");
 	//	EditBox::cr
@@ -66,7 +66,7 @@ void EditBoxTest::testEditBoxStyle(Ref *sender)
 	addChild(edit);
 }
 
-void EditBoxTest::testDelegate(Ref *sender)
+void EditBoxTest::testDelegate()
 {
 	log("testEditBox");
 	//	EditBox::cr
@@ -101,7 +101,7 @@ void EditBoxTest::editBoxReturn(cocos2d::extension::EditBox* editBox)
 	log("editBox edit return hit");
 }
 
-void EditBoxTest::testFontSize(Ref *sender)
+void EditBoxTest::testFontSize()
 {
 	EditBox *edit;
 	

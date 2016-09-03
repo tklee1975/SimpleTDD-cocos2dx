@@ -8,20 +8,20 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 // Class Declaration 
-class LabelTest : public TDDTest
+class LabelTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 private:
-	void testTTF(Ref *sender);
-	void testDefaultFont(Ref *sender);
-	void testOutlineBug(Ref *sender);
+	void testTTF();
+	void testDefaultFont();
+	void testOutlineBug();
 }; 
 
 #endif

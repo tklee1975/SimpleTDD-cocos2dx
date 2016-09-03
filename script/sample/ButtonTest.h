@@ -10,23 +10,23 @@
 
 #include "TDDBaseTest.h"
 
-// Class Declaration 
+// Class Declaration
 class ButtonTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
 	virtual void defineTests();
-	
-	
+
+
 	const Size alignMenuItem(Menu *menu);
 private:
 	Menu *createMenu(int numitem);
-	
-	void onMenuSelected(Ref *caller);
-	
+
+	void onMenuSelected();
+
 	void testButtonClick();
-	
+
 	void testMenuLayout();
 	void testMenuStyle();
 	void testAlighColumn();
@@ -36,10 +36,10 @@ private:
 	void testButtonColor();
 	void testButtonStyle();
 	//void testControlButton();
-	
+
 	void setButtonSelected(Ref *sender, Control::EventType controlEvent);
 	void touchUpInsideAction(Ref *sender, Control::EventType controlEvent);
-}; 
+};
 
 #endif
 

@@ -24,22 +24,22 @@ void TDDMainLayerTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDMainLayerTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDMainLayerTest::defineTests()
 {
-	SUBTEST(TDDMainLayerTest::testCreate);
-	SUBTEST(TDDMainLayerTest::testScene);
+	ADD_TEST(testCreate);
+	ADD_TEST(testScene);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDMainLayerTest::testCreate(Ref *sender)
+void TDDMainLayerTest::testCreate()
 {
 	TDDMainLayer *mainLayer = TDDMainLayer::create();
 	
 	addChild(mainLayer);
 }
 
-void TDDMainLayerTest::testScene(Ref *sender)
+void TDDMainLayerTest::testScene()
 {
 	auto scene = TDDMainLayer::createScene();
 	

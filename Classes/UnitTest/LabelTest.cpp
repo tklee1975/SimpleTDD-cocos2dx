@@ -24,16 +24,16 @@ void LabelTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void LabelTest::setSubTest(Vector<MenuItem *> &menuArray)
+void LabelTest::defineTests()
 {
-	SUBTEST(LabelTest::testOutlineBug);
-	SUBTEST(LabelTest::testDefaultFont);
-	SUBTEST(LabelTest::testTTF);
+	ADD_TEST(testOutlineBug);
+	ADD_TEST(testDefaultFont);
+	ADD_TEST(testTTF);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void LabelTest::testTTF(Ref *sender)
+void LabelTest::testTTF()
 {
 	log("this is a sample subTest");
 	
@@ -46,7 +46,7 @@ void LabelTest::testTTF(Ref *sender)
 	addChild(label);
 }
 
-void LabelTest::testDefaultFont(Ref *sender)
+void LabelTest::testDefaultFont()
 {
 	log("testDefaultFont");
 	
@@ -80,7 +80,7 @@ void LabelTest::testDefaultFont(Ref *sender)
 }
 
 
-void LabelTest::testOutlineBug(Ref *sender)
+void LabelTest::testOutlineBug()
 {
 	log("testDefaultFont");
 	

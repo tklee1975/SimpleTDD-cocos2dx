@@ -24,15 +24,15 @@ void TDDSubMenuTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDSubMenuTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDSubMenuTest::defineTests()
 {
-	SUBTEST(TDDSubMenuTest::subTest);
-	SUBTEST(TDDSubMenuTest::testMenu);
+	ADD_TEST(subTest);
+	ADD_TEST(testMenu);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDSubMenuTest::subTest(Ref *sender)
+void TDDSubMenuTest::subTest()
 {
 	log("this is a sample subTest");
 	
@@ -50,7 +50,7 @@ void TDDSubMenuTest::onBackPressed(Ref *sender, Control::EventType controlEvent)
 	log("onBackPressed: is called");
 }
 
-void TDDSubMenuTest::testMenu(Ref *sender)
+void TDDSubMenuTest::testMenu()
 {
 	log("this is a sample subTest");
 	
@@ -61,7 +61,7 @@ void TDDSubMenuTest::testMenu(Ref *sender)
 	this->addChild(menu);
 	
 	Vector<MenuItem *> menuArray;
-	setSubTest(menuArray);
+	// setSubTest(menuArray);
 	
 	menu->setSubTest(menuArray);
 }

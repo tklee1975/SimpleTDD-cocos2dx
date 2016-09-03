@@ -39,7 +39,7 @@ void ButtonTest::defineTests()
 	ADD_TEST(testControlButton);
 }
 
-void ButtonTest::onMenuSelected(Ref *caller)
+void ButtonTest::onMenuSelected()
 {
 	log("menuItem is selected");
 }

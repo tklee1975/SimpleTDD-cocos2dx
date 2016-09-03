@@ -12,6 +12,7 @@
 #include "TDDMainLayer.h"
 
 void SimpleTDD::setup(Node *parent, const Vec2 &pos,
+						const std::string &title,
 						const Color4B &bgColor,
 						const Color3B &textColor,
 						int fontSize)
@@ -21,26 +22,27 @@ void SimpleTDD::setup(Node *parent, const Vec2 &pos,
 		log("SimpleTDD.setup: parent is null!!");
 		return;
 	}
-	
+
 	//
 	cocos2d::ui::Button *button;
-	Size size = Size(fontSize * 7, fontSize * 2);
-	
+	size_t strLen = title.length();
+	Size size = Size(fontSize * strLen, fontSize * 2);
+
 	button = TDDHelper::addButtonWithBackground(parent, pos,
 												size,
-												"SimpleTDD",
+												title,
 												textColor, bgColor);
-	
+
 	button->setTitleFontSize(fontSize);
-	
+
 	button->addClickEventListener([&](Ref *) {
 		auto scene = TDDMainLayer::createScene();
-		
+
 		Director::getInstance()->pushScene(scene);
 	});
-	
-#else 
+
+#else
 	log("SimpleTDD: Unit Test Disabled!! define ENABLE_TDD = 1 to enable!");
 #endif
-	
+
 }

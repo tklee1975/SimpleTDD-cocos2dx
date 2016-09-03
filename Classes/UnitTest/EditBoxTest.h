@@ -8,16 +8,16 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 // Class Declaration 
-class EditBoxTest : public TDDTest,
+class EditBoxTest : public TDDBaseTest,
 		public cocos2d::extension::EditBoxDelegate
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 	// public cocos2d::extension::EditBoxDelegate
 	virtual void editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox);
@@ -25,10 +25,10 @@ protected:
     virtual void editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text);
     virtual void editBoxReturn(cocos2d::extension::EditBox* editBox);
 private:
-	void testEditBox(Ref *sender);
-	void testEditBoxStyle(Ref *sender);
-	void testDelegate(Ref *sender);
-	void testFontSize(Ref *sender);
+	void testEditBox();
+	void testEditBoxStyle();
+	void testDelegate();
+	void testFontSize();
 }; 
 
 #endif

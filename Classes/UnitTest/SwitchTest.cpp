@@ -26,14 +26,14 @@ void SwitchTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void SwitchTest::setSubTest(Vector<MenuItem *> &menuArray)
+void SwitchTest::defineTests()
 {
-	SUBTEST(SwitchTest::testSimple);
+	ADD_TEST(testSimple);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void SwitchTest::testSimple(Ref *sender)
+void SwitchTest::testSimple()
 {
 	log("this is a sample subTest");
 	

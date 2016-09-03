@@ -24,22 +24,22 @@ void TDDTopBarTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDTopBarTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDTopBarTest::defineTests()
 {
-	SUBTEST(TDDTopBarTest::subTest);
-	SUBTEST(TDDTopBarTest::testCallback);
+	ADD_TEST(subTest);
+	ADD_TEST(testCallback);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDTopBarTest::subTest(Ref *sender)
+void TDDTopBarTest::subTest()
 {
 	TDDTopBar *topBar = TDDTopBar::create(Size(300, 60));
 	
 	addChild(topBar);
 }
 
-void TDDTopBarTest::testCallback(Ref *sender)
+void TDDTopBarTest::testCallback()
 {
 	TDDTopBar *topBar = TDDTopBar::create(Size(300, 60));
 	

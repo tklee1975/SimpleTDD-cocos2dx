@@ -8,19 +8,19 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 // Class Declaration 
-class TDDSubMenuTest : public TDDTest
+class TDDSubMenuTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 private:
-	void subTest(Ref *sender);
-	void testMenu(Ref *sender);
+	void subTest();
+	void testMenu();
 	
 	void onBackPressed(Ref *sender, Control::EventType controlEvent);
 }; 

@@ -23,15 +23,15 @@ void ScrollViewTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void ScrollViewTest::setSubTest(Vector<MenuItem *> &menuArray)
+void ScrollViewTest::defineTests()
 {
-	SUBTEST(ScrollViewTest::subTest);
-	SUBTEST(ScrollViewTest::testFromTop);
+	ADD_TEST(subTest);
+	ADD_TEST(testFromTop);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void ScrollViewTest::subTest(Ref *sender)
+void ScrollViewTest::subTest()
 {
 	log("this is a sample subTest");
 	
@@ -58,7 +58,7 @@ void ScrollViewTest::subTest(Ref *sender)
 	}
 }
 
-void ScrollViewTest::testFromTop(Ref *sender)
+void ScrollViewTest::testFromTop()
 {
 	log("this is a sample subTest");
 	

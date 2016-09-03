@@ -23,14 +23,14 @@ void ScrollTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void ScrollTest::setSubTest(Vector<MenuItem *> &menuArray)
+void ScrollTest::defineTests()
 {
-	SUBTEST(ScrollTest::subTest);
+	ADD_TEST(subTest);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void ScrollTest::subTest(Ref *sender)
+void ScrollTest::subTest()
 {
 	log("this is a sample subTest");
 	

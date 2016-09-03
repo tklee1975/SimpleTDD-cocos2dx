@@ -8,24 +8,24 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 class TDDTable;
 class TDDTableDelegate;
 
 // Class Declaration 
-class TDDTableTest : public TDDTest
+class TDDTableTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 private:
-	void setupTable(Ref *sender);
-	void increaseItem(Ref *sender);
-	void decreaseItem(Ref *sender);
-	void testTableStyle(Ref *sender);
+	void setupTable();
+	void increaseItem();
+	void decreaseItem();
+	void testTableStyle();
 	
 private:
 	TDDTable *mTable;

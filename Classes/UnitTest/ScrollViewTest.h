@@ -8,19 +8,19 @@
 
 // Include Header
 
-#include "TDDTest.h"
+#include "TDDBaseTest.h"
 
 // Class Declaration 
-class ScrollViewTest : public TDDTest
+class ScrollViewTest : public TDDBaseTest
 {
 protected:
 	virtual void setUp();
 	virtual void tearDown();
-	virtual void setSubTest(Vector<MenuItem *> &menuArray);
+	virtual void defineTests();
 	
 private:
-	void subTest(Ref *sender);
-	void testFromTop(Ref *sender);
+	void subTest();
+	void testFromTop();
 }; 
 
 #endif

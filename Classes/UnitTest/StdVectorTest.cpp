@@ -24,14 +24,14 @@ void StdVectorTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void StdVectorTest::setSubTest(Vector<MenuItem *> &menuArray)
+void StdVectorTest::defineTests()
 {
-	SUBTEST(StdVectorTest::testErase);
+	ADD_TEST(testErase);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void StdVectorTest::testErase(Ref *sender)
+void StdVectorTest::testErase()
 {
 	log("this is a sample subTest");
 	

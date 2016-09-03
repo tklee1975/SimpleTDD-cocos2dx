@@ -24,16 +24,16 @@ void TDDManagerTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDManagerTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDManagerTest::defineTests()
 {
-	SUBTEST(TDDManagerTest::testGetTestList);
-	SUBTEST(TDDManagerTest::testRunTest);
-	SUBTEST(TDDManagerTest::testLoadTest);
+	ADD_TEST(testGetTestList);
+	ADD_TEST(testRunTest);
+	ADD_TEST(testLoadTest);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDManagerTest::testLoadTest(Ref *sender)
+void TDDManagerTest::testLoadTest()
 {
 	log("this is a sample subTest");
 	
@@ -46,14 +46,14 @@ void TDDManagerTest::testLoadTest(Ref *sender)
 //	log(
 }
 
-void TDDManagerTest::testRunTest(Ref *sender)
+void TDDManagerTest::testRunTest()
 {
 	TDDManager::instance()->loadTestList();
 	
 	TDDManager::instance()->runTest("LabelTest");
 }
 
-void TDDManagerTest::testGetTestList(Ref *sender)
+void TDDManagerTest::testGetTestList()
 {
 	std::vector<std::string> fullList = TDDManager::instance()->getTestList("");
 	

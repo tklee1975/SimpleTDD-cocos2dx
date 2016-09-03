@@ -52,17 +52,17 @@ void TDDTableTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDTableTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDTableTest::defineTests()
 {
-	SUBTEST(TDDTableTest::setupTable);
-	SUBTEST(TDDTableTest::increaseItem);
-	SUBTEST(TDDTableTest::decreaseItem);
-	SUBTEST(TDDTableTest::testTableStyle);
+	ADD_TEST(setupTable);
+	ADD_TEST(increaseItem);
+	ADD_TEST(decreaseItem);
+	ADD_TEST(testTableStyle);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDTableTest::setupTable(Ref *sender)
+void TDDTableTest::setupTable()
 {
 	log("this is a sample subTest");
 	
@@ -81,7 +81,7 @@ void TDDTableTest::setupTable(Ref *sender)
 	mTableDelegate = delegate;
 }
 
-void TDDTableTest::increaseItem(Ref *sender)
+void TDDTableTest::increaseItem()
 {
 	MyTableDelegate *delegate = (MyTableDelegate *) mTableDelegate;
 	delegate->setItemCount(100);
@@ -89,7 +89,7 @@ void TDDTableTest::increaseItem(Ref *sender)
 	mTable->updateData();
 }
 
-void TDDTableTest::decreaseItem(Ref *sender)
+void TDDTableTest::decreaseItem()
 {
 	MyTableDelegate *delegate = (MyTableDelegate *) mTableDelegate;
 	delegate->setItemCount(10);
@@ -98,7 +98,7 @@ void TDDTableTest::decreaseItem(Ref *sender)
 }
 
 
-void TDDTableTest::testTableStyle(Ref *sender)
+void TDDTableTest::testTableStyle()
 {
 	log("this is a sample subTest");
 	

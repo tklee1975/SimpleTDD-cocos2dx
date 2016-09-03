@@ -24,17 +24,17 @@ void TDDSwitchTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDSwitchTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDSwitchTest::defineTests()
 {
-	SUBTEST(TDDSwitchTest::subTest);
-	SUBTEST(TDDSwitchTest::testMoveSwitch);
-	SUBTEST(TDDSwitchTest::testThreeSwitch);
-	SUBTEST(TDDSwitchTest::testSetSwitches);
+	ADD_TEST(subTest);
+	ADD_TEST(testMoveSwitch);
+	ADD_TEST(testThreeSwitch);
+	ADD_TEST(testSetSwitches);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDSwitchTest::subTest(Ref *sender)
+void TDDSwitchTest::subTest()
 {
 	log("this is a sample subTest");
 	
@@ -46,7 +46,7 @@ void TDDSwitchTest::subTest(Ref *sender)
 }
 
 //moveSwitchBg
-void TDDSwitchTest::testMoveSwitch(Ref *sender)
+void TDDSwitchTest::testMoveSwitch()
 {
 	log("this is a sample subTest");
 	
@@ -61,7 +61,7 @@ void TDDSwitchTest::testMoveSwitch(Ref *sender)
 
 
 
-void TDDSwitchTest::testSetSwitches(Ref *sender)
+void TDDSwitchTest::testSetSwitches()
 {
 	log("testSetSwitches");
 	
@@ -84,7 +84,7 @@ void TDDSwitchTest::switchSelected(Ref *sender, std::string name, int selected)
 }
 
 
-void TDDSwitchTest::testThreeSwitch(Ref *sender)
+void TDDSwitchTest::testThreeSwitch()
 {
 	log("testSetSwitches");
 	

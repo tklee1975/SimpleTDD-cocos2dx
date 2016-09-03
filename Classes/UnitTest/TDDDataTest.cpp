@@ -24,17 +24,17 @@ void TDDDataTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void TDDDataTest::setSubTest(Vector<MenuItem *> &menuArray)
+void TDDDataTest::defineTests()
 {
-	SUBTEST(TDDDataTest::testClearHistory);
-	SUBTEST(TDDDataTest::testSave);
-	SUBTEST(TDDDataTest::testLoad);
-	SUBTEST(TDDDataTest::testAddTest);
+	ADD_TEST(testClearHistory);
+	ADD_TEST(testSave);
+	ADD_TEST(testLoad);
+	ADD_TEST(testAddTest);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void TDDDataTest::testAddTest(Ref *sender)
+void TDDDataTest::testAddTest()
 {
 	//log("this is a sample subTest");
 
@@ -45,7 +45,7 @@ void TDDDataTest::testAddTest(Ref *sender)
 	log("history:\n%s\n", TDDData::instance()->toString().c_str());
 }
 
-void TDDDataTest::testLoad(Ref *sender)
+void TDDDataTest::testLoad()
 {
 	//log("this is a sample subTest");
 	
@@ -56,7 +56,7 @@ void TDDDataTest::testLoad(Ref *sender)
 }
 
 
-void TDDDataTest::testSave(Ref *sender)
+void TDDDataTest::testSave()
 {
 	//log("this is a sample subTest");
 	
@@ -68,7 +68,7 @@ void TDDDataTest::testSave(Ref *sender)
 	log("%s\n", TDDData::instance()->toString().c_str());
 }
 
-void TDDDataTest::testClearHistory(Ref *sender)
+void TDDDataTest::testClearHistory()
 {
 	log("Before Clear\n%s\n", TDDData::instance()->toString().c_str());
 	

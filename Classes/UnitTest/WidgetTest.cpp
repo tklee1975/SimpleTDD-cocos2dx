@@ -32,14 +32,14 @@ void WidgetTest::tearDown()
 #pragma mark -
 #pragma mark List of Sub Tests
 
-void WidgetTest::setSubTest(Vector<MenuItem *> &menuArray)
+void WidgetTest::defineTests()
 {
-	SUBTEST(WidgetTest::testButton);
+	ADD_TEST(testButton);
 }
 
 #pragma mark -
 #pragma mark Sub Test Definition
-void WidgetTest::testButton(Ref *sender)
+void WidgetTest::testButton()
 {
 	log("this is a sample subTest");
 	
