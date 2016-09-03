@@ -400,4 +400,22 @@ void TDDTest::setToolBarOpacity(GLubyte value)
 {
 	mToolBarLayer->setOpacity(value);
 }
+
+cocos2d::ui::Button *TDDTest::createTestButton(const std::string &name, const Vec2 &pos,
+											   const cocos2d::ui::Widget::ccWidgetClickCallback &callback)
+{
+	
+	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+	button->setTitleText(name);
+	button->setTitleFontSize(20);
+	button->setContentSize(Size(100, 50));
+	button->setTitleColor(Color3B::BLUE);
+	button->setPosition(pos);
+	button->addClickEventListener(callback);
+	
+	addChild(button);
+	
+	return button;
+}
+
 #endif

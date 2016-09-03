@@ -26,6 +26,8 @@ private:
 	void testSetBackground();
 	void testAddSomethings();
 	void testClearChildren();
+	void testToggleStat();
+	void testHideMenu();
 };
 
 

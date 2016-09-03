@@ -164,4 +164,29 @@ void TDDBaseTest::findBaseNode()
 }
 
 
+void TDDBaseTest::hideMenu()
+{
+	setMenuVisible(false);
+}
+
+void TDDBaseTest::toggleStat()
+{
+	Director *director = Director::getInstance();
+	bool hasStat = director->isDisplayStats();
+	director->setDisplayStats(! hasStat);
+}
+
+void TDDBaseTest::setMenuVisible(bool flag)
+{
+	if(mTestMenu) {
+		mTestMenu->setVisible(flag);
+	}
+}
+
+
+void TDDBaseTest::clearNodes()
+{
+	clearChildren();
+}
+
 #endif

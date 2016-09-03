@@ -50,6 +50,8 @@ protected:
 	void setToolBarOpacity(GLubyte value);
 	void setBackgroundColor(const Color3B &color);
 	void clearNodes();
+	cocos2d::ui::Button *createTestButton(const std::string &name, const Vec2 &pos,
+								const cocos2d::ui::Widget::ccWidgetClickCallback &callback);
 
 private:
 	void setupGUI();

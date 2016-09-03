@@ -27,6 +27,8 @@ void TDD2SampleTest::defineTests()
 	ADD_TEST(testSetBackground);
 	ADD_TEST(testAddSomethings);
 	ADD_TEST(testClearChildren);
+	ADD_TEST(testToggleStat);
+	ADD_TEST(testHideMenu);
 }
 
 #pragma mark -
@@ -55,6 +57,16 @@ void TDD2SampleTest::testAddSomethings()
 void TDD2SampleTest::testClearChildren()
 {
 	clearChildren();
+}
+
+void TDD2SampleTest::testToggleStat()
+{
+	toggleStat();
+}
+
+void TDD2SampleTest::testHideMenu()
+{
+	hideMenu();
 }
 
 #endif

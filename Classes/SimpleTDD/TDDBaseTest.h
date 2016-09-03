@@ -63,57 +63,19 @@ protected:
 	void setBackgroundColor(const Color3B &color);
 	void clearChildren();
 
-//	virtual bool showStat();
-//	void setMenuVisible(bool flag);
-
-//
-
-
-
-
-//	virtual void setSubTest(Vector<MenuItem *> &menuArray);
-//	void addSubTestMenu(Vector<MenuItem *> &menuArray, const char *name, const ccMenuCallback& callback);
-//	void hideMenu();
-//	void hideToolBar();
-//
-//	void setToolBarOpacity(GLubyte value);
-
-
+	// Method available in TDDTest (old version)
+	void toggleStat();
+	void hideMenu();
+	void setMenuVisible(bool flag);
+	void clearNodes();
+	
 #pragma mark - Helper Method
 private:
 	void setupGUI();
 	TDDTestMenu *createTestMenu();
 	void back();
-
-
 	void findBaseNode();
-
-//	void configTest();
-//	void resetConfig();
-//	void sampleTest(Ref *sender);
-
-//	Menu *createBackMenu();
-//	Menu *createToggleMenu();
-
-//
-//	void setupControlLayer();
-//	void setupSubMenu(Layer *parent);		// New UI
-//	void setupToolbar(Layer *parent);		// Old UI
-//	LayerColor *createToolBarLayer(bool hasMenu);
-//	TDDMenu *createTDDMenu();
-//	void toggleMenu(Ref *sender);
-//	void toggleStat(Ref *sender);
-//	void backToSuite(Ref *sender);
-//	void addToggleStatMenuItem(Vector<MenuItem *> &menuArray);
-//	void onBackPressed(Ref *sender, Control::EventType controlEvent);
-
-	// private data
 private:
-//	Layer *mControlLayer;	// Core control layer contains ToolBar & SubTest Menu
-//	LayerColor *mBackLayer;		// Background Layer, default color is GRAY
-//	LayerColor *mToolBarLayer;
-//	TDDMenu *mTDDMenu;
-//	bool mMenuVisible;
 	TDDTestMenu *mTestMenu;
 	LayerColor *mBackLayer;		// Background Layer, default color is GRAY
 	Node *mBaseNode;
