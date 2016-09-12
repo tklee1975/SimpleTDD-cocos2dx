@@ -28,7 +28,16 @@ enum TDDAlign
 	eTDDRight			= 3 << 2,
 
 	eTDDTopLeft			= (eTDDTop | eTDDLeft),
+	eTDDTopCenter		= (eTDDTop | eTDDCenter),
 	eTDDTopRight		= (eTDDTop | eTDDRight),
+
+	eTDDMidLeft			= (eTDDMiddle | eTDDLeft),
+	eTDDMidCenter		= (eTDDMiddle | eTDDCenter),
+	eTDDMidRight		= (eTDDMiddle | eTDDRight),
+
+	eTDDBottomLeft		= (eTDDBottom | eTDDLeft),
+	eTDDBottomCenter	= (eTDDBottom | eTDDCenter),
+	eTDDBottomRight		= (eTDDBottom | eTDDRight),
 	
 	// Combined
 //	eTDDTopLeft,

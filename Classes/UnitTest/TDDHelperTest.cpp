@@ -12,6 +12,17 @@ void TDDHelperTest::setUp()
 {
 	log("TDD Setup is called");
 	log("Please write somethings");
+	
+	mAlignList.push_back(TDDAlign::eTDDTopLeft);
+	mAlignList.push_back(TDDAlign::eTDDTopCenter);
+	mAlignList.push_back(TDDAlign::eTDDTopRight);
+	mAlignList.push_back(TDDAlign::eTDDMidLeft);
+	mAlignList.push_back(TDDAlign::eTDDMidCenter);
+	mAlignList.push_back(TDDAlign::eTDDMidRight);
+	mAlignList.push_back(TDDAlign::eTDDBottomLeft);
+	mAlignList.push_back(TDDAlign::eTDDBottomCenter);
+	mAlignList.push_back(TDDAlign::eTDDBottomRight);
+	
 }
 
 
@@ -271,13 +282,18 @@ void TDDHelperTest::testResolveAlign()
 
 void TDDHelperTest::testAlignNode()
 {
+	static int index = 0;
+	
+	TDDAlign selectedAlign = mAlignList[index];
+	
 	LayerColor *testBox = LayerColor::create(Color4B::RED, 100, 70);
 	
 	addChild(testBox);
 
-	TDDHelper::alignNode(testBox, Director::getInstance()->getVisibleSize(),
-						 (TDDAlign) (TDDAlign::eTDDRight | TDDAlign::eTDDMiddle));
-	
+	TDDHelper::alignNode(testBox, Director::getInstance()->getVisibleSize(), selectedAlign);
+
+	// next index
+	index = (index + 1) % mAlignList.size();
 }
 
 

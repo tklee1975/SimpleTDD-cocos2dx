@@ -19,6 +19,7 @@ const TDDAlign kDefaultMenuAlign = TDDAlign::eTDDTopRight;
 
 TDDBaseTest::TDDBaseTest()
 : mBaseNode(nullptr)
+, mMenuAlign(eTDDTopRight)
 {
 	Size screenSize = Director::getInstance()->getVisibleSize();
 	setContentSize(screenSize);		// note: it is zero by default
@@ -103,7 +104,7 @@ void TDDBaseTest::setupGUI()
 	addChild(testMenu);
 	mTestMenu = testMenu;
 
-	TDDHelper::alignNode(mTestMenu, kDefaultMenuAlign);
+	TDDHelper::alignNode(mTestMenu, mMenuAlign);
 }
 
 TDDTestMenu *TDDBaseTest::createTestMenu()
@@ -188,5 +189,27 @@ void TDDBaseTest::clearNodes()
 {
 	clearChildren();
 }
+
+void TDDBaseTest::setMenuPostion(const Vec2 &pos)
+{
+	if(mTestMenu) {
+		mTestMenu->setPosition(pos);
+	}
+}
+
+void TDDBaseTest::setMenuSize(const Size &size)
+{
+	if(mTestMenu == nullptr) {
+		return;
+	}
+
+	mTestMenu->setContentSize(size);
+	// Size newSize = mTestMenu->getContentSize();
+	// log("debug: setMenuSize. newSize=%f,%f", newSize.width, newSize.height);
+	TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
+	mTestMenu->refreshTable();
+	
+}
+
 
 #endif

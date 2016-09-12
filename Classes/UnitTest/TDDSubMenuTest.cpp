@@ -12,6 +12,12 @@ void TDDSubMenuTest::setUp()
 {
 	log("TDD Setup is called");
 	log("Please write somethings");
+	
+	Size size = Size(200, 200);
+	TDDSubMenu *menu = new TDDSubMenu(size);
+	menu->setPosition(Point(0, 100));
+	this->addChild(menu);
+	mMenu = menu;
 }
 
 

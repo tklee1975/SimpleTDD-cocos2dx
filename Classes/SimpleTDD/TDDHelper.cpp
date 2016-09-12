@@ -563,12 +563,13 @@ void TDDHelper::alignNode(Node *targetNode, const Size &parentSize, TDDAlign ali
 	resolveAlign(align, vert, hori);
 	
 	
-	
+	Vec2 anchorPoint = targetNode->getAnchorPoint();
+	log("Anchor Point: %f,%f", anchorPoint.x, anchorPoint.y);
 	
 	float x, y;
 	
-//	Size size = targetNode->getContentSize();
-//	Vec2 anchorDiff = targetNode->getAnchorPoint() * Vec2(
+	Size size = targetNode->getContentSize();
+	// Vec2 anchorDiff = targetNode->getAnchorPoint() * Vec2(
 	
 	// Find x;
 	if(eTDDRight == hori) {
@@ -589,7 +590,10 @@ void TDDHelper::alignNode(Node *targetNode, const Size &parentSize, TDDAlign ali
 		y = 0;
 	}
 	
-	//log("debug: x=%f y=%f", x, y);
+	log("debug: align=%s", getAlignName(align).c_str());
+	log("debug: targetSize=%f,%f parentSize=%f,%f", size.width, size.height,
+								parentSize.width, parentSize.height);
+	log("debug: x=%f y=%f  hori=%d vert=%d", x, y, hori, vert);
 	
 	
 	// Set position
@@ -641,6 +645,4 @@ void TDDHelper::resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &
 {
 	verticalAlign = (TDDAlign) (align & 0x0003);		// 0011	 (last two bit)
 	horizontalAlign = (TDDAlign) (align & 0x000C);		// 1100  (3rd,4th bit)
-	
-	
 }

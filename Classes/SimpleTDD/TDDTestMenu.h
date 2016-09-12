@@ -58,6 +58,9 @@ public:
 
 	virtual void setContentSize(const Size &size);
 
+	// Position and Size stuff
+	Vec2 getTopPosition();
+	
 	//
 	void refreshTable();
 

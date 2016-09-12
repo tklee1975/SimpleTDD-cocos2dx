@@ -10,6 +10,8 @@
 
 #include "TDDBaseTest.h"
 
+class TDDSubMenu;
+
 // Class Declaration 
 class TDDSubMenuTest : public TDDBaseTest
 {
@@ -23,7 +25,11 @@ private:
 	void testMenu();
 	
 	void onBackPressed(Ref *sender, Control::EventType controlEvent);
-}; 
+
+
+private:
+	TDDSubMenu *mMenu;
+};
 
 #endif
 

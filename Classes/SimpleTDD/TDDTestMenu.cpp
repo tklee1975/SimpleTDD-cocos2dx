@@ -363,5 +363,13 @@ void TDDTestMenu::setContentSize(const Size &size)
 
 }
 
+Vec2 TDDTestMenu::getTopPosition()
+{
+	Vec2 pos = getPosition();
+	
+	pos.y += getContentSize().height;
+	
+	return pos;
+}
 
 #endif

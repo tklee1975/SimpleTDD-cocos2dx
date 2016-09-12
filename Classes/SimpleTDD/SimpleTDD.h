@@ -22,6 +22,9 @@ public:
 						const Color4B &bgColor = Color4B(50, 50, 200, 255),
 						const Color3B &textColor = Color3B::WHITE ,
 						int fontSize = 15);
+	
+	static void gotoTestScene();
+	static void gotoTest(const std::string &testName);
 };
 
 

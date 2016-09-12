@@ -68,6 +68,11 @@ protected:
 	void hideMenu();
 	void setMenuVisible(bool flag);
 	void clearNodes();
+
+	
+#pragma mark - For customization
+	void setMenuPostion(const Vec2 &pos);
+	void setMenuSize(const Size &size);
 	
 #pragma mark - Helper Method
 private:
@@ -83,7 +88,8 @@ private:
 private:
 	std::vector<std::string> mTestNameList;
 	std::map<std::string, std::function<void()>> mTestCallbackMap;
-
+	
+	TDDAlign mMenuAlign;
 };
 
 

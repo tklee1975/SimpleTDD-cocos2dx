@@ -18,15 +18,10 @@ void TDDTestMenuTest::setUp()
 	log("TDD Setup is called");
 	log("Please write somethings");
 	
-	
-	ADD_SUB_TEST(test1);
-	ADD_SUB_TEST(test2);
-	ADD_SUB_TEST(test1);
-	ADD_SUB_TEST(test2);
-	ADD_SUB_TEST(test1);
-	ADD_SUB_TEST(test2);
-	ADD_SUB_TEST(test1);
-	ADD_SUB_TEST(test2);
+	for(int i=0; i<10; i++) {
+		ADD_SUB_TEST(test1);
+		ADD_SUB_TEST(test2);
+	}
 	
 	//
 	TDDTestMenu *menu = TDDTestMenu::create();

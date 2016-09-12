@@ -12,7 +12,7 @@
 #include "TDDData.h"
 
 // Version
-const std::string kVersion = "2.0.0";
+const std::string kVersion = "2.1.0";
 const std::string kName = "SimpleTDD";
 
 

@@ -34,7 +34,12 @@ private:
 	void testAddButtonWithBg();
 	void testResolveAlign();
 	void testAlignNode();
-}; 
+	
+private:
+	std::vector<TDDAlign> mAlignList;
+};
+
+
 
 #endif
 

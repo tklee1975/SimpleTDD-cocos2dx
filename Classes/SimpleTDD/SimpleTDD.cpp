@@ -36,13 +36,33 @@ void SimpleTDD::setup(Node *parent, const Vec2 &pos,
 	button->setTitleFontSize(fontSize);
 
 	button->addClickEventListener([&](Ref *) {
-		auto scene = TDDMainLayer::createScene();
-
-		Director::getInstance()->pushScene(scene);
+		gotoTestScene();
 	});
 
 #else
 	log("SimpleTDD: Unit Test Disabled!! define ENABLE_TDD = 1 to enable!");
 #endif
 
+}
+
+
+void SimpleTDD::gotoTestScene()
+{
+#if (ENABLE_TDD == 1)
+	auto scene = TDDMainLayer::createScene();
+	
+	Director::getInstance()->pushScene(scene);
+#else
+	log("SimpleTDD: Unit Test Disabled!! define ENABLE_TDD = 1 to enable!");
+#endif
+}
+
+void SimpleTDD::gotoTest(const std::string &testName)
+{
+#if (ENABLE_TDD == 1)
+	if(TDDManager::instance()->runTest(testName) == false) {
+		log("Fail to run test '%s'", testName.c_str());
+	}
+	
+#endif
 }
