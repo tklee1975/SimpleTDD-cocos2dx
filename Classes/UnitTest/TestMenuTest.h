@@ -24,6 +24,9 @@ private:
 	void testSample();
 	void testHeaderColor();
 	void testChangeSize();
+	void testAlignMenu();
+	void testSetMenuVisible();
+	void testSetMenuColor();
 };
 
 #endif

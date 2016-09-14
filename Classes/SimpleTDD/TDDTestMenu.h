@@ -54,6 +54,7 @@ public:
 
 	// Theme
 	void setMenuColor(const Color4B &headerColor, const Color4B &bgColor);
+	void setTextColor(const Color3B &textColor);
 	void setColumn(int column);
 
 	virtual void setContentSize(const Size &size);

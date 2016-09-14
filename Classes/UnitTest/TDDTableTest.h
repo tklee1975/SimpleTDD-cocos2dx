@@ -26,6 +26,8 @@ private:
 	void increaseItem();
 	void decreaseItem();
 	void testTableStyle();
+	void testMoreHeight();
+	void testResize();
 	
 private:
 	TDDTable *mTable;

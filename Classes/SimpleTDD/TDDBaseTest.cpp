@@ -184,6 +184,20 @@ void TDDBaseTest::setMenuVisible(bool flag)
 	}
 }
 
+void TDDBaseTest::setMenuColor(const Color4B &headerColor, const Color4B &bgColor)
+{
+	if(mTestMenu) {
+		mTestMenu->setMenuColor(headerColor, bgColor);
+	}
+}
+
+void TDDBaseTest::setMenuTextColor(const Color3B &textColor)
+{
+	if(mTestMenu) {
+		mTestMenu->setTextColor(textColor);
+	}
+	
+}
 
 void TDDBaseTest::clearNodes()
 {
@@ -204,12 +218,21 @@ void TDDBaseTest::setMenuSize(const Size &size)
 	}
 
 	mTestMenu->setContentSize(size);
-	// Size newSize = mTestMenu->getContentSize();
+	Size newSize = mTestMenu->getContentSize();
 	// log("debug: setMenuSize. newSize=%f,%f", newSize.width, newSize.height);
 	TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
-	mTestMenu->refreshTable();
+	//mTestMenu->refreshTable();
 	
 }
 
+void TDDBaseTest::alignMenu(const TDDAlign &align)
+{
+	if(mTestMenu == nullptr) {
+		return;
+	}
+	
+	mMenuAlign = align;
+	TDDHelper::alignNode(mTestMenu, mMenuAlign);
+}
 
 #endif

@@ -108,6 +108,8 @@ public:
 	static void resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &horizontalAlign);
 	
 	static std::string getAlignName(TDDAlign align);
+	
+	static std::vector<TDDAlign> getAlignList();
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

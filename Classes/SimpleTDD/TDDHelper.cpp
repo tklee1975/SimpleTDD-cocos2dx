@@ -646,3 +646,21 @@ void TDDHelper::resolveAlign(TDDAlign align, TDDAlign &verticalAlign, TDDAlign &
 	verticalAlign = (TDDAlign) (align & 0x0003);		// 0011	 (last two bit)
 	horizontalAlign = (TDDAlign) (align & 0x000C);		// 1100  (3rd,4th bit)
 }
+
+std::vector<TDDAlign> TDDHelper::getAlignList()
+{
+	std::vector<TDDAlign> result;
+	
+	result.push_back(TDDAlign::eTDDTopLeft);
+	result.push_back(TDDAlign::eTDDTopCenter);
+	result.push_back(TDDAlign::eTDDTopRight);
+	result.push_back(TDDAlign::eTDDMidLeft);
+	result.push_back(TDDAlign::eTDDMidCenter);
+	result.push_back(TDDAlign::eTDDMidRight);
+	result.push_back(TDDAlign::eTDDBottomLeft);
+	result.push_back(TDDAlign::eTDDBottomCenter);
+	result.push_back(TDDAlign::eTDDBottomRight);
+
+	
+	return result;
+}

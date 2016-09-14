@@ -63,7 +63,7 @@ void TDDTable::updateBackgroundColor()
 	}
 }
 
-void TDDTable::updateData()
+void TDDTable::refresh()
 {
 	if(! mDelegate) {
 		log("TDDTable: mDelegate undefined.");
@@ -88,14 +88,16 @@ void TDDTable::updateData()
 	float totalHeight = cellSize.height * rowcount;
 	
 	bool hasVerticalScroll;
-	if(totalHeight <= mScrollView->getContentSize().height) {
-		totalHeight = mScrollView->getContentSize().height;
+	float scrollViewH = mScrollView->getViewSize().height;
+	
+	if(totalHeight <= scrollViewH) {
+		totalHeight = scrollViewH;
 		hasVerticalScroll = false;
 	} else {
 		hasVerticalScroll = true;
 	}
 	
-	
+	log("totalHeight=%f scrollView.height=%f", totalHeight, scrollViewH);
 	
 	Vec2 pos = Vec2(0, totalHeight);		// define the first positon
 	pos += Vec2(cellSize.width/2, -cellSize.height/2);
@@ -171,6 +173,7 @@ void TDDTable::resizeTo(const Size &newSize)
 		mScrollContentLayer->setContentSize(size);
 	}
 	
+	refresh();
 }
 
 //void TDDTable::addItem(const std::string &itemName)

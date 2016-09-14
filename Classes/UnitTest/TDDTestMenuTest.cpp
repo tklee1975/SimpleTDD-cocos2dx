@@ -18,7 +18,7 @@ void TDDTestMenuTest::setUp()
 	log("TDD Setup is called");
 	log("Please write somethings");
 	
-	for(int i=0; i<10; i++) {
+	for(int i=0; i<1; i++) {
 		ADD_SUB_TEST(test1);
 		ADD_SUB_TEST(test2);
 	}
@@ -153,10 +153,27 @@ void TDDTestMenuTest::testSetColumn()
 
 void TDDTestMenuTest::testSetSize()
 {
+	
+	const int nSize = 3;
+	Size sizeList[nSize] = {
+		Size(300, 300),
+		Size(100, 200),
+		Size(400, 150),
+	};
+	
+	static int index = 0;
+	
+	
+	Size selectedSize = sizeList[index];
+	
+	// Change Size
 	if(mTestMenu) {
-		mTestMenu->setContentSize(Size(300, 300));
-		mTestMenu->refreshTable();
+		mTestMenu->setContentSize(selectedSize);
 	}
+	
+	
+	// next index
+	index = (index + 1) % nSize;
 }
 
 

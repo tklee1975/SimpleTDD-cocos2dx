@@ -14,7 +14,7 @@ public:
 	CC_SYNTHESIZE(int, mItemCount, ItemCount);
 	
 	MyTableDelegate()
-	: mItemCount(40)
+	: mItemCount(10)
 	{
 		
 	}
@@ -55,6 +55,8 @@ void TDDTableTest::tearDown()
 void TDDTableTest::defineTests()
 {
 	ADD_TEST(setupTable);
+	ADD_TEST(testMoreHeight);
+	ADD_TEST(testResize);
 	ADD_TEST(increaseItem);
 	ADD_TEST(decreaseItem);
 	ADD_TEST(testTableStyle);
@@ -72,7 +74,7 @@ void TDDTableTest::setupTable()
 	table->setDelegate(delegate);
 	//delegate->release();
 	
-	table->updateData();
+	table->refresh();
 	
 	addChild(table);
 	
@@ -86,7 +88,7 @@ void TDDTableTest::increaseItem()
 	MyTableDelegate *delegate = (MyTableDelegate *) mTableDelegate;
 	delegate->setItemCount(100);
 	
-	mTable->updateData();
+	mTable->refresh();
 }
 
 void TDDTableTest::decreaseItem()
@@ -94,7 +96,7 @@ void TDDTableTest::decreaseItem()
 	MyTableDelegate *delegate = (MyTableDelegate *) mTableDelegate;
 	delegate->setItemCount(10);
 	
-	mTable->updateData();
+	mTable->refresh();
 }
 
 
@@ -114,13 +116,71 @@ void TDDTableTest::testTableStyle()
 	table->setDelegate(delegate);
 	//delegate->release();
 	
-	table->updateData();
+	table->refresh();
 	
 	addChild(table);
 	
 	// Store the value
 	mTable = table;
 	mTableDelegate = delegate;
+}
+
+void TDDTableTest::testMoreHeight()
+{
+	log("this is a sample subTest");
+	
+	MyTableDelegate *delegate = new MyTableDelegate();
+	
+	TDDTable *table = TDDTable::create(Size(400, 300));
+	table->setColumn(5);
+	table->setTitleColor(Color3B(49,166,148));
+	table->setBackgroundColor(Color4B(250,219,191,255));
+	table->setFontSize(12);
+	
+	
+	table->setDelegate(delegate);
+	//delegate->release();
+	
+	table->refresh();
+	
+	addChild(table);
+	
+	// Store the value
+	mTable = table;
+	mTableDelegate = delegate;
+}
+
+void TDDTableTest::testResize()
+{
+	if(! mTable) {
+		log("Please add a table first");
+		return;
+	}
+	
+	
+	
+	const int nSize = 3;
+	Size sizeList[nSize] = {
+		Size(300, 300),
+		Size(200, 200),
+		Size(400, 150),
+	};
+	
+	static int index = 0;
+	
+	
+	Size selectedSize = sizeList[index];
+	
+	// Change Size
+	if(mTable) {
+		mTable->resizeTo(selectedSize);
+		
+	}
+	
+	
+	// next index
+	index = (index + 1) % nSize;
+	
 }
 
 #endif

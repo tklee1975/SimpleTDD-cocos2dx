@@ -93,7 +93,7 @@ void TDDMainLayer::updateResult(std::vector<std::string> &result)
 	}
 	
 	//
-	mResultTable->updateData();
+	mResultTable->refresh();
 	
 	updateTestCount((int) result.size());
 }
@@ -224,7 +224,7 @@ void TDDMainLayer::setupTestTable(const Size &size, const Vec2 &pos)
 	table->setFontSize(12);
 	table->setDelegate(this);
 	
-	table->updateData();
+	table->refresh();
 	
 	addChild(table);
 	mResultTable = table;

@@ -70,9 +70,12 @@ protected:
 	void clearNodes();
 
 	
-#pragma mark - For customization
+#pragma mark - Menu customization
 	void setMenuPostion(const Vec2 &pos);
 	void setMenuSize(const Size &size);
+	void alignMenu(const TDDAlign &align);
+	void setMenuColor(const Color4B &headerColor, const Color4B &bgColor);
+	void setMenuTextColor(const Color3B &textColor);
 	
 #pragma mark - Helper Method
 private:

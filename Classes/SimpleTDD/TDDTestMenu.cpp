@@ -12,6 +12,7 @@ const Color4B kClearColor = Color4B(0, 0, 0, 0);
 const Color4B kHeaderColor = Color4B(0, 0, 0, 150);
 const Color4B kBackgroundColor = Color4B(0, 0, 0, 100);
 
+const float kMarginX = 10;
 
 TDDTestMenu::TDDTestMenu()
 : mTestNameList()
@@ -62,7 +63,7 @@ void TDDTestMenu::setTests(std::vector<std::string> &testList)
 		mTestNameList.push_back(testList[i]);
 	}
 
-	mTestTable->updateData();
+	mTestTable->refresh();
 }
 
 #pragma mark - Touch handling
@@ -179,7 +180,7 @@ std::string TDDTestMenu::getTestName(int index)
 void TDDTestMenu::refreshMenu()
 {
 	if(mTestTable) {
-		mTestTable->updateData();
+		mTestTable->refresh();
 	}
 
 }
@@ -205,29 +206,28 @@ void TDDTestMenu::setupHeader()
 	headerLayer->setPosition(pos);
 
 	Size size = Size(50, mHeaderHeight);
-	Vec2 backPos = Vec2(size.width/2, size.height/2);
-	Vec2 togglePos = Vec2(width - size.width/2, size.height/2);
-
+	float buttonY = mHeaderHeight / 2;
+	float buttonX;
 	//
 	// Back Button
 	ui::Button *backButton = createButton("back", size);
-	backButton->setContentSize(size);
-	backButton->setPosition(backPos);
 	backButton->addClickEventListener([&](Ref *) {
 		if(mBackCallback) {
 			mBackCallback(this);
 		}
 	});
+	buttonX = kMarginX + backButton->getContentSize().width / 2;
+	backButton->setPosition(Vec2(buttonX, buttonY));
 	headerLayer->addChild(backButton);
 
 
 	// Toggle Menu
 	ui::Button *toggleButton = createButton("hide", size);
-	toggleButton->setContentSize(size);
-	toggleButton->setPosition(togglePos);
 	toggleButton->addClickEventListener([&](Ref *) {
 		toggleMenu();
 	});
+	buttonX = width - kMarginX - toggleButton->getContentSize().width / 2;
+	toggleButton->setPosition(Vec2(buttonX, buttonY));
 	headerLayer->addChild(toggleButton);
 	mToggleButton = toggleButton;
 
@@ -249,7 +249,7 @@ void TDDTestMenu::setupTable()
 	table->setDelegate(this);
 	//delegate->release();
 
-	table->updateData();
+	table->refresh();
 
 	addChild(table);
 	mTestTable = table;
@@ -300,6 +300,11 @@ bool TDDTestMenu::isTouchInsideHeader(const Vec2 &touchLocation)
 	return headerArea.containsPoint(touchLocation);
 }
 
+void TDDTestMenu::setTextColor(const Color3B &textColor)
+{
+
+}
+
 void TDDTestMenu::setMenuColor(const Color4B &headerColor, const Color4B &bgColor)
 {
 	if(mHeaderNode) {
@@ -324,7 +329,7 @@ void TDDTestMenu::setColumn(int column)
 void TDDTestMenu::refreshTable()
 {
 	if(mTestTable) {
-		mTestTable->updateData();
+		mTestTable->refresh();
 	}
 
 }
@@ -354,10 +359,11 @@ void TDDTestMenu::setContentSize(const Size &size)
 
 	if(mToggleButton) {
 		Size buttonSize = mToggleButton->getContentSize();
+		// log("buttonWidth=%f", buttonSize.width);
 
 		Vec2 newPos = mToggleButton->getPosition();
-		newPos.x = getContentSize().width - buttonSize.width/2 ;
-
+		newPos.x = getContentSize().width - kMarginX - buttonSize.width / 2;
+		
 		mToggleButton->setPosition(newPos);
 	}
 

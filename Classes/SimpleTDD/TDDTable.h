@@ -58,7 +58,7 @@ public:
 	CC_SYNTHESIZE(int, mFontSize, FontSize);
 	CC_SYNTHESIZE(int, mColumn, Column);
 	
-	void updateData();
+	void refresh();
 	void updateBackgroundColor();
 	void resizeTo(const Size &newSize);
 
