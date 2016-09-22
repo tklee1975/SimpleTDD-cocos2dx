@@ -120,6 +120,8 @@
 		73AF4E4D1D5B9D65003A0EB4 /* TDDTopBarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */; };
 		73BABD311A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
 		73BABD321A94EEAD0017C351 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 73BABD301A94EEAD0017C351 /* background.png */; };
+		73E35F181D948295004A93A0 /* TDDAssertInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */; };
+		73E35F191D948295004A93A0 /* TDDAssertInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */; };
 		73F45CAF1D66440F00AF54AA /* SimpleTDD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */; };
 		73F45CB01D66440F00AF54AA /* SimpleTDD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */; };
 		73FE6B211D53C6800023048E /* TabTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73FE6B1F1D53C6800023048E /* TabTest.cpp */; };
@@ -287,6 +289,8 @@
 		73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTopBarTest.cpp; sourceTree = "<group>"; };
 		73AF4E4B1D5B9D65003A0EB4 /* TDDTopBarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTopBarTest.h; sourceTree = "<group>"; };
 		73BABD301A94EEAD0017C351 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDAssertInfo.cpp; sourceTree = "<group>"; };
+		73E35F171D948295004A93A0 /* TDDAssertInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDAssertInfo.h; sourceTree = "<group>"; };
 		73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTDD.cpp; sourceTree = "<group>"; };
 		73F45CAE1D66440F00AF54AA /* SimpleTDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTDD.h; sourceTree = "<group>"; };
 		73FE6B1F1D53C6800023048E /* TabTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabTest.cpp; sourceTree = "<group>"; };
@@ -519,6 +523,8 @@
 				7301984E1D6CC2EE000D7B6F /* TDDBaseTest.h */,
 				730198511D6CC921000D7B6F /* TDD2SampleTest.cpp */,
 				730198521D6CC921000D7B6F /* TDD2SampleTest.h */,
+				73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */,
+				73E35F171D948295004A93A0 /* TDDAssertInfo.h */,
 			);
 			path = SimpleTDD;
 			sourceTree = "<group>";
@@ -738,6 +744,7 @@
 				739132BD1A8F4A5B00E95086 /* StdVectorTest.cpp in Sources */,
 				739132C91A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */,
 				739132C31A8F4A5B00E95086 /* TDDHelperTest.cpp in Sources */,
+				73E35F181D948295004A93A0 /* TDDAssertInfo.cpp in Sources */,
 				739132C71A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				73FE6B211D53C6800023048E /* TabTest.cpp in Sources */,
@@ -778,6 +785,7 @@
 				739132B61A8F4A5B00E95086 /* EditBoxTest.cpp in Sources */,
 				73AF4E481D5B9B5C003A0EB4 /* TDDTopBar.cpp in Sources */,
 				73AF4E4D1D5B9D65003A0EB4 /* TDDTopBarTest.cpp in Sources */,
+				73E35F191D948295004A93A0 /* TDDAssertInfo.cpp in Sources */,
 				739132901A8F49A300E95086 /* TDDMenuTest.cpp in Sources */,
 				73491BCC1D57B976004D09F9 /* TDDTableTest.cpp in Sources */,
 				73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */,

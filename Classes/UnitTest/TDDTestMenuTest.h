@@ -36,6 +36,7 @@ private:
 	void testTheme();
 	void testSetColumn();
 	void testSetSize();
+	void testSetSizeByPercent();
 	
 private:
 	std::vector<std::string> mTestNameList;

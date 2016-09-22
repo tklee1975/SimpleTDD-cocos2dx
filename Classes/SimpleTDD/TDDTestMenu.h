@@ -58,6 +58,9 @@ public:
 	void setColumn(int column);
 
 	virtual void setContentSize(const Size &size);
+	void setContentSizeByPercent(const Vec2 &percent);
+	void setWidth(const float &width);
+	void setHeight(const float &height);
 
 	// Position and Size stuff
 	Vec2 getTopPosition();

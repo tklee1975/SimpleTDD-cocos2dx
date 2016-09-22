@@ -73,6 +73,9 @@ protected:
 #pragma mark - Menu customization
 	void setMenuPostion(const Vec2 &pos);
 	void setMenuSize(const Size &size);
+	void setMenuSizeByPercent(const Vec2 &percent);	// using 0.0 ~ 1.0
+	void setMenuWidth(const float &width);
+	void setMenuHeight(const float &height);
 	void alignMenu(const TDDAlign &align);
 	void setMenuColor(const Color4B &headerColor, const Color4B &bgColor);
 	void setMenuTextColor(const Color3B &textColor);
@@ -93,6 +96,20 @@ private:
 	std::map<std::string, std::function<void()>> mTestCallbackMap;
 	
 	TDDAlign mMenuAlign;
+	
+#pragma mark - Test Info
+public:
+	std::string getTestName();
+	
+private:
+	std::string mCurrentTestName;
+	
+#pragma mark - Assertion Logic
+protected:
+	void assertTrue(bool cond, const std::string &remark="");
+	void assertEquals(int expect, int actual, const std::string &remark="");
+	
+	CC_SYNTHESIZE(bool, mBreakWhenFail, BreakWhenFail);
 };
 
 

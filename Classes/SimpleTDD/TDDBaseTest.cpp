@@ -11,15 +11,19 @@
 #include "TDDTestMenu.h"
 #include "TDDTypes.h"
 #include "TDDHelper.h"
+#include "TDDAssertInfo.h"
 
 // ZOrder
 const int kZorderBackground = -10000;
 const int kZorderTestMenu = 10000;
 const TDDAlign kDefaultMenuAlign = TDDAlign::eTDDTopRight;
+const Vec2 kMenuSizePercent = Vec2(0.3, 1.0);
 
 TDDBaseTest::TDDBaseTest()
 : mBaseNode(nullptr)
-, mMenuAlign(eTDDTopRight)
+, mMenuAlign(kDefaultMenuAlign)
+, mCurrentTestName("")
+, mBreakWhenFail(false)
 {
 	Size screenSize = Director::getInstance()->getVisibleSize();
 	setContentSize(screenSize);		// note: it is zero by default
@@ -70,11 +74,15 @@ void TDDBaseTest::doTestCallback(const std::string &name)
 		return;
 	}
 
+	mCurrentTestName = name;
+	
 	willRunTest(name);
 
 	callback();
 
 	didRunTest(name);
+	
+	mCurrentTestName = "";
 }
 
 void TDDBaseTest::willRunTest(const std::string &name)	// before run a test
@@ -103,7 +111,12 @@ void TDDBaseTest::setupGUI()
 	testMenu->setLocalZOrder(kZorderTestMenu);
 	addChild(testMenu);
 	mTestMenu = testMenu;
+	
+	setMenuSizeByPercent(kMenuSizePercent);
 
+	// Default SizePercent
+	// setMenuSizeByPercent(
+	
 	TDDHelper::alignNode(mTestMenu, mMenuAlign);
 }
 
@@ -211,18 +224,40 @@ void TDDBaseTest::setMenuPostion(const Vec2 &pos)
 	}
 }
 
-void TDDBaseTest::setMenuSize(const Size &size)
+void TDDBaseTest::setMenuSizeByPercent(const Vec2 &percent)
 {
-	if(mTestMenu == nullptr) {
-		return;
+	if(mTestMenu) {
+		mTestMenu->setContentSizeByPercent(percent);
+		TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
+	}
+	
+
+}
+
+
+void TDDBaseTest::setMenuWidth(const float &width)
+{
+	if(mTestMenu) {
+		mTestMenu->setWidth(width);
+		TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
 	}
 
-	mTestMenu->setContentSize(size);
-	Size newSize = mTestMenu->getContentSize();
-	// log("debug: setMenuSize. newSize=%f,%f", newSize.width, newSize.height);
-	TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
-	//mTestMenu->refreshTable();
-	
+}
+
+void TDDBaseTest::setMenuHeight(const float &height)
+{
+	if(mTestMenu) {
+		mTestMenu->setHeight(height);
+		TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
+	}
+}
+
+void TDDBaseTest::setMenuSize(const Size &size)
+{
+	if(mTestMenu) {
+		mTestMenu->setContentSize(size);
+		TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
+	}
 }
 
 void TDDBaseTest::alignMenu(const TDDAlign &align)
@@ -233,6 +268,44 @@ void TDDBaseTest::alignMenu(const TDDAlign &align)
 	
 	mMenuAlign = align;
 	TDDHelper::alignNode(mTestMenu, mMenuAlign);
+}
+
+
+#pragma mark - Test Info
+std::string TDDBaseTest::getTestName()
+{
+	return mCurrentTestName;
+}
+
+
+#pragma mark - Assertion Logic
+void TDDBaseTest::assertEquals(int expect, int actual, const std::string &remark)
+{
+	TDDAssertInfo *info = TDDAssertInfo::create(getTestName());
+	info->setIsPassed(expect == actual);
+	info->setRemark(remark);
+	if(! info->getIsPassed()) {
+		info->setResult(StringUtils::format("expect <%d> but <%d>", expect, actual));
+	}
+	
+	if(mBreakWhenFail) {
+		CC_ASSERT(info->getIsPassed());
+	}
+}
+
+void TDDBaseTest::assertTrue(bool cond, const std::string &remark)
+{
+	//CC_ASSERT(<#cond#>)
+	TDDAssertInfo *info = TDDAssertInfo::create(getTestName());
+	info->setIsPassed(true == cond);
+	info->setRemark(remark);
+	if(! info->getIsPassed()) {
+		info->setResult("expect true");
+	}
+	
+	if(mBreakWhenFail) {
+		CC_ASSERT(info->getIsPassed());
+	}
 }
 
 #endif

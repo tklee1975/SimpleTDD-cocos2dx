@@ -1,10 +1,19 @@
 Version Note about Simple TDD
 
-Version 2.2.0 
+Version 2.3.0 *  
 ---------------------
 - TODO: Android build
 
-Version 2.1.0 * 
+
+Version 2.2.0 *  
+---------------------
+- Easy Menu Customisation
+	- setMenuSizeByType(MenuSizeType::HalfHeight1);
+	  MenuSizeType: SizeTypeHalfHeight, FullHeight, HalfWidth, FullWidth, OneThirdHeight)
+	
+
+
+Version 2.1.0 
 ---------------------
 - Add following methods in TDDBaseTest (for better migration)
 	- void toggleStat();

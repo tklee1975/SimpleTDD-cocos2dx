@@ -65,6 +65,7 @@ void TDDTestMenuTest::doTestCallback(const std::string &name)
 void TDDTestMenuTest::defineTests()
 {
 	ADD_TEST(subTest);
+	ADD_TEST(testSetSizeByPercent);
 	ADD_TEST(testTheme);
 	ADD_TEST(testSetColumn);
 	ADD_TEST(testSetSize);	
@@ -175,6 +176,33 @@ void TDDTestMenuTest::testSetSize()
 	// next index
 	index = (index + 1) % nSize;
 }
+
+
+void TDDTestMenuTest::testSetSizeByPercent()
+{
+	
+	const int nSize = 3;
+	Vec2 sizeList[nSize] = {
+		Vec2(0.3, 1.0),
+		Vec2(0.5, 0.5),
+		Vec2(1.0, -1),
+	};
+	
+	static int index = 0;
+	
+	
+	Vec2 selectedSizePercent = sizeList[index];
+	
+	// Change Size
+	if(mTestMenu) {
+		mTestMenu->setContentSizeByPercent(selectedSizePercent);
+	}
+	
+	
+	// next index
+	index = (index + 1) % nSize;
+}
+
 
 
 #endif

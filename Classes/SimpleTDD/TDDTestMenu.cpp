@@ -334,9 +334,42 @@ void TDDTestMenu::refreshTable()
 
 }
 
-void TDDTestMenu::setContentSize(const Size &size)
+
+void TDDTestMenu::setContentSizeByPercent(const Vec2 &percent)
 {
+	Size viewSize = Director::getInstance()->getVisibleSize();
+	Size originSize = getContentSize();
+	
+	float width = percent.x < 0 ?  originSize.width : viewSize.width * percent.x;
+	float height = percent.y < 0 ? originSize.height : viewSize.height * percent.y;
+	
+	setContentSize(Size(width, height));
+}
+
+
+void TDDTestMenu::setWidth(const float &width)
+{
+	setContentSize(Size(width, -1));
+}
+
+void TDDTestMenu::setHeight(const float &height)
+{
+	setContentSize(Size(-1, height));
+}
+
+void TDDTestMenu::setContentSize(const Size &newSize)
+{
+	Size originSize = getContentSize();
+	
+	float width = newSize.width < 0 ?  originSize.width : newSize.width;
+	float height = newSize.height < 0 ? originSize.height : newSize.height;
+	
+	Size size = Size(width, height);
+	
+	// Set the size using the new setting
 	LayerColor::setContentSize(size);
+
+	
 
 	// Modify the Subnode
 	if(mHeaderNode) {
@@ -350,10 +383,10 @@ void TDDTestMenu::setContentSize(const Size &size)
 	}
 
 	if(mTestTable) {
-		Size size = getContentSize();
-		size.height -= mHeaderHeight;
+		Size tableSize = getContentSize();
+		tableSize.height -= mHeaderHeight;
 
-		mTestTable->resizeTo(size);
+		mTestTable->resizeTo(tableSize);
 	}
 
 
