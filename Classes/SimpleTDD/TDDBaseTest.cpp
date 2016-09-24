@@ -279,33 +279,66 @@ std::string TDDBaseTest::getTestName()
 
 
 #pragma mark - Assertion Logic
-void TDDBaseTest::assertEquals(int expect, int actual, const std::string &remark)
+void TDDBaseTest::assertEquals(const std::string &file, int line, int expect,
+							   int actual, const std::string &remark)
 {
-	TDDAssertInfo *info = TDDAssertInfo::create(getTestName());
-	info->setIsPassed(expect == actual);
-	info->setRemark(remark);
-	if(! info->getIsPassed()) {
-		info->setResult(StringUtils::format("expect <%d> but <%d>", expect, actual));
-	}
-	
-	if(mBreakWhenFail) {
-		CC_ASSERT(info->getIsPassed());
-	}
+	doAssertLogic(file, line, remark, expect == actual,
+				  StringUtils::format("expect <%d> but <%d>", expect, actual));
 }
 
-void TDDBaseTest::assertTrue(bool cond, const std::string &remark)
+void TDDBaseTest::assertEquals(const std::string &file, int line,
+							   float expect, float actual, const std::string &remark)
 {
-	//CC_ASSERT(<#cond#>)
-	TDDAssertInfo *info = TDDAssertInfo::create(getTestName());
-	info->setIsPassed(true == cond);
+	doAssertLogic(file, line, remark, expect == actual,
+				  StringUtils::format("expect <%f> but <%f>", expect, actual));
+}
+void TDDBaseTest::assertEquals(const std::string &file, int line,
+				  double expect, double actual, const std::string &remark)
+{
+	doAssertLogic(file, line, remark, expect == actual,
+				  StringUtils::format("expect <%f> but <%f>", expect, actual));
+}
+
+void TDDBaseTest::assertEquals(const std::string &file, int line,
+				  long expect, long actual, const std::string &remark)
+{
+	doAssertLogic(file, line, remark, expect == actual,
+				  StringUtils::format("expect <%ld> but <%ld>", expect, actual));
+}
+
+void TDDBaseTest::assertEquals(const std::string &file, int line,
+				  bool expect, bool actual, const std::string &remark)
+{
+	doAssertLogic(file, line, remark, expect == actual,
+				  StringUtils::format("expect <%s> but <%s>",
+									  (expect ? "true" : "false"),
+									  (actual ? "true" : "false")));
+}
+
+
+void TDDBaseTest::assertTrue(const std::string &file, int line,
+							 bool cond, const std::string &remark)
+{
+	doAssertLogic(file, line, remark, true == cond, "expect <true> but <false>");
+}
+
+
+void TDDBaseTest::doAssertLogic(const std::string &file, int line,
+								const std::string &remark,
+								bool isPassed, const std::string &result)
+{
+	TDDAssertInfo *info = TDDAssertInfo::create(getTestName(), file, line);
+	info->setIsPassed(isPassed);
 	info->setRemark(remark);
 	if(! info->getIsPassed()) {
-		info->setResult("expect true");
+		info->setResult(result);
 	}
 	
 	if(mBreakWhenFail) {
 		CC_ASSERT(info->getIsPassed());
 	}
+	log("%s", info->toString().c_str());
 }
+
 
 #endif

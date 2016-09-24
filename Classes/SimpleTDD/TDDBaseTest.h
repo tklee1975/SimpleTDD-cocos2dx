@@ -24,6 +24,12 @@ USING_NS_CC_EXT;
 // Macro
 #define ADD_TEST(__method__)	addTest(#__method__, [&]() { __method__(); });
 
+#define TDD_ASSERT_EQ(__expect__, __actual__, __remark__)\
+		assertEquals(__FILE__, __LINE__, __expect__, __actual__, __remark__)
+
+#define TDD_ASSERT_TRUE(__cond__, __remark__)	\
+		assertTrue(__FILE__, __LINE__, __cond__, __remark__)
+
 class TDDTestMenu;
 
 // Note:
@@ -106,8 +112,22 @@ private:
 	
 #pragma mark - Assertion Logic
 protected:
-	void assertTrue(bool cond, const std::string &remark="");
-	void assertEquals(int expect, int actual, const std::string &remark="");
+	void assertTrue(const std::string &file, int line, bool cond, const std::string &remark="");
+	void assertEquals(const std::string &file, int line,
+						int expect, int actual, const std::string &remark="");
+	void assertEquals(const std::string &file, int line,
+						float expect, float actual, const std::string &remark);
+	void assertEquals(const std::string &file, int line,
+						double expect, double actual, const std::string &remark="");
+	void assertEquals(const std::string &file, int line,
+						long expect, long actual, const std::string &remark="");
+	void assertEquals(const std::string &file, int line,
+						bool expect, bool actual, const std::string &remark="");
+	
+	
+	// every will call this!
+	void doAssertLogic(const std::string &file, int line, const std::string &remark,
+					   bool isPassed, const std::string &result);
 	
 	CC_SYNTHESIZE(bool, mBreakWhenFail, BreakWhenFail);
 };

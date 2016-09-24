@@ -56,6 +56,8 @@
 		732472221D68568500CCAB9B /* TDDTestMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7324721F1D68568500CCAB9B /* TDDTestMenu.cpp */; };
 		732472251D68585800CCAB9B /* TDDTestMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 732472231D68585800CCAB9B /* TDDTestMenuTest.cpp */; };
 		732472261D68585800CCAB9B /* TDDTestMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 732472231D68585800CCAB9B /* TDDTestMenuTest.cpp */; };
+		73339D621D96E4A1001193EB /* TDDAssertTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73339D601D96E4A1001193EB /* TDDAssertTest.cpp */; };
+		73339D651D96E875001193EB /* StdStringTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73339D631D96E875001193EB /* StdStringTest.cpp */; };
 		7335D69A1D871E1200532C98 /* TestMenuTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7335D6981D871E1200532C98 /* TestMenuTest.cpp */; };
 		73491BC31D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
 		73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
@@ -213,6 +215,10 @@
 		732472201D68568500CCAB9B /* TDDTestMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTestMenu.h; sourceTree = "<group>"; };
 		732472231D68585800CCAB9B /* TDDTestMenuTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTestMenuTest.cpp; sourceTree = "<group>"; };
 		732472241D68585800CCAB9B /* TDDTestMenuTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTestMenuTest.h; sourceTree = "<group>"; };
+		73339D601D96E4A1001193EB /* TDDAssertTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDAssertTest.cpp; sourceTree = "<group>"; };
+		73339D611D96E4A1001193EB /* TDDAssertTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDAssertTest.h; sourceTree = "<group>"; };
+		73339D631D96E875001193EB /* StdStringTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdStringTest.cpp; sourceTree = "<group>"; };
+		73339D641D96E875001193EB /* StdStringTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdStringTest.h; sourceTree = "<group>"; };
 		7335D6981D871E1200532C98 /* TestMenuTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMenuTest.cpp; sourceTree = "<group>"; };
 		7335D6991D871E1200532C98 /* TestMenuTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMenuTest.h; sourceTree = "<group>"; };
 		73491BC11D563F7C004D09F9 /* TDDTab.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTab.cpp; sourceTree = "<group>"; };
@@ -532,6 +538,10 @@
 		739132991A8F4A5B00E95086 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73339D631D96E875001193EB /* StdStringTest.cpp */,
+				73339D641D96E875001193EB /* StdStringTest.h */,
+				73339D601D96E4A1001193EB /* TDDAssertTest.cpp */,
+				73339D611D96E4A1001193EB /* TDDAssertTest.h */,
 				7335D6981D871E1200532C98 /* TestMenuTest.cpp */,
 				7335D6991D871E1200532C98 /* TestMenuTest.h */,
 				73A76A491D721086003ACAF0 /* TextFieldTest.cpp */,
@@ -724,6 +734,7 @@
 				739132871A8F49A300E95086 /* TDDSample.cpp in Sources */,
 				739132BF1A8F4A5B00E95086 /* SwitchTest.cpp in Sources */,
 				7391328B1A8F49A300E95086 /* TDDHelper.cpp in Sources */,
+				73339D651D96E875001193EB /* StdStringTest.cpp in Sources */,
 				739132C51A8F4A5B00E95086 /* TDDSubMenuTest.cpp in Sources */,
 				739132B31A8F4A5B00E95086 /* ButtonTest.cpp in Sources */,
 				737A6C831D506CCE00969614 /* TDDManager.cpp in Sources */,
@@ -764,6 +775,7 @@
 				73130E0D1D5EF9E600007D37 /* TDDMainLayer.cpp in Sources */,
 				739132B71A8F4A5B00E95086 /* ExampleTest.cpp in Sources */,
 				73AF4E4C1D5B9D65003A0EB4 /* TDDTopBarTest.cpp in Sources */,
+				73339D621D96E4A1001193EB /* TDDAssertTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
