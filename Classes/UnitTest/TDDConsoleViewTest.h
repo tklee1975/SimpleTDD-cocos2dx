@@ -10,6 +10,8 @@
 
 #include "TDDBaseTest.h"
 
+class TDDConsoleView;
+
 // Class Declaration
 class TDDConsoleViewTest : public TDDBaseTest
 {
@@ -22,6 +24,10 @@ protected:
 	
 private:
 	void testSample();
+	void testClear();
+	void testAppend();
+private:
+	TDDConsoleView *mConsoleView;
 };
 
 #endif

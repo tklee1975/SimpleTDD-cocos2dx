@@ -37,8 +37,14 @@ public:
 	CC_SYNTHESIZE(std::string, mFontName, FontName);
 	CC_SYNTHESIZE(int, mFontSize, FontSize);
 
+	
 	void appendLog(const std::string &msg);
+	void clear();
+	
 	void scrollToTop();
+
+protected:
+	void setConsoleContent(const std::string &msg);
 	
 protected:
 	ScrollView *mScrollView;

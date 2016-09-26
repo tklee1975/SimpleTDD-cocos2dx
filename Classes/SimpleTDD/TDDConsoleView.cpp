@@ -69,21 +69,33 @@ bool TDDConsoleView::initWithSize(const Size &contentSize)
 	return true;
 }
 
+void TDDConsoleView::clear()
+{
+	setConsoleContent("");
+}
+
 
 void TDDConsoleView::appendLog(const std::string &msg)
 {
-	mContent = msg + "\n" + mContent;
-	
+	std::string newContent = msg + "\n" + mContent;
+	setConsoleContent(newContent);
+}
+
+void TDDConsoleView::setConsoleContent(const std::string &msg)
+{
+	mContent = msg;
 	mContentText->setString(mContent);
 	
-//	Size textSize = mContentText->getTextAreaSize();
-//	log("debug: text size=%f %f", textSize.width, textSize.height);
-//	
+	//	Size textSize = mContentText->getTextAreaSize();
+	//	log("debug: text size=%f %f", textSize.width, textSize.height);
+	//
 	Size contentSize = mContentText->getContentSize();
 	float newHeight = contentSize.height;
 	
 	// log("debug: contentSize text height=%f,%f", contentSize.width, contentSize.height);
-	mContentText->setPosition(Vec2(kSideMargin, newHeight));
+	float newY = MAX(newHeight, mScrollView->getViewSize().height);
+	
+	mContentText->setPosition(Vec2(kSideMargin, newY));
 	
 	
 	Size newSize = Size(mScrollView->getContentSize().width, newHeight);

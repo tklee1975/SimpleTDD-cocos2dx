@@ -10,7 +10,9 @@ Version 2.2.0 *
 - Easy Menu Customisation
 	- setMenuSizeByType(MenuSizeType::HalfHeight1);
 	  MenuSizeType: SizeTypeHalfHeight, FullHeight, HalfWidth, FullWidth, OneThirdHeight)
-	
+
+- Test Console: A visual panel that help showing the information on the UI
+* Easy Touch handling 
 
 
 Version 2.1.0 

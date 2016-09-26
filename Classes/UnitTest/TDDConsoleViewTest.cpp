@@ -36,6 +36,8 @@ void TDDConsoleViewTest::didRunTest(const std::string &name)
 void TDDConsoleViewTest::defineTests()
 {
 	ADD_TEST(testSample);
+	ADD_TEST(testClear);
+	ADD_TEST(testAppend);
 }
 
 #pragma mark -
@@ -51,8 +53,23 @@ void TDDConsoleViewTest::testSample()
 		std::string str = StringUtils::format("testing %d", i);
 		view->appendLog(str);
 	}
-	
+
+	mConsoleView = view;
 }
 
+void TDDConsoleViewTest::testClear()
+{
+	if(mConsoleView) {
+		mConsoleView->clear();
+		mConsoleView->appendLog("first log");
+	}
+}
 
+void TDDConsoleViewTest::testAppend()
+{
+	static int counter = 0;
+	if(mConsoleView) {
+		mConsoleView->appendLog(StringUtils::format("new line %d", (counter++)));
+	}
+}
 #endif
