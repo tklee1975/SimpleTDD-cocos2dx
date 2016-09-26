@@ -36,19 +36,28 @@ public:
 	CC_SYNTHESIZE(Color3B, mTextColor, TextColor);
 	CC_SYNTHESIZE(std::string, mFontName, FontName);
 	CC_SYNTHESIZE(int, mFontSize, FontSize);
-
+	
+	CC_SYNTHESIZE(int, mHeaderHeight, HeaderHeight);
+	CC_SYNTHESIZE(Color4B, mHeaderColor, HeaderColor);
 	
 	void appendLog(const std::string &msg);
 	void clear();
 	
-	void scrollToTop();
+	void scrollToTop(float duration=0);
 
+	
+#pragma mark - Setup 
+	void setupScrollView();
+	void setupHeader();
+	
 protected:
 	void setConsoleContent(const std::string &msg);
+	ui::Button *createButton(const std::string &title, const Size &size);
 	
 protected:
 	ScrollView *mScrollView;
-	Layer *mScrollContentLayer;
+	LayerColor *mScrollContentLayer;
+	LayerColor *mHeaderLayer;
 	ui::Text *mContentText;
 	
 	std::string mContent;
