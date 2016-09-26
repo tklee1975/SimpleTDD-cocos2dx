@@ -78,6 +78,14 @@ public:
 
 	static bool isLandscape();
 	static float getBestScale();
+
+	
+#pragma mark - Helper for String
+	
+// Macro Function
+#define TDD_SIZE_TO_STR(_size_)	StringUtils::format("(%f,%f)", _size_.width, _size_.height)
+#define TDD_VEC2_TO_STR(_v2_)	StringUtils::format("(%f,%f)", _v2_.x, _v2_.y)
+	
 	
 #pragma mark - helping node 
 	static void addAnchorPoint(Node *node, const Color4B &color = Color4B(255, 0, 0, 200));

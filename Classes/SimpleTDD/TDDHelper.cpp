@@ -664,3 +664,4 @@ std::vector<TDDAlign> TDDHelper::getAlignList()
 	
 	return result;
 }
+

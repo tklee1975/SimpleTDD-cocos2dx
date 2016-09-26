@@ -21,6 +21,11 @@ protected:
 private:
 	void subTest();
 	void testFromTop();
+	void testScrollTop();
+	void testScrollBottom();
+private:
+	ScrollView *mScrollView;
+	Layer *mScrollContent;
 }; 
 
 #endif
