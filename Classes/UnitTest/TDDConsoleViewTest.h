@@ -26,6 +26,8 @@ private:
 	void testSample();
 	void testClear();
 	void testAppend();
+	void testAppend2();
+	void testAppendFormat();
 private:
 	TDDConsoleView *mConsoleView;
 };

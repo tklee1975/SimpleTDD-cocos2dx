@@ -31,6 +31,7 @@ USING_NS_CC_EXT;
 		assertTrue(__FILE__, __LINE__, __cond__, __remark__)
 
 class TDDTestMenu;
+class TDDConsoleView;
 
 // Note:
 //		call sequence of TDDBaseTest
@@ -75,8 +76,11 @@ protected:
 	void setMenuVisible(bool flag);
 	void clearNodes();
 
+private:
+	bool isCoreNode(Node *node);		// Core node mean the node that required by BaseTest
 	
 #pragma mark - Menu customization
+protected:
 	void setMenuPostion(const Vec2 &pos);
 	void setMenuSize(const Size &size);
 	void setMenuSizeByPercent(const Vec2 &percent);	// using 0.0 ~ 1.0
@@ -85,6 +89,19 @@ protected:
 	void alignMenu(const TDDAlign &align);
 	void setMenuColor(const Color4B &headerColor, const Color4B &bgColor);
 	void setMenuTextColor(const Color3B &textColor);
+
+	
+#pragma mark - Console
+protected:
+	void setConsoleVisible(bool flag);
+	void alignConsole(const TDDAlign &align);
+	void logConsole(const char * format, ...);
+	// void setMenuPostion(const Vec2 &pos);
+private:
+	TDDConsoleView *mConsoleView;
+	Size mConsoleSize;
+	TDDAlign mConsoleAlign;
+	
 	
 #pragma mark - Helper Method
 private:

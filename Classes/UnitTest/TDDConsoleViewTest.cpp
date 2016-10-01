@@ -38,6 +38,8 @@ void TDDConsoleViewTest::defineTests()
 	ADD_TEST(testSample);
 	ADD_TEST(testClear);
 	ADD_TEST(testAppend);
+	ADD_TEST(testAppend2);
+	ADD_TEST(testAppendFormat);
 }
 
 #pragma mark -
@@ -51,7 +53,7 @@ void TDDConsoleViewTest::testSample()
 	
 	for(int i=0; i<100; i++) {
 		std::string str = StringUtils::format("testing %d", i);
-		view->appendLog(str);
+		view->append(str);
 	}
 
 	mConsoleView = view;
@@ -61,7 +63,7 @@ void TDDConsoleViewTest::testClear()
 {
 	if(mConsoleView) {
 		mConsoleView->clear();
-		mConsoleView->appendLog("first log");
+		mConsoleView->append("first log");
 	}
 }
 
@@ -69,7 +71,22 @@ void TDDConsoleViewTest::testAppend()
 {
 	static int counter = 0;
 	if(mConsoleView) {
-		mConsoleView->appendLog(StringUtils::format("new line %d", (counter++)));
+		mConsoleView->append(StringUtils::format("new line %d", (counter++)));
 	}
 }
+
+void TDDConsoleViewTest::testAppendFormat()
+{
+	static int counter = 0;
+	if(mConsoleView) {
+		mConsoleView->append("int=%d string=%s", counter++, "Hello");
+	}
+}
+
+void TDDConsoleViewTest::testAppend2()
+{
+	static int counter = 0;
+	logConsole("count=%d string=%s", counter++, "Testing");
+}
+
 #endif

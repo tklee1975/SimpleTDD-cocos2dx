@@ -40,13 +40,27 @@ public:
 	CC_SYNTHESIZE(int, mHeaderHeight, HeaderHeight);
 	CC_SYNTHESIZE(Color4B, mHeaderColor, HeaderColor);
 	
-	void appendLog(const std::string &msg);
-	void clear();
 	
 	void scrollToTop(float duration=0);
 
+#pragma mark - logging 
+public:
+	void append(const std::string &msg);
+	void append(const char * format, ...);
+	void append(const char *format, va_list args);
+	
+	void clear();
+
+#pragma mark - Callback
+public:
+	void setCloseCallback(const std::function<void(TDDConsoleView *)> &callback);
+	
+protected:
+	void handleClose();
+	std::function<void(TDDConsoleView *)> mCloseCallback;
 	
 #pragma mark - Setup 
+protected:
 	void setupScrollView();
 	void setupHeader();
 	

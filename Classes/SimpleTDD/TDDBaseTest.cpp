@@ -12,18 +12,23 @@
 #include "TDDTypes.h"
 #include "TDDHelper.h"
 #include "TDDAssertInfo.h"
+#include "TDDConsoleView.h"
 
 // ZOrder
 const int kZorderBackground = -10000;
 const int kZorderTestMenu = 10000;
 const TDDAlign kDefaultMenuAlign = TDDAlign::eTDDTopRight;
 const Vec2 kMenuSizePercent = Vec2(0.3, 1.0);
+const Size kDefaultConsoleSize = Size(200, 320);
+const TDDAlign kDefaultConsoleAlign = TDDAlign::eTDDTopLeft;
 
 TDDBaseTest::TDDBaseTest()
 : mBaseNode(nullptr)
 , mMenuAlign(kDefaultMenuAlign)
 , mCurrentTestName("")
 , mBreakWhenFail(false)
+, mConsoleSize(kDefaultConsoleSize)
+, mConsoleAlign(kDefaultConsoleAlign)
 {
 	Size screenSize = Director::getInstance()->getVisibleSize();
 	setContentSize(screenSize);		// note: it is zero by default
@@ -118,6 +123,18 @@ void TDDBaseTest::setupGUI()
 	// setMenuSizeByPercent(
 	
 	TDDHelper::alignNode(mTestMenu, mMenuAlign);
+	
+	// Console
+	TDDConsoleView *console = TDDConsoleView::create(mConsoleSize);
+	console->setCloseCallback([&](TDDConsoleView *) {
+		setConsoleVisible(false);
+	});
+	addChild(console);
+	mConsoleView = console;
+	alignConsole(mConsoleAlign);
+	// TDDHelper::alignNode(mTestMenu, mMenuAlign);
+	
+	
 }
 
 TDDTestMenu *TDDBaseTest::createTestMenu()
@@ -158,12 +175,24 @@ void TDDBaseTest::clearChildren()
 
 	for(int i=1; i<allNodes.size(); i++) {	// The first node is the scene base layer, cannot remove
 		Node *node = allNodes.at(i);
-		if(node == mBackLayer || node == mTestMenu || node == mBaseNode) {
+		if(isCoreNode(node)) {
 			continue;
 		}
 
 		node->removeFromParent();
 	}
+}
+
+bool TDDBaseTest::isCoreNode(Node *node)
+{
+	if(mBackLayer == node
+		|| mTestMenu == node
+		|| mConsoleView == node
+		|| mBaseNode == node) {
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -340,5 +369,30 @@ void TDDBaseTest::doAssertLogic(const std::string &file, int line,
 	log("%s", info->toString().c_str());
 }
 
+
+#pragma mark - Console
+void TDDBaseTest::setConsoleVisible(bool flag)
+{
+	mConsoleView->setVisible(flag);
+}
+
+void TDDBaseTest::alignConsole(const TDDAlign &align)
+{
+	mConsoleAlign = align;
+	if(mConsoleView) {
+		TDDHelper::alignNode(mConsoleView, mConsoleAlign);
+	}
+}
+
+void TDDBaseTest::logConsole(const char * format, ...)
+{
+	if(mConsoleView) {
+		va_list args;
+		va_start(args, format);
+		mConsoleView->append(format, args);
+		va_end(args);
+	}
+	
+}
 
 #endif

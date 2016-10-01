@@ -38,6 +38,7 @@ TDDConsoleView::TDDConsoleView()
 , mTextColor(kDefaultTextColor)
 , mHeaderColor(kHeaderColor)
 , mHeaderHeight(kHeaderHeight)
+, mCloseCallback(nullptr)
 // , mContentText(nullptr)
 {
 	
@@ -117,9 +118,7 @@ void TDDConsoleView::setupHeader()
 	// Close Button
 	ui::Button *closeButton = createButton("close", size);
 	closeButton->addClickEventListener([&](Ref *) {
-//		if(mBackCallback) {
-//			mBackCallback(this);
-//		}
+		handleClose();
 	});
 	closeButton->setPosition(buttonPos);
 	headerLayer->addChild(closeButton);
@@ -157,8 +156,47 @@ void TDDConsoleView::clear()
 }
 
 
-void TDDConsoleView::appendLog(const std::string &msg)
+void TDDConsoleView::append(const char *format, va_list args)
 {
+	int bufferSize = MAX_LOG_LENGTH;
+	char * buf = nullptr;
+	
+	do
+	{
+		buf = new (std::nothrow) char[bufferSize];
+		if (buf == nullptr) {
+			return; // not enough memory
+		}
+		
+		int ret = vsnprintf(buf, bufferSize - 3, format, args);
+		
+		//
+		if (ret < 0) {		// increase the buffer
+			bufferSize *= 2;
+			
+			delete [] buf;
+			buf = nullptr;
+		} else {
+			break;
+		}
+		
+	} while (true);
+
+	append(std::string(buf));
+}
+
+void TDDConsoleView::append(const char * format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	append(format, args);
+	va_end(args);
+}
+
+
+void TDDConsoleView::append(const std::string &msg)
+{
+	log("console: %s", msg.c_str());
 	std::string newContent = msg + "\n" + mContent;
 	setConsoleContent(newContent);
 }
@@ -209,4 +247,21 @@ ui::Button *TDDConsoleView::createButton(const std::string &title, const Size &s
 	button->setTitleFontSize(15);
 	
 	return button;
+}
+
+
+#pragma mark - Callback
+void TDDConsoleView::setCloseCallback(const std::function<void(TDDConsoleView *)> &callback)
+{
+	mCloseCallback = callback;
+}
+
+void TDDConsoleView::handleClose()
+{
+	if(mCloseCallback == nullptr) {
+		removeFromParent();
+	} else {
+		mCloseCallback(this);
+	}
+	
 }
