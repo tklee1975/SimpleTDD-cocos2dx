@@ -38,6 +38,7 @@ void TDDHelperTest::tearDown()
 void TDDHelperTest::defineTests()
 {
 	ADD_TEST(testResolveAlign);
+	ADD_TEST(testFormat);
 	ADD_TEST(testAlignNode);
 	ADD_TEST(testAddButtonWithBg);
 	ADD_TEST(testJoinString);
@@ -296,7 +297,13 @@ void TDDHelperTest::testAlignNode()
 	index = (index + 1) % mAlignList.size();
 }
 
-
+void TDDHelperTest::testFormat()
+{
+//	std::string
+	std::string result = TDDHelper::format("value=%d string=%s", 12345, "hello!!!");
+	
+	logConsole(result.c_str());
+}
 
 
 #endif

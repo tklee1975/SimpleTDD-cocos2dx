@@ -489,6 +489,53 @@ std::string TDDHelper::joinString(const std::vector<std::string> &strArray,
 	return result;
 }
 
+std::string TDDHelper::format(const char * format, ...)	// For testing formatVAList
+{
+	std::string result;
+	
+	va_list args;
+	va_start(args, format);
+	result = formatVAList(format, args);
+	va_end(args);
+	
+	return result;
+}
+
+// Note: used by TDDBaseTest Logging
+std::string TDDHelper::formatVAList(const char *format, va_list args)
+{
+	int bufferSize = MAX_LOG_LENGTH;
+	char * buf = nullptr;
+	
+	do
+	{
+		buf = new (std::nothrow) char[bufferSize];
+		if (buf == nullptr) {
+			return std::string(format); // not enough memory
+		}
+		
+		int ret = vsnprintf(buf, bufferSize - 3, format, args);
+		
+		//
+		if (ret < 0) {		// increase the buffer
+			bufferSize *= 2;
+			
+			delete [] buf;
+			buf = nullptr;
+		} else {
+			break;
+		}
+		
+	} while (true);
+	
+	std::string result = std::string(buf);
+	
+	delete [] buf;		// clean up
+	
+	return result;
+}
+
+
 #pragma mark - Scale
 float TDDHelper::getBestScale()
 {
@@ -664,4 +711,6 @@ std::vector<TDDAlign> TDDHelper::getAlignList()
 	
 	return result;
 }
+
+
 

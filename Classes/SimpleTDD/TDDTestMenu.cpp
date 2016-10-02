@@ -17,6 +17,7 @@ const float kMarginX = 10;
 TDDTestMenu::TDDTestMenu()
 : mTestNameList()
 , mTestSelectedCallback(nullptr)
+, mToggleConCallback(nullptr)
 , mHeaderColor(kHeaderColor)
 , mShow(true)
 , mHeaderNode(nullptr)
@@ -183,6 +184,11 @@ void TDDTestMenu::refreshMenu()
 		mTestTable->refresh();
 	}
 
+}
+
+void TDDTestMenu::setToggleConsoleCallback(const TestMenuCallback &callback)
+{
+	mToggleConCallback = callback;
 }
 
 void TDDTestMenu::setTestSelectedCallback(const TestSelectedCallback &callback)

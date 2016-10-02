@@ -46,6 +46,7 @@ public:
 	// Callback
 	void setTestSelectedCallback(const TestSelectedCallback &callback);
 	void setBackCallback(const TestMenuCallback &callback);
+	void setToggleConsoleCallback(const TestMenuCallback &callback);
 
 	// Toggle the Menu
 	void toggleMenu();
@@ -104,6 +105,7 @@ private:
 	// Callback
 	TestSelectedCallback mTestSelectedCallback;
 	TestMenuCallback mBackCallback;
+	TestMenuCallback mToggleConCallback;
 	//std::function<
 
 	// Menu Control

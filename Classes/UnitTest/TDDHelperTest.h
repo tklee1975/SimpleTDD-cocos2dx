@@ -34,6 +34,7 @@ private:
 	void testAddButtonWithBg();
 	void testResolveAlign();
 	void testAlignNode();
+	void testFormat();
 	
 private:
 	std::vector<TDDAlign> mAlignList;

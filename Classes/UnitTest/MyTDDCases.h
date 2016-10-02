@@ -38,6 +38,7 @@
 #include "StdStringTest.h"
 #include "TDDConsoleViewTest.h"
 #include "UITextTest.h"
+#include "TDDUIHelperTest.h"
 
 //#include#
 // NOTE!!! The above line is used to generate new unit test, must not be removed.
@@ -47,6 +48,7 @@ TDD_CASES
 {
 	TEST(TDD2SampleTest),
 	TEST(TDDConsoleViewTest),
+	TEST(TDDUIHelperTest), 
 	TEST(UITextTest), 
 	TEST(TDDAssertTest),
 	TEST(StdStringTest),

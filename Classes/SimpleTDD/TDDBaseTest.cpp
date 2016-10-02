@@ -41,6 +41,7 @@ void TDDBaseTest::onEnter()
 	findBaseNode();		// Find the base node, prevent it is removed from clearChildren!!
 
 	defineTests();		// Define the list of sub test
+						// mTestNameList is filling up
 
 	setupGUI();
 
@@ -386,11 +387,16 @@ void TDDBaseTest::alignConsole(const TDDAlign &align)
 
 void TDDBaseTest::logConsole(const char * format, ...)
 {
-	if(mConsoleView) {
-		va_list args;
-		va_start(args, format);
-		mConsoleView->append(format, args);
-		va_end(args);
+	// Construct the string
+	va_list args;
+	va_start(args, format);
+	std::string result = TDDHelper::formatVAList(format, args);
+	va_end(args);
+	
+	if(mConsoleView == nullptr) {
+		log("%s", result.c_str());
+	} else {
+		mConsoleView->append(result);
 	}
 	
 }

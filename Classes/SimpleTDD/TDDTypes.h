@@ -17,7 +17,7 @@
 // TDD includes
 
 
-enum TDDAlign
+typedef enum
 {
 	eTDDTop				= 1,		
 	eTDDMiddle			= 2,
@@ -44,7 +44,14 @@ enum TDDAlign
 //	eTDDTopRight,
 //	eTDDBottomLeft,
 //	eTDDBottomRight,
-};
+} TDDAlign;
+
+typedef enum
+{
+	eDirVertical		= 1,
+	eDirHorizontal		= 2,
+	eDirUnknown			= 3,
+} TDDDirection;
 
 //enum TDDMenuMode {
 //	TDDMenuModeAll = 0,

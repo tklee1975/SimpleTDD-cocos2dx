@@ -48,6 +48,8 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 
+	
+	
 #pragma mark - Core Method for override
 protected:
 
@@ -59,6 +61,8 @@ protected:
 
 	virtual void willRunTest(const std::string &name);	// before run a test
 	virtual void didRunTest(const std::string &name);	// after run a test
+	
+	
 
 #pragma mark - Core Method for testing
 	void addTest(const std::string &name, const std::function<void()> &callback);
@@ -96,7 +100,10 @@ protected:
 	void setConsoleVisible(bool flag);
 	void alignConsole(const TDDAlign &align);
 	void logConsole(const char * format, ...);
+	
 	// void setMenuPostion(const Vec2 &pos);
+	
+	
 private:
 	TDDConsoleView *mConsoleView;
 	Size mConsoleSize;
