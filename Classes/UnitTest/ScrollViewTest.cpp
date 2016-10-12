@@ -43,7 +43,7 @@ void ScrollViewTest::subTest()
 	LayerColor *scrollContent = LayerColor::create(Color4B::YELLOW, 300, 600);
 	
 	
-	ScrollView *scrollView = ScrollView::create(Size(200, 200), scrollContent);
+	cocos2d::extension::ScrollView *scrollView = cocos2d::extension::ScrollView::create(Size(200, 200), scrollContent);
 	mScrollContent = scrollContent;
 	
 	addChild(scrollView);

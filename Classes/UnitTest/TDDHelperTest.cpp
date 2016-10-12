@@ -8,6 +8,9 @@
 #include "TDDHelper.h"
 #include "TDDConstant.h"
 
+#include "extensions/cocos-ext.h"
+
+
 void TDDHelperTest::setUp()
 {
 	log("TDD Setup is called");
@@ -112,7 +115,7 @@ void TDDHelperTest::testCreateEditBox()
 	Point pos = Point(50, 100);
 	Size size = Size(200, 60);
 	
-	EditBox *edit = TDDHelper::createEditBox(this, pos, size);
+	extension::EditBox *edit = TDDHelper::createEditBox(this, pos, size);
 	edit->setAnchorPoint(Point(0, 0));
 	edit->setText("Testing!!!");
 }
@@ -136,12 +139,12 @@ void TDDHelperTest::testAlignMenuItem()
 	Node *containerLayer = menu;
 	
 	
-	ScrollView *scrollView = ScrollView::create(Size(width, 200));
+	extension::ScrollView *scrollView = extension::ScrollView::create(Size(width, 200));
 	scrollView->setPosition(Point(50, 50));
 	
 	scrollView->setContainer(containerLayer);
 	scrollView->setContentSize(menuSize);
-	scrollView->setDirection(ScrollView::Direction::VERTICAL);
+	scrollView->setDirection(extension::ScrollView::Direction::VERTICAL);
 	//
 	
 	addChild(scrollView, 0, 100);

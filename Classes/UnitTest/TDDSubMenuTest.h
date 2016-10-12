@@ -9,7 +9,7 @@
 // Include Header
 
 #include "TDDBaseTest.h"
-
+#include "extensions/cocos-ext.h"
 class TDDSubMenu;
 
 // Class Declaration 
@@ -24,7 +24,7 @@ private:
 	void subTest();
 	void testMenu();
 	
-	void onBackPressed(Ref *sender, Control::EventType controlEvent);
+	void onBackPressed(Ref *sender, cocos2d::extension::Control::EventType controlEvent);
 
 
 private:

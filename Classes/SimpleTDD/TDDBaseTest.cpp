@@ -19,15 +19,18 @@ const int kZorderBackground = -10000;
 const int kZorderTestMenu = 10000;
 const TDDAlign kDefaultMenuAlign = TDDAlign::eTDDTopRight;
 const Vec2 kMenuSizePercent = Vec2(0.3, 1.0);
-const Size kDefaultConsoleSize = Size(200, 320);
-const TDDAlign kDefaultConsoleAlign = TDDAlign::eTDDTopLeft;
+
+const Size kDefaultConsoleSizeLandScape = Size(350, 200);
+const Size kDefaultConsoleSizePortrait = Size(320, 200);
+
+const TDDAlign kDefaultConsoleAlign = TDDAlign::eTDDBottomLeft;
 
 TDDBaseTest::TDDBaseTest()
 : mBaseNode(nullptr)
 , mMenuAlign(kDefaultMenuAlign)
 , mCurrentTestName("")
 , mBreakWhenFail(false)
-, mConsoleSize(kDefaultConsoleSize)
+, mConsoleSize(kDefaultConsoleSizeLandScape)
 , mConsoleAlign(kDefaultConsoleAlign)
 {
 	Size screenSize = Director::getInstance()->getVisibleSize();
@@ -81,13 +84,13 @@ void TDDBaseTest::doTestCallback(const std::string &name)
 	}
 
 	mCurrentTestName = name;
-	
+
 	willRunTest(name);
 
 	callback();
 
 	didRunTest(name);
-	
+
 	mCurrentTestName = "";
 }
 
@@ -117,14 +120,14 @@ void TDDBaseTest::setupGUI()
 	testMenu->setLocalZOrder(kZorderTestMenu);
 	addChild(testMenu);
 	mTestMenu = testMenu;
-	
+
 	setMenuSizeByPercent(kMenuSizePercent);
 
 	// Default SizePercent
 	// setMenuSizeByPercent(
-	
+
 	TDDHelper::alignNode(mTestMenu, mMenuAlign);
-	
+
 	// Console
 	TDDConsoleView *console = TDDConsoleView::create(mConsoleSize);
 	console->setCloseCallback([&](TDDConsoleView *) {
@@ -134,8 +137,19 @@ void TDDBaseTest::setupGUI()
 	mConsoleView = console;
 	alignConsole(mConsoleAlign);
 	// TDDHelper::alignNode(mTestMenu, mMenuAlign);
-	
-	
+
+	// Adjust for Portraint
+	if(TDDHelper::isLandscape() == false) {
+		alignMenu(eTDDTopCenter);
+
+		setMenuSizeByPercent(Vec2(1, 0.3));
+		mTestMenu->setColumn(2);
+		mTestMenu->refreshTable();
+		
+		//
+		alignConsole(TDDAlign::eTDDBottomCenter);
+		mConsoleView->setContentSize(kDefaultConsoleSizePortrait);
+	}
 }
 
 TDDTestMenu *TDDBaseTest::createTestMenu()
@@ -239,7 +253,7 @@ void TDDBaseTest::setMenuTextColor(const Color3B &textColor)
 	if(mTestMenu) {
 		mTestMenu->setTextColor(textColor);
 	}
-	
+
 }
 
 void TDDBaseTest::clearNodes()
@@ -260,7 +274,7 @@ void TDDBaseTest::setMenuSizeByPercent(const Vec2 &percent)
 		mTestMenu->setContentSizeByPercent(percent);
 		TDDHelper::alignNode(mTestMenu, mMenuAlign);		// reset the test menu
 	}
-	
+
 
 }
 
@@ -295,7 +309,7 @@ void TDDBaseTest::alignMenu(const TDDAlign &align)
 	if(mTestMenu == nullptr) {
 		return;
 	}
-	
+
 	mMenuAlign = align;
 	TDDHelper::alignNode(mTestMenu, mMenuAlign);
 }
@@ -309,34 +323,34 @@ std::string TDDBaseTest::getTestName()
 
 
 #pragma mark - Assertion Logic
-void TDDBaseTest::assertEquals(const std::string &file, int line, int expect,
+void TDDBaseTest::_assertEquals(const std::string &file, int line, int expect,
 							   int actual, const std::string &remark)
 {
 	doAssertLogic(file, line, remark, expect == actual,
 				  StringUtils::format("expect <%d> but <%d>", expect, actual));
 }
 
-void TDDBaseTest::assertEquals(const std::string &file, int line,
+void TDDBaseTest::_assertEquals(const std::string &file, int line,
 							   float expect, float actual, const std::string &remark)
 {
 	doAssertLogic(file, line, remark, expect == actual,
 				  StringUtils::format("expect <%f> but <%f>", expect, actual));
 }
-void TDDBaseTest::assertEquals(const std::string &file, int line,
+void TDDBaseTest::_assertEquals(const std::string &file, int line,
 				  double expect, double actual, const std::string &remark)
 {
 	doAssertLogic(file, line, remark, expect == actual,
 				  StringUtils::format("expect <%f> but <%f>", expect, actual));
 }
 
-void TDDBaseTest::assertEquals(const std::string &file, int line,
+void TDDBaseTest::_assertEquals(const std::string &file, int line,
 				  long expect, long actual, const std::string &remark)
 {
 	doAssertLogic(file, line, remark, expect == actual,
 				  StringUtils::format("expect <%ld> but <%ld>", expect, actual));
 }
 
-void TDDBaseTest::assertEquals(const std::string &file, int line,
+void TDDBaseTest::_assertEquals(const std::string &file, int line,
 				  bool expect, bool actual, const std::string &remark)
 {
 	doAssertLogic(file, line, remark, expect == actual,
@@ -346,7 +360,7 @@ void TDDBaseTest::assertEquals(const std::string &file, int line,
 }
 
 
-void TDDBaseTest::assertTrue(const std::string &file, int line,
+void TDDBaseTest::_assertTrue(const std::string &file, int line,
 							 bool cond, const std::string &remark)
 {
 	doAssertLogic(file, line, remark, true == cond, "expect <true> but <false>");
@@ -363,11 +377,12 @@ void TDDBaseTest::doAssertLogic(const std::string &file, int line,
 	if(! info->getIsPassed()) {
 		info->setResult(result);
 	}
-	
+
 	if(mBreakWhenFail) {
 		CC_ASSERT(info->getIsPassed());
 	}
 	log("%s", info->toString().c_str());
+	logConsole(info->toString().c_str());
 }
 
 
@@ -392,13 +407,13 @@ void TDDBaseTest::logConsole(const char * format, ...)
 	va_start(args, format);
 	std::string result = TDDHelper::formatVAList(format, args);
 	va_end(args);
-	
+
 	if(mConsoleView == nullptr) {
 		log("%s", result.c_str());
 	} else {
 		mConsoleView->append(result);
 	}
-	
+
 }
 
 #endif

@@ -13,14 +13,12 @@
 
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include <string>
 #include <vector>
 #include "cocostudio/CocoStudio.h"
 #include "CocosGUI.h"
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 class TDDConsoleView : public LayerColor
 {
@@ -69,7 +67,7 @@ protected:
 	ui::Button *createButton(const std::string &title, const Size &size);
 	
 protected:
-	ScrollView *mScrollView;
+	ui::ScrollView *mScrollView;
 	LayerColor *mScrollContentLayer;
 	LayerColor *mHeaderLayer;
 	ui::Text *mContentText;

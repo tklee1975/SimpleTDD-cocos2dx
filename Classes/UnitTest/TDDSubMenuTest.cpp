@@ -51,7 +51,7 @@ void TDDSubMenuTest::subTest()
 	this->addChild(menu);
 }
 
-void TDDSubMenuTest::onBackPressed(Ref *sender, Control::EventType controlEvent)
+void TDDSubMenuTest::onBackPressed(Ref *sender, cocos2d::extension::Control::EventType controlEvent)
 {
 	log("onBackPressed: is called");
 }

@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
+#include "ui/CocosGUI.h"
 #include "TDDTypes.h"
 #include <string>
 #include <vector>
@@ -21,7 +22,6 @@
 #define kButtonRight	4
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 using namespace std;
 
@@ -45,7 +45,7 @@ public:
 	static void scrollToTop(cocos2d::extension::ScrollView *scrollView);
 	static Point getCenter(Size &parentSize, Size &nodeSize);
 	
-	static EditBox *createEditBox(Node *parent, Point position, Size size);
+	static ui::EditBox *createEditBox(Node *parent, Point position, Size size);
 	
 	static void saveFilter(const char *pattern);
 	static const char *getFilter();

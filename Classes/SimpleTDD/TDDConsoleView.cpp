@@ -74,10 +74,16 @@ void TDDConsoleView::setupScrollView()
 	Size scrollSize = Size(width, height);
 	
 	// configure the scrollView
-	mScrollContentLayer = LayerColor::create(kClearColor, width, height);
-	mScrollView = ScrollView::create(scrollSize, mScrollContentLayer);
-	mScrollView->setDirection(ScrollView::Direction::VERTICAL);
-	mScrollView->setClippingToBounds(true);
+	mScrollView = ui::ScrollView::create();
+	mScrollView->setContentSize(scrollSize);
+	mScrollView->setInnerContainerSize(Size(width, height));
+	mScrollView->setDirection(ui::ScrollView::Direction::BOTH);
+	mScrollView->setClippingEnabled(true);
+	
+//	mScrollContentLayer = LayerColor::create(kClearColor, width, height);
+//	mScrollView = ScrollView::create(scrollSize, mScrollContentLayer);
+//	mScrollView->setDirection(ScrollView::Direction::VERTICAL);
+//	mScrollView->setClippingToBounds(true);
 	
 	//
 	addChild(mScrollView);
@@ -86,7 +92,7 @@ void TDDConsoleView::setupScrollView()
 	mContentText = ui::Text::create(mContent, mFontName, mFontSize);
 	mContentText->setAnchorPoint(Vec2(0, 1));
 	mContentText->setPosition(Vec2(kSideMargin, height));
-	mScrollContentLayer->addChild(mContentText);
+	mScrollView->addChild(mContentText);
 	
 }
 
@@ -211,8 +217,10 @@ void TDDConsoleView::setConsoleContent(const std::string &msg)
 	//
 	
 	Size contentSize = mContentText->getContentSize();
-	float newHeight = MAX(contentSize.height, mScrollView->getViewSize().height);
+	Size scrollViewSize = mScrollView->getContentSize();
+	float newHeight = MAX(contentSize.height, scrollViewSize.height);
 	
+	float newWidth = MAX(contentSize.width, scrollViewSize.width);
 	
 	// log("debug: contentSize text height=%f,%f", contentSize.width, contentSize.height);
 	float newY = newHeight;
@@ -220,8 +228,8 @@ void TDDConsoleView::setConsoleContent(const std::string &msg)
 	mContentText->setPosition(Vec2(kSideMargin, newY));
 	
 	
-	Size newSize = Size(mScrollView->getContentSize().width, newHeight);
-	mScrollContentLayer->setContentSize(newSize);
+	Size newSize = Size(newWidth, newHeight);
+	mScrollView->setInnerContainerSize(newSize);
 	
 	
 	// mScrollView->setViewSize(contentSize);
@@ -232,10 +240,7 @@ void TDDConsoleView::setConsoleContent(const std::string &msg)
 
 void TDDConsoleView::scrollToTop(float dt)
 {
-	float scrollHeight = mScrollView->getViewSize().height;
-	float contentHeight = mScrollContentLayer->getContentSize().height;
-	
-	mScrollView->setContentOffset(Vec2(0, -contentHeight+scrollHeight), dt);
+	mScrollView->scrollToTop(dt, true);
 }
 
 ui::Button *TDDConsoleView::createButton(const std::string &title, const Size &size)

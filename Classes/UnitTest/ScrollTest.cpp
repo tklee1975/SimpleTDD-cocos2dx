@@ -39,11 +39,11 @@ void ScrollTest::subTest()
 	colorLayer->changeWidthAndHeight(200, 500);
 	
 	
-	ScrollView *scrollView = ScrollView::create(Size(300, 200));
+	extension::ScrollView *scrollView = extension::ScrollView::create(Size(300, 200));
 	scrollView->setPosition(Point(50, 50));
 	
 	scrollView->setContainer(colorLayer);
-	scrollView->setDirection(ScrollView::Direction::VERTICAL);
+	scrollView->setDirection(extension::ScrollView::Direction::VERTICAL);
 	
 	addChild(scrollView);
 }
