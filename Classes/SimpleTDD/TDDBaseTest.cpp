@@ -136,6 +136,8 @@ void TDDBaseTest::setupGUI()
 	addChild(console);
 	mConsoleView = console;
 	alignConsole(mConsoleAlign);
+	setConsoleVisible(false);
+	
 	// TDDHelper::alignNode(mTestMenu, mMenuAlign);
 
 	// Adjust for Portraint

@@ -1,9 +1,13 @@
 Version Note about Simple TDD
 
-Version 2.3.0 *  
+Version 2.4.0 *  
 ---------------------
 - TODO: Android build
 * Easy Touch handling 
+
+Version 2.3.0 *  
+---------------------
+- improve the Button touch 
 
 
 

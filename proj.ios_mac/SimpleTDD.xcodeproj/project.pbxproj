@@ -125,6 +125,7 @@
 		739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739A0F221D5A4F4300389528 /* WidgetTest.cpp */; };
 		739F0BAF1DAEA70E00D2A86E /* LogConsoleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739F0BAD1DAEA70E00D2A86E /* LogConsoleTest.cpp */; };
 		73A76A4B1D721086003ACAF0 /* TextFieldTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A76A491D721086003ACAF0 /* TextFieldTest.cpp */; };
+		73AB8B811DCB8BFC003E4F3D /* PositionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AB8B801DCB8BFC003E4F3D /* PositionTest.cpp */; };
 		73AF4E471D5B9B5C003A0EB4 /* TDDTopBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E451D5B9B5C003A0EB4 /* TDDTopBar.cpp */; };
 		73AF4E481D5B9B5C003A0EB4 /* TDDTopBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E451D5B9B5C003A0EB4 /* TDDTopBar.cpp */; };
 		73AF4E4C1D5B9D65003A0EB4 /* TDDTopBarTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */; };
@@ -134,6 +135,10 @@
 		73E35F181D948295004A93A0 /* TDDAssertInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */; };
 		73E35F191D948295004A93A0 /* TDDAssertInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */; };
 		73E7A9D11D982D6100CCFE20 /* UITextTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E7A9CF1D982D6100CCFE20 /* UITextTest.cpp */; };
+		73EB6A221DC6598500249D15 /* TDDButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73EB6A201DC6598500249D15 /* TDDButton.cpp */; };
+		73EB6A231DC6598500249D15 /* TDDButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73EB6A201DC6598500249D15 /* TDDButton.cpp */; };
+		73EB6A261DC65C5700249D15 /* TDDButtonTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73EB6A241DC65C5700249D15 /* TDDButtonTest.cpp */; };
+		73EB6A271DC65C5700249D15 /* TDDButtonTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73EB6A241DC65C5700249D15 /* TDDButtonTest.cpp */; };
 		73F45CAF1D66440F00AF54AA /* SimpleTDD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */; };
 		73F45CB01D66440F00AF54AA /* SimpleTDD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */; };
 		73FE6B211D53C6800023048E /* TabTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73FE6B1F1D53C6800023048E /* TabTest.cpp */; };
@@ -309,16 +314,22 @@
 		739F0BAE1DAEA70E00D2A86E /* LogConsoleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogConsoleTest.h; sourceTree = "<group>"; };
 		73A76A491D721086003ACAF0 /* TextFieldTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextFieldTest.cpp; sourceTree = "<group>"; };
 		73A76A4A1D721086003ACAF0 /* TextFieldTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTest.h; sourceTree = "<group>"; };
+		73AB8B7F1DCB8BFC003E4F3D /* PositionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTest.h; sourceTree = "<group>"; };
+		73AB8B801DCB8BFC003E4F3D /* PositionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionTest.cpp; sourceTree = "<group>"; };
 		73AF4E451D5B9B5C003A0EB4 /* TDDTopBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTopBar.cpp; sourceTree = "<group>"; };
 		73AF4E461D5B9B5C003A0EB4 /* TDDTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTopBar.h; sourceTree = "<group>"; };
 		73AF4E491D5B9C11003A0EB4 /* TDDMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDMacro.h; sourceTree = "<group>"; };
 		73AF4E4A1D5B9D65003A0EB4 /* TDDTopBarTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTopBarTest.cpp; sourceTree = "<group>"; };
 		73AF4E4B1D5B9D65003A0EB4 /* TDDTopBarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDTopBarTest.h; sourceTree = "<group>"; };
-		73BABD301A94EEAD0017C351 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		73BABD301A94EEAD0017C351 /* background.png */ = {isa = PBXFileReference; explicitFileType = compiled; path = background.png; sourceTree = "<group>"; };
 		73E35F161D948295004A93A0 /* TDDAssertInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDAssertInfo.cpp; sourceTree = "<group>"; };
 		73E35F171D948295004A93A0 /* TDDAssertInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDAssertInfo.h; sourceTree = "<group>"; };
 		73E7A9CF1D982D6100CCFE20 /* UITextTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITextTest.cpp; sourceTree = "<group>"; };
 		73E7A9D01D982D6100CCFE20 /* UITextTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextTest.h; sourceTree = "<group>"; };
+		73EB6A201DC6598500249D15 /* TDDButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDButton.cpp; sourceTree = "<group>"; };
+		73EB6A211DC6598500249D15 /* TDDButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDButton.h; sourceTree = "<group>"; };
+		73EB6A241DC65C5700249D15 /* TDDButtonTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDButtonTest.cpp; sourceTree = "<group>"; };
+		73EB6A251DC65C5700249D15 /* TDDButtonTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDButtonTest.h; sourceTree = "<group>"; };
 		73F45CAD1D66440F00AF54AA /* SimpleTDD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTDD.cpp; sourceTree = "<group>"; };
 		73F45CAE1D66440F00AF54AA /* SimpleTDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTDD.h; sourceTree = "<group>"; };
 		73FE6B1F1D53C6800023048E /* TabTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TabTest.cpp; sourceTree = "<group>"; };
@@ -557,6 +568,8 @@
 				73E35F171D948295004A93A0 /* TDDAssertInfo.h */,
 				73386DAC1DA1708700CE3597 /* TDDUIHelper.cpp */,
 				73386DAD1DA1708700CE3597 /* TDDUIHelper.h */,
+				73EB6A201DC6598500249D15 /* TDDButton.cpp */,
+				73EB6A211DC6598500249D15 /* TDDButton.h */,
 			);
 			path = SimpleTDD;
 			sourceTree = "<group>";
@@ -564,6 +577,10 @@
 		739132991A8F4A5B00E95086 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				73AB8B7F1DCB8BFC003E4F3D /* PositionTest.h */,
+				73AB8B801DCB8BFC003E4F3D /* PositionTest.cpp */,
+				73EB6A241DC65C5700249D15 /* TDDButtonTest.cpp */,
+				73EB6A251DC65C5700249D15 /* TDDButtonTest.h */,
 				739F0BAD1DAEA70E00D2A86E /* LogConsoleTest.cpp */,
 				739F0BAE1DAEA70E00D2A86E /* LogConsoleTest.h */,
 				73386DB01DA1792000CE3597 /* TDDUIHelperTest.cpp */,
@@ -777,6 +794,7 @@
 				739132B91A8F4A5B00E95086 /* LabelTest.cpp in Sources */,
 				739A0F241D5A4F4300389528 /* WidgetTest.cpp in Sources */,
 				73F45CAF1D66440F00AF54AA /* SimpleTDD.cpp in Sources */,
+				73EB6A221DC6598500249D15 /* TDDButton.cpp in Sources */,
 				732472251D68585800CCAB9B /* TDDTestMenuTest.cpp in Sources */,
 				73386DB21DA1792000CE3597 /* TDDUIHelperTest.cpp in Sources */,
 				73386DAE1DA1708700CE3597 /* TDDUIHelper.cpp in Sources */,
@@ -785,6 +803,7 @@
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				739132891A8F49A300E95086 /* TDDData.cpp in Sources */,
 				73AF4E471D5B9B5C003A0EB4 /* TDDTopBar.cpp in Sources */,
+				73EB6A261DC65C5700249D15 /* TDDButtonTest.cpp in Sources */,
 				73491BC31D563F7C004D09F9 /* TDDTab.cpp in Sources */,
 				739132C11A8F4A5B00E95086 /* TDDDataTest.cpp in Sources */,
 				732472211D68568500CCAB9B /* TDDTestMenu.cpp in Sources */,
@@ -807,6 +826,7 @@
 				7335D69A1D871E1200532C98 /* TestMenuTest.cpp in Sources */,
 				737A6C881D5072D800969614 /* TDDManagerTest.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				73AB8B811DCB8BFC003E4F3D /* PositionTest.cpp in Sources */,
 				739132931A8F49A300E95086 /* TDDSuite.cpp in Sources */,
 				739132B51A8F4A5B00E95086 /* EditBoxTest.cpp in Sources */,
 				73339D6C1D98235D001193EB /* TDDConsoleViewTest.cpp in Sources */,
@@ -828,6 +848,7 @@
 				73130E121D5F09D000007D37 /* TDDMainLayerTest.cpp in Sources */,
 				730198501D6CC2EE000D7B6F /* TDDBaseTest.cpp in Sources */,
 				739132C41A8F4A5B00E95086 /* TDDHelperTest.cpp in Sources */,
+				73EB6A271DC65C5700249D15 /* TDDButtonTest.cpp in Sources */,
 				73F45CB01D66440F00AF54AA /* SimpleTDD.cpp in Sources */,
 				739132C81A8F4A5B00E95086 /* TDDSuiteLayerTest.cpp in Sources */,
 				739132B41A8F4A5B00E95086 /* ButtonTest.cpp in Sources */,
@@ -855,6 +876,7 @@
 				739132CA1A8F4A5B00E95086 /* TDDSwitchTest.cpp in Sources */,
 				739132881A8F49A300E95086 /* TDDSample.cpp in Sources */,
 				739132C21A8F4A5B00E95086 /* TDDDataTest.cpp in Sources */,
+				73EB6A231DC6598500249D15 /* TDDButton.cpp in Sources */,
 				739132961A8F49A300E95086 /* TDDSwitch.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				7391328C1A8F49A300E95086 /* TDDHelper.cpp in Sources */,
