@@ -187,10 +187,11 @@ void TDDTopBar::initSearchBar()
 
 	
 	// Adding the close Button
-	ui::Button *clearButton = TDDHelper::addButtonWithBackground(this,
-												clearButtonPos, clearButtonSize,
-												"X", mTextColor, mTopBarColor);
-	clearButton->setTitleFontSize(fontSize);
+	TDDButton *clearButton = TDDHelper::addTDDButton(this,
+										clearButtonPos, clearButtonSize,
+										"X", mTextColor, mTopBarColor, fontSize);
+	
+	// clearButton->setTitleFontSize(fontSize);
 	clearButton->addClickEventListener([&](Ref *ref) {
 		clearSearchText();
 	});

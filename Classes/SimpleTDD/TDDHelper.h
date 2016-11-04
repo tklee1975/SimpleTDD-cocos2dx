@@ -15,6 +15,7 @@
 #include "TDDTypes.h"
 #include <string>
 #include <vector>
+#include "TDDButton.h"
 
 #define kButtonUp		1
 #define kButtonDown		2
@@ -24,6 +25,8 @@
 USING_NS_CC;
 
 using namespace std;
+
+class TDDButton;
 
 class TDDHelper
 {
@@ -119,6 +122,16 @@ public:
 	static std::string getAlignName(TDDAlign align);
 	
 	static std::vector<TDDAlign> getAlignList();
+	
+	
+	static TDDButton *addTDDButton(Node *parent,
+								   const Vec2 &pos,
+								   const Size &size,
+								   const std::string &title,
+								   const Color3B &titleColor,
+								   const Color4B &bgColor,
+								   const float titleSize=12.0f);
+
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

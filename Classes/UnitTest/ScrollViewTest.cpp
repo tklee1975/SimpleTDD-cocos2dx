@@ -71,7 +71,7 @@ void ScrollViewTest::testFromTop()
 	LayerColor *scrollContent = LayerColor::create(Color4B::YELLOW, 300, 600);
 	
 	
-	ScrollView *scrollView = ScrollView::create(Size(200, 200), scrollContent);
+	extension::ScrollView *scrollView = extension::ScrollView::create(Size(200, 200), scrollContent);
 	
 	
 	addChild(scrollView);

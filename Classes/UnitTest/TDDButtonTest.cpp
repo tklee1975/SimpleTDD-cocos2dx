@@ -53,20 +53,24 @@ void TDDButtonTest::testSample()
 	button->setAnchorPoint(Vec2(0.5f, 0.5f));
 	button->setContentSize(size);
 	//sbutton->setTitleColor(Color3B::BLUE);
-	button->setPosition(Vec2(0, 0));
+	// button->setPosition(Vec2(0, 0));
+	button->setPosition(Vec2(100, 100));
 	//button->setBackGroundColor(Color3B::YELLOW);
 	addChild(button);
 	
-	Layout *panel = Layout::create();
-	panel->setContentSize(Size(100, 100));
-	panel->setPosition(Vec2(200, 200));
-	panel->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
-	panel->setBackGroundColor(Color3B::BLUE);
-	addChild(panel);
+	button->addClickEventListener([&](Ref *) {
+		log("Testing!!");
+	});
+
+	// Testing code
 	
-//	button->addClickEventListener([&](Ref *) {
-//		log("Testing!!");
-//	});
+//	Layout *panel = Layout::create();
+//	panel->setContentSize(Size(100, 100));
+//	panel->setPosition(Vec2(200, 200));
+//	panel->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
+//	panel->setBackGroundColor(Color3B::BLUE);
+//	addChild(panel);
+//	
 	
 	
 	

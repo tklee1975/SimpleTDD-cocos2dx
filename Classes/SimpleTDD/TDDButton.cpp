@@ -8,6 +8,8 @@
 
 #include "TDDButton.h"
 
+using namespace cocos2d::ui;
+
 TDDButton::TDDButton()
 : Layout()
 , mButton(nullptr)
@@ -30,25 +32,18 @@ bool TDDButton::init()
 	// Background
 	setBackGroundColorType(Layout::BackGroundColorType::SOLID);
 	setBackGroundColor(Color3B::BLUE);
+	setAnchorPoint(Vec2(0.5f, 0.5f));
+	setOpacity(0);	// by default transparent background
 	
 	// Add the button
-	mButton = Button::create();
+	mButton = ui::Button::create();
 	addChild(mButton);
 	updateButtonPosition();
 	
-	mButton->addClickEventListener([&](Ref *ref) {
-		log("Button clicked");
-	});
-	
 	setTouchEnabled(true);
 	
-//	// Setting the listener for the panel
-//	addClickEventListener([&](Ref *ref) {
-//		sendClickToButton();
-//	});
-	
 	addTouchEventListener([&](Ref *ref, TouchEventType eventType) {
-		log("Debug: panel touch: eventType=%d", eventType);
+//		log("Debug: panel touch: eventType=%d", eventType);
 		sendClickToButton(eventType);
 	});
 	
@@ -57,7 +52,7 @@ bool TDDButton::init()
 
 void TDDButton::sendClickToButton(TouchEventType eventType)
 {
-	log("Debug: panel is clicked");
+	//log("Debug: panel is touched");
 	Touch touch;
 	//World
 	
@@ -150,4 +145,15 @@ void TDDButton::setTitleFontSize(float size)
 float TDDButton::getTitleFontSize() const
 {
 	return mButton->getTitleFontSize();
+}
+
+void TDDButton::addClickEventListener(const Widget::ccWidgetClickCallback &callback)
+{
+	mButton->addClickEventListener(callback);
+}
+
+void TDDButton::setBackgroundColor(const Color4B &color)
+{
+	setBackGroundColor(Color3B(color));
+	setOpacity(color.a);
 }

@@ -10,8 +10,8 @@
 #define Cocos2dxTDDLib_TDDConstant_h
 
 #define APP_NAME		"SimpleTDD"
-#define VERSION			"1.3.0"
-#define BUILD			3
+#define VERSION			"2.3.0"
+#define BUILD			20300
 
 #define TDD_FONT_NAME	"Arial"
 //#define TDD_FONT_NAME	"Helvetica"

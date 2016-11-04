@@ -22,6 +22,8 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+class TDDButton;
+
 class TDDTab : public LayerColor
 {
 public:
@@ -46,12 +48,12 @@ public:
 	std::string getName(int index);
 
 private:
-	ui::Button *getButtonAtIndex(int index);
-	ui::Button *createButton(const std::string &name, const Vec2 &pos, int tabIndex);
+	TDDButton *getButtonAtIndex(int index);
+	TDDButton *createButton(const std::string &name, const Vec2 &pos, int tabIndex);
 	void updateContentSize();
 	
 private:
-	std::vector<ui::Button *> mButtonArray;
+	std::vector<TDDButton *> mButtonArray;
 	TDDTabCallback mCallback;
 	int mSelectedIndex;
 	

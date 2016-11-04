@@ -7,6 +7,7 @@
 //
 #ifdef ENABLE_TDD
 #include "TDDTab.h"
+#include "TDDButton.h"
 
 TDDTab::TDDTab()
 : mFontName("")
@@ -35,7 +36,7 @@ int TDDTab::addTab(const std::string &tabName)
 	
 	int tabIndex = (int) getTabCount();
 	
-	ui::Button *button = createButton(tabName, Vec2(x, y), tabIndex);
+	TDDButton *button = createButton(tabName, Vec2(x, y), tabIndex);
 	mButtonArray.push_back(button);	// note: retain only by the UI, not the array
 	
 	// modify the content size of the layer
@@ -55,8 +56,8 @@ void TDDTab::selectTab(int index, bool doCallback)
 		return;	// invalid input
 	}
 	
-	ui::Button *newButton = getButtonAtIndex(index);
-	ui::Button *oldButton = getButtonAtIndex(mSelectedIndex);
+	TDDButton *newButton = getButtonAtIndex(index);
+	TDDButton *oldButton = getButtonAtIndex(mSelectedIndex);
 	
 	// Change the button color if a new tab is chosen
 	if(newButton != oldButton) {
@@ -81,7 +82,7 @@ void TDDTab::selectTab(int index, bool doCallback)
 	}
 }
 
-ui::Button *TDDTab::getButtonAtIndex(int index)
+TDDButton *TDDTab::getButtonAtIndex(int index)
 {
 	if(index < 0 || index >= getTabCount()) {
 		return nullptr;	// invalid input
@@ -90,9 +91,10 @@ ui::Button *TDDTab::getButtonAtIndex(int index)
 	return mButtonArray[index];
 }
 
-ui::Button *TDDTab::createButton(const std::string &name, const Vec2 &pos, int tabIndex)
+TDDButton *TDDTab::createButton(const std::string &name, const Vec2 &pos, int tabIndex)
 {
-	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+//	cocos2d::ui::Button *button = cocos2d::ui::Button::create();
+	TDDButton *button = TDDButton::create();
 	
 	// configure the button
 	button->setTitleText(name);
@@ -100,6 +102,7 @@ ui::Button *TDDTab::createButton(const std::string &name, const Vec2 &pos, int t
 	button->setContentSize(getTabSize());
 	button->setTitleColor(getTitleColor());
 	button->setPosition(pos);
+	
 	
 	// define the callback
 	button->addClickEventListener([&, tabIndex](Ref *) {

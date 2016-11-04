@@ -15,9 +15,8 @@
 #include "ui/CocosGUI.h"
 
 USING_NS_CC;
-using namespace cocos2d::ui;
 
-class CC_GUI_DLL TDDButton : public Layout
+class CC_GUI_DLL TDDButton : public ui::Layout
 {
 public:
 	CREATE_FUNC(TDDButton);
@@ -49,7 +48,7 @@ public:
 	 */
 	const std::string getTitleText() const;
 	
-	virtual void setContentSize(const Size &size);
+	virtual void setContentSize(const Size &size) override;
 
 	/**
 	 * Change the color of button's title.
@@ -77,6 +76,11 @@ public:
 	 */
 	float getTitleFontSize() const;
 	
+	
+	void addClickEventListener(const Widget::ccWidgetClickCallback &callback);
+
+	void setBackgroundColor(const Color4B &color);
+	
 protected:
 	// svirtual void updateContentSize() override;
 	void updateButtonPosition();
@@ -84,7 +88,7 @@ protected:
 	
 private:
 	//Layout *mBackgroundLayout;
-	Button *mButton;
+	ui::Button *mButton;
 };
 
 #endif /* TDDButton_hpp */

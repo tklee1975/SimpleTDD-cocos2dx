@@ -10,10 +10,11 @@
 #include "TDDSuite.h"
 #include "TDDConstant.h"
 
+
 //#include "GUIHelper.h"
 
 #define kLibName			"TDDLib+cocos2dx"
-#define kLibVersion			"0.1"
+#define kLibVersion			"1.3"
 
 
 #ifdef ENABLE_TDD
@@ -189,7 +190,7 @@ bool TDDHelper::isLandscape()
 	return screenSize.width > screenSize.height;
 }
 
-void TDDHelper::scrollToTop(ScrollView *scrollView)
+void TDDHelper::scrollToTop(extension::ScrollView *scrollView)
 {
 	Size containerSize = scrollView->getContainer()->getContentSize();
 	
@@ -714,3 +715,24 @@ std::vector<TDDAlign> TDDHelper::getAlignList()
 
 
 
+TDDButton *TDDHelper::addTDDButton(Node *parent,
+							   const Vec2 &pos,
+							   const Size &size,
+							   const std::string &title,
+							   const Color3B &titleColor,
+							   const Color4B &bgColor,
+							   const float titleSize)
+{
+	TDDButton *button = TDDButton::create();
+	button->setTitleText(title);
+	button->setContentSize(size);
+	button->setTitleFontSize(titleSize);
+	button->setTitleColor(titleColor);
+	button->setBackgroundColor(bgColor);
+	button->setPosition(pos);
+
+
+	parent->addChild(button);
+	
+	return button;
+}

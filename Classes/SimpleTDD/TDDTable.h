@@ -69,7 +69,7 @@ private:
 private:
 	std::vector<ui::Button *> mButtonArray;
 	TDDTableCallback mCallback;
-	ScrollView *mScrollView;
+	extension::ScrollView *mScrollView;
 	LayerColor *mScrollContentLayer;
 };
 

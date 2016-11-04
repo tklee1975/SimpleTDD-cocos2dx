@@ -10,6 +10,7 @@
 #include "TDDHelper.h"
 #include "TDDManager.h"
 #include "TDDMainLayer.h"
+#include "TDDButton.h"
 
 void SimpleTDD::setup(Node *parent, const Vec2 &pos,
 						const std::string &title,
@@ -24,17 +25,22 @@ void SimpleTDD::setup(Node *parent, const Vec2 &pos,
 	}
 
 	//
-	cocos2d::ui::Button *button;
+	//cocos2d::ui::Button *button;
 	size_t strLen = title.length();
 	Size size = Size(fontSize * strLen, fontSize * 2);
 
-	button = TDDHelper::addButtonWithBackground(parent, pos,
-												size,
-												title,
-												textColor, bgColor);
-
+	
+	TDDButton *button = TDDButton::create();
+	button->setTitleText(title);
+	button->setContentSize(size);
 	button->setTitleFontSize(fontSize);
-
+	button->setTitleColor(textColor);
+	button->setBackgroundColor(bgColor);
+	button->setPosition(pos);
+	
+	
+	parent->addChild(button);
+	
 	button->addClickEventListener([&](Ref *) {
 		gotoTestScene();
 	});
