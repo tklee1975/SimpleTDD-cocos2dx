@@ -15,11 +15,9 @@
 #include <vector>
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include "cocostudio/CocoStudio.h"
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 #include "TDDTable.h"
 #include "TDDTypes.h"

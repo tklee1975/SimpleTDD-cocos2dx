@@ -132,6 +132,9 @@ public:
 								   const Color4B &bgColor,
 								   const float titleSize=12.0f);
 
+	static void showToastAlert(const std::string &title, const Vec2 &pos, Node *parent = nullptr);
+	
+	
 };
 
 #endif /* defined(__Dg__TDDHelper__) */

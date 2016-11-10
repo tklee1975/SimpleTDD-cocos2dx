@@ -23,6 +23,7 @@ protected:
 private:
 	void testSample();
 	void testVariousStyle();
+	void testButtonChange();
 };
 
 #endif

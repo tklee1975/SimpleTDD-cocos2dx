@@ -14,15 +14,12 @@
 #include <stdio.h>
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include <string>
 #include <vector>
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 
 USING_NS_CC;
-USING_NS_CC_EXT;
-
 
 #include "TDDMacro.h"
 #include "TDDTypes.h"

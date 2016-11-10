@@ -1,5 +1,7 @@
 Version Note about Simple TDD
 
+Version string is defined in TDDManager.cpps
+
 Version 2.4.0 *  
 ---------------------
 - TODO: Android build
@@ -8,7 +10,8 @@ Version 2.4.0 *
 Version 2.3.0 *  
 ---------------------
 - improve the Button touch 
-
+- remove the usage of  cocos2d::extension
+- 
 
 
 Version 2.2.0   

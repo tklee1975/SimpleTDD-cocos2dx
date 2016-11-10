@@ -14,19 +14,14 @@
 
 
 #include <stdio.h>
-
-
-#include <stdio.h>
-
-
-#include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include <string>
 #include <vector>
+
+#include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
+#include "CocosGUI.h"
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 class TDDTableDelegate
 {
@@ -69,8 +64,8 @@ private:
 private:
 	std::vector<ui::Button *> mButtonArray;
 	TDDTableCallback mCallback;
-	extension::ScrollView *mScrollView;
-	LayerColor *mScrollContentLayer;
+	ui::ScrollView *mScrollView;
+	//LayerColor *mScrollContentLayer;
 };
 
 #endif /* TDDTable_hpp */

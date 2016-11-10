@@ -85,6 +85,11 @@ void TDDTableTest::setupTable()
 
 void TDDTableTest::increaseItem()
 {
+	if(mTableDelegate == nullptr) {
+		log("Table not yet setup");
+		return;
+	}
+	
 	MyTableDelegate *delegate = (MyTableDelegate *) mTableDelegate;
 	delegate->setItemCount(100);
 	

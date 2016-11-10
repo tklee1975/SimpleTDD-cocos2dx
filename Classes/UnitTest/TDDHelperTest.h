@@ -35,6 +35,7 @@ private:
 	void testResolveAlign();
 	void testAlignNode();
 	void testFormat();
+	void testToastAlert();
 	
 private:
 	std::vector<TDDAlign> mAlignList;

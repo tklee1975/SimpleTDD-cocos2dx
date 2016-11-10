@@ -23,7 +23,7 @@ TDDTable *TDDTable::create(const Size &contentSize)
 TDDTable::TDDTable()
 : mButtonArray()
 , mTitleColor(Color3B::BLUE)
-, mBackgroundColor(Color4B::WHITE)
+, mBackgroundColor(Color4B::GRAY)
 , mFontSize(15)
 , mColumn(4)
 , mDelegate(nullptr)
@@ -38,16 +38,20 @@ TDDTable::~TDDTable()
 
 bool TDDTable::initWithSize(const Size &contentSize)
 {
-	bool flag = LayerColor::initWithColor(Color4B(0, 0, 0, 0), contentSize.width, contentSize.height);
+	bool flag = LayerColor::initWithColor(mBackgroundColor,
+										  contentSize.width, contentSize.height);
 	
 	if(! flag) {
 		return false;
 	}
 	
 	// configure the scrollView
-	mScrollContentLayer = LayerColor::create(Color4B::WHITE, contentSize.width, contentSize.height);
-	mScrollView = ScrollView::create(contentSize, mScrollContentLayer);
-	mScrollView->setDirection(ScrollView::Direction::VERTICAL);
+	//mScrollContentLayer = LayerColor::create(Color4B::WHITE, contentSize.width, contentSize.height);
+	mScrollView = ui::ScrollView::create();
+	mScrollView->setContentSize(contentSize);
+	mScrollView->setInnerContainerSize(contentSize);
+	mScrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
+	mScrollView->setClippingEnabled(true);
 	
 	//
 	addChild(mScrollView);
@@ -57,10 +61,13 @@ bool TDDTable::initWithSize(const Size &contentSize)
 
 void TDDTable::updateBackgroundColor()
 {
-	if(mScrollContentLayer) {
-		mScrollContentLayer->setColor(Color3B(mBackgroundColor));
-		mScrollContentLayer->setOpacity(mBackgroundColor.a);
-	}
+	setColor(Color3B(mBackgroundColor));
+	setOpacity(mBackgroundColor.a);
+//	if(mScrollView) {
+//		mScrollView->
+//		
+//		//mScrollView->
+//	}
 }
 
 void TDDTable::refresh()
@@ -74,7 +81,7 @@ void TDDTable::refresh()
 	updateBackgroundColor();
 	
 	// Clean up first
-	mScrollContentLayer->removeAllChildren();
+	mScrollView->removeAllChildren();
 	
 	// Calculate the position first
 	Size cellSize = mDelegate->getTableCellSize();
@@ -88,7 +95,7 @@ void TDDTable::refresh()
 	float totalHeight = cellSize.height * rowcount;
 	
 	bool hasVerticalScroll;
-	float scrollViewH = mScrollView->getViewSize().height;
+	float scrollViewH = mScrollView->getContentSize().height;
 	
 	if(totalHeight <= scrollViewH) {
 		totalHeight = scrollViewH;
@@ -105,7 +112,7 @@ void TDDTable::refresh()
 	
 	
 	// Setting the scrollView
-	mScrollContentLayer->setContentSize(Size(totalWidth, totalHeight));
+	mScrollView->setInnerContainerSize(Size(totalWidth, totalHeight));
 	
 	// Create the TableCell using Button
 	for(int i=0; i<itemCount; i++) {
@@ -115,7 +122,7 @@ void TDDTable::refresh()
 		Node *node = createTableCell(i, cellSize, pos);
 		//button->setAnchorPoint(Vec2(0, 1));		// Anchor at left-top corner
 		if(node) {
-			mScrollContentLayer->addChild(node);
+			mScrollView->addChild(node);
 		}
 		
 		// Define the next position
@@ -134,9 +141,11 @@ void TDDTable::refresh()
 //	}
 	
 	// Scroll Top
-	float scroll = -totalHeight + mScrollView->getViewSize().height;
-	mScrollView->setContentOffset(Vec2(0, scroll));
+	mScrollView->scrollToTop(0, true);
+//	float scroll = -totalHeight + mScrollView->getViewSize().height;
+//	mScrollView->setContentOffset(Vec2(0, scroll));
 }
+
 
 Node *TDDTable::createTableCell(int index, const Size &size, const Vec2 &cellCenterPos)
 {
@@ -162,17 +171,9 @@ void TDDTable::resizeTo(const Size &newSize)
 {
 	setContentSize(newSize);
 	if(mScrollView) {
-		//mScrollView->setContentSize(newSize);
-		mScrollView->setViewSize(newSize);
+		mScrollView->setContentSize(newSize);
 	}
-	
-	if(mScrollContentLayer) {
-		Size size = mScrollContentLayer->getContentSize();
-		size.width = newSize.width;
 		
-		mScrollContentLayer->setContentSize(size);
-	}
-	
 	refresh();
 }
 

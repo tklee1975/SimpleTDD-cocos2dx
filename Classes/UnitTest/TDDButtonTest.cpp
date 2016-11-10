@@ -7,6 +7,7 @@
 #include "TDDButtonTest.h"
 #include "TDDHelper.h"
 #include "TDDButton.h"
+#include "VisibleRect.h"
 
 void TDDButtonTest::setUp()
 {
@@ -37,6 +38,7 @@ void TDDButtonTest::defineTests()
 {
 	ADD_TEST(testSample);
 	ADD_TEST(testVariousStyle);
+	ADD_TEST(testButtonChange);
 }
 
 #pragma mark -
@@ -59,6 +61,7 @@ void TDDButtonTest::testSample()
 	addChild(button);
 	
 	button->addClickEventListener([&](Ref *) {
+		TDDHelper::showToastAlert("TDDButton is clicked", VisibleRect::center());
 		log("Testing!!");
 	});
 
@@ -82,7 +85,7 @@ void TDDButtonTest::testVariousStyle()
 	const int nStyle = 2;
 	
 	Color3B titleColor[nStyle] = {Color3B::RED, Color3B::GREEN};
-	Color3B bgColor[nStyle] = {Color3B::GREEN, Color3B::RED};
+	Color4B bgColor[nStyle] = {Color4B::GREEN, Color4B::RED};
 	float fontSize[nStyle] = {10, 20};
 	
 	Vec2 pos = Vec2(100, 100);
@@ -102,7 +105,7 @@ void TDDButtonTest::testVariousStyle()
 		button->setContentSize(size);
 		button->setTitleFontSize(fontSize[i]);
 		button->setTitleColor(titleColor[i]);
-		button->setBackGroundColor(bgColor[i]);
+		button->setBackgroundColor(bgColor[i]);
 		
 		button->setPosition(pos);
 	
@@ -114,5 +117,39 @@ void TDDButtonTest::testVariousStyle()
 	//button->setBackGroundColor(Color3B::YELLOW);
 	
 }
+
+void TDDButtonTest::testButtonChange()
+{
+	
+	Size size = Size(200, 50);
+	float fontSize = 16;
+	
+	TDDButton *button;
+	button = TDDButton::create();
+	button->setTitleText("TDDButton (NEW)");
+	button->setContentSize(size);
+	button->setTitleFontSize(fontSize);
+	button->setTitleColor(Color3B::RED);
+	button->setPosition(Vec2(150, 100));
+	button->setBackgroundColor(Color4B::YELLOW);
+	addChild(button);
+	button->addClickEventListener([&](Ref *) {
+		TDDHelper::showToastAlert("TDDButton is clicked", VisibleRect::center());
+		
+	});
+	
+
+	
+
+	ui::Button *uiButton = TDDHelper::addButtonWithBackground(this,
+					Vec2(150, 200), size, "ui:Button (OLD)",
+					Color3B::GREEN, Color4B::YELLOW);
+	uiButton->setTitleFontSize(fontSize);
+	uiButton->addClickEventListener([&](Ref *) {
+		TDDHelper::showToastAlert("ui::Button is clicked", VisibleRect::center());
+		
+	});
+}
+
 
 #endif

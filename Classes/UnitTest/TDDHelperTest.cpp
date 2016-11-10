@@ -41,6 +41,7 @@ void TDDHelperTest::tearDown()
 void TDDHelperTest::defineTests()
 {
 	ADD_TEST(testResolveAlign);
+	ADD_TEST(testToastAlert);
 	ADD_TEST(testFormat);
 	ADD_TEST(testAlignNode);
 	ADD_TEST(testAddButtonWithBg);
@@ -308,5 +309,10 @@ void TDDHelperTest::testFormat()
 	logConsole(result.c_str());
 }
 
+
+void TDDHelperTest::testToastAlert()
+{
+	TDDHelper::showToastAlert("testing", Vec2(100, 100), nullptr);
+}
 
 #endif

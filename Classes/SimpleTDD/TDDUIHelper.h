@@ -13,13 +13,11 @@
 
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include "TDDTypes.h"
 #include <string>
 #include <vector>
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 using namespace std;
 

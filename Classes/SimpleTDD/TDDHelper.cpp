@@ -14,7 +14,7 @@
 //#include "GUIHelper.h"
 
 #define kLibName			"TDDLib+cocos2dx"
-#define kLibVersion			"1.3"
+#define kLibVersion			"1.3"			// deprecated
 
 
 #ifdef ENABLE_TDD
@@ -735,4 +735,45 @@ TDDButton *TDDHelper::addTDDButton(Node *parent,
 	parent->addChild(button);
 	
 	return button;
+}
+
+
+//http://ux.stackexchange.com/questions/11998/what-is-a-toast-notification
+void TDDHelper::showToastAlert(const std::string &title, const Vec2 &pos, Node *parent)
+{
+	//sTTFConfig ttfConfig("Caviar_Dreams_Bold.ttf", fontSize * 2);
+	
+	auto size = Director::getInstance()->getWinSize();
+	auto label = ui::Text::create(title, "", 20);
+	label->setPosition(Vec2::ZERO);
+	label->setAnchorPoint(Vec2::ZERO);
+	
+	Size panelSize = label->getContentSize();
+	
+	Color4B bgColor = Color4B(200, 200, 200, 150);
+	LayerColor *panel = LayerColor::create(bgColor, panelSize.width, panelSize.height);
+	panel->setContentSize(panelSize);
+	panel->addChild(label);
+	Vec2 panelPos = pos - Vec2(panelSize.width/2, panelSize.height/2);
+	panel->setPosition(panelPos);
+	
+	if(parent == nullptr) {
+		parent = Director::getInstance()->getRunningScene();
+	}
+	
+	parent->addChild(panel);
+	
+	
+//	label->setTextColor(color);
+//	label->setScale(0.5f);
+//	parent->addChild(label);
+//	
+
+	DelayTime *delay = DelayTime::create(0.5);
+	ActionInterval *fadeOut = EaseOut::create(FadeOut::create(0.5), 0.5f);
+	RemoveSelf *remove = RemoveSelf::create();
+	
+	Sequence *sequence = Sequence::create(delay, fadeOut, remove, nullptr);
+	
+	panel->runAction(sequence);
 }

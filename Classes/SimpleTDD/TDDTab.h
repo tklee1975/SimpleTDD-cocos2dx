@@ -14,13 +14,11 @@
 #include <vector>
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include "cocostudio/CocoStudio.h"
 
 #ifdef ENABLE_TDD
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 class TDDButton;
 
