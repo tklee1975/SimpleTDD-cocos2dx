@@ -35,13 +35,8 @@
 		5087E76917EB910900C73F5D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		5087E76A17EB910900C73F5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		5087E76B17EB910900C73F5D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
-		5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77217EB970100C73F5D /* Default-568h@2x.png */; };
-		5087E77E17EB970100C73F5D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77317EB970100C73F5D /* Default.png */; };
-		5087E77F17EB970100C73F5D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087E77417EB970100C73F5D /* Default@2x.png */; };
 		5087E78917EB974C00C73F5D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087E78817EB974C00C73F5D /* AppKit.framework */; };
 		5087E78B17EB975400C73F5D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087E78A17EB975400C73F5D /* OpenGL.framework */; };
-		521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6219F0C34300D177D7 /* Default-667h@2x.png */; };
-		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		7301984F1D6CC2EE000D7B6F /* TDDBaseTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7301984D1D6CC2EE000D7B6F /* TDDBaseTest.cpp */; };
@@ -67,6 +62,7 @@
 		73386DAF1DA1708700CE3597 /* TDDUIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73386DAC1DA1708700CE3597 /* TDDUIHelper.cpp */; };
 		73386DB21DA1792000CE3597 /* TDDUIHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73386DB01DA1792000CE3597 /* TDDUIHelperTest.cpp */; };
 		73386DB31DA1792000CE3597 /* TDDUIHelperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73386DB01DA1792000CE3597 /* TDDUIHelperTest.cpp */; };
+		734640241DF32BB200A880E5 /* launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 734640231DF32BB200A880E5 /* launchscreen.png */; };
 		73488CAC1DD40B5500697141 /* VisibleRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73488CAA1DD40B5500697141 /* VisibleRect.cpp */; };
 		73491BC31D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
 		73491BC41D563F7C004D09F9 /* TDDTab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73491BC11D563F7C004D09F9 /* TDDTab.cpp */; };
@@ -210,14 +206,9 @@
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		5087E76F17EB910900C73F5D /* SimpleTDD Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SimpleTDD Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5087E77217EB970100C73F5D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		5087E77317EB970100C73F5D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		5087E77417EB970100C73F5D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5087E77C17EB970100C73F5D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5087E78817EB974C00C73F5D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
-		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		7301984D1D6CC2EE000D7B6F /* TDDBaseTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDBaseTest.cpp; sourceTree = "<group>"; };
 		7301984E1D6CC2EE000D7B6F /* TDDBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDBaseTest.h; sourceTree = "<group>"; };
@@ -245,6 +236,7 @@
 		73386DAD1DA1708700CE3597 /* TDDUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDUIHelper.h; sourceTree = "<group>"; };
 		73386DB01DA1792000CE3597 /* TDDUIHelperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDUIHelperTest.cpp; sourceTree = "<group>"; };
 		73386DB11DA1792000CE3597 /* TDDUIHelperTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDUIHelperTest.h; sourceTree = "<group>"; };
+		734640231DF32BB200A880E5 /* launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchscreen.png; path = ios/launchscreen.png; sourceTree = SOURCE_ROOT; };
 		73488CAA1DD40B5500697141 /* VisibleRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisibleRect.cpp; sourceTree = "<group>"; };
 		73488CAB1DD40B5500697141 /* VisibleRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisibleRect.h; sourceTree = "<group>"; };
 		73491BC11D563F7C004D09F9 /* TDDTab.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDDTab.cpp; sourceTree = "<group>"; };
@@ -390,6 +382,7 @@
 		080E96DDFE201D6D7F000001 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				734640231DF32BB200A880E5 /* launchscreen.png */,
 				5087E77117EB970100C73F5D /* Icons */,
 				503AE0FA17EB989F00D1A890 /* AppController.h */,
 				503AE0FB17EB989F00D1A890 /* AppController.mm */,
@@ -511,11 +504,6 @@
 		5087E77117EB970100C73F5D /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				521A8E6219F0C34300D177D7 /* Default-667h@2x.png */,
-				521A8E6319F0C34300D177D7 /* Default-736h@3x.png */,
-				5087E77217EB970100C73F5D /* Default-568h@2x.png */,
-				5087E77317EB970100C73F5D /* Default.png */,
-				5087E77417EB970100C73F5D /* Default@2x.png */,
 				5087E77C17EB970100C73F5D /* Info.plist */,
 			);
 			name = Icons;
@@ -756,16 +744,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
-				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				7391326F1A8F41E000E95086 /* Images.xcassets in Resources */,
 				73BABD311A94EEAD0017C351 /* background.png in Resources */,
-				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
+				734640241DF32BB200A880E5 /* launchscreen.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
-				5087E77E17EB970100C73F5D /* Default.png in Resources */,
-				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,7 +908,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -960,7 +943,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;

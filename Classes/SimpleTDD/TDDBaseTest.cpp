@@ -41,8 +41,12 @@ void TDDBaseTest::onEnter()
 {
 	Scene::onEnter();
 
+	Director::getInstance()->setDisplayStats(true);
+	
 	findBaseNode();		// Find the base node, prevent it is removed from clearChildren!!
 
+	ADD_TEST(toggleStat);
+	
 	defineTests();		// Define the list of sub test
 						// mTestNameList is filling up
 
